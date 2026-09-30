@@ -86,27 +86,36 @@ svg use { pointer-events: none; }
   z-index: 0;
   overflow: hidden;
   background:
-    linear-gradient(180deg, #a9c7e2 0%, #d7dfe4 32%, #6d7f95 52%, #1a3556 72%, var(--navy-900) 100%);
+    linear-gradient(180deg, #a6c4df 0%, #c3d5e4 18%, #e2e1da 36%, #b9bfc4 44%, #5f7791 56%, #1c3758 72%, var(--navy-900) 100%);
 }
+/* A fotó a jobb oldalon ül (mint a tervben), a bal szélét a szöveg felé kiúsztatjuk */
 .scene__photo {
   position: absolute;
-  left: 0;
-  right: 0;
+  /* a fotó bal széle a címsor vége után kezdődik */
+  --pl: min(50vw, calc(max(0px, (100vw - var(--maxw) - 2 * var(--gutter)) / 2) + var(--gutter) + 8.4 * min(4.4vw, 6.4vh, 4.7rem)));
   top: 0;
-  height: max(64vh, 54vw);
-  background: url("../assets/img/hero-port.jpg") 62% 45% / cover no-repeat;
-  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
-          mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
-  transform: scale(1.04);
+  right: 0;
+  left: var(--pl);
+  height: max(calc((100vw - var(--pl)) * .71), 74vh);
+  background: url("../assets/img/hero-port.jpg") 28% 50% / cover no-repeat;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 7%, #000 16%),
+    linear-gradient(180deg, #000 74%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 7%, #000 16%),
+    linear-gradient(180deg, #000 74%, transparent 100%);
+          mask-composite: intersect;
+  transform: scale(1.02);
+  transform-origin: right top;
   transition: transform 1.4s var(--ease), filter .8s var(--ease);
 }
 .scene__wash {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(196, 216, 234, .78) 0%, rgba(196, 216, 234, .5) 24%, rgba(196, 216, 234, 0) 48%),
-    linear-gradient(180deg, rgba(160, 196, 226, .35) 0%, rgba(160, 196, 226, 0) 22%),
-    linear-gradient(180deg, rgba(11, 27, 48, 0) 48%, rgba(11, 27, 48, .55) 68%, rgba(11, 27, 48, .92) 100%);
+    linear-gradient(180deg, rgba(160, 196, 226, .25) 0%, rgba(160, 196, 226, 0) 20%),
+    linear-gradient(180deg, rgba(11, 27, 48, 0) 50%, rgba(11, 27, 48, .5) 68%, rgba(11, 27, 48, .92) 100%);
   transition: opacity .8s var(--ease);
 }
 .scene__dim {
@@ -361,9 +370,9 @@ body:not(.is-ready) .view { transition: none; }
   min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: safe center;
+  justify-content: flex-start;
   gap: clamp(14px, 3.6vh, 40px);
-  padding-bottom: clamp(0px, 2vh, 24px);
+  padding-top: clamp(4px, 5.5vh, 64px);
   container-type: size;
 }
 .hero__title {
@@ -987,7 +996,14 @@ body:not(.is-ready) .view { transition: none; }
   .main-nav a::after { display: none; }
   .main-nav a:hover { background: rgba(255, 255, 255, .06); }
 
-  .scene__photo { height: 66vh; background-position: 64% 50%; }
+  .scene__photo {
+    left: 0;
+    top: 24vh;
+    height: 52vh;
+    background-position: 45% 50%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 72%, transparent 100%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 72%, transparent 100%);
+  }
   .scene__wash {
     background:
       linear-gradient(180deg, rgba(196, 216, 234, .82) 0%, rgba(196, 216, 234, .45) 32%, rgba(196, 216, 234, 0) 50%),
