@@ -4,10 +4,13 @@ const path = require('path');
 const root = __dirname;
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 
-const img = 'data:image/jpeg;base64,' + fs.readFileSync(path.join(root, 'assets/img/hero-port.jpg')).toString('base64');
+const b64 = (f) => 'data:image/jpeg;base64,' + fs.readFileSync(path.join(root, f)).toString('base64');
 const favicon = 'data:image/svg+xml;base64,' + fs.readFileSync(path.join(root, 'assets/favicon.svg')).toString('base64');
 
-const css = read('css/style.css').replace('url("../assets/img/hero-port.jpg")', `url("${img}")`);
+const css = read('css/style.css')
+  .replace('url("../assets/img/hero-port.jpg")', () => `url("${b64('assets/img/hero-port.jpg')}")`)
+  .replace('url("../assets/img/hero-sky.jpg")', () => `url("${b64('assets/img/hero-sky.jpg')}")`);
+if (css.includes('../assets/')) throw new Error('Maradt kép-hivatkozás a CSS-ben');
 const js = read('js/i18n.js') + '\n' + read('js/main.js');
 
 let html = read('index.html')
