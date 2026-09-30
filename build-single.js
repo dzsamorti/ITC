@@ -9,7 +9,7 @@ const favicon = 'data:image/svg+xml;base64,' + fs.readFileSync(path.join(root, '
 
 const css = read('css/style.css')
   .replace('url("../assets/img/hero-port.jpg")', () => `url("${b64('assets/img/hero-port.jpg')}")`)
-  .replace('url("../assets/img/hero-sky.jpg")', () => `url("${b64('assets/img/hero-sky.jpg')}")`);
+  .replace('url("../assets/img/hero-left.jpg")', () => `url("${b64('assets/img/hero-left.jpg')}")`);
 if (css.includes('../assets/')) throw new Error('Maradt kép-hivatkozás a CSS-ben');
 const js = read('js/i18n.js') + '\n' + read('js/main.js');
 
