@@ -15,6 +15,18 @@ npx http-server -p 8080 .
 
 Bármilyen statikus tárhelyre (GitHub Pages, Netlify, saját szerver) feltölthető a mappa tartalma.
 
+## Egyetlen fájlos változat
+
+A `dist/index.html` az egész weboldal egyetlen fájlban: a stílus, a programkód és a háttérkép
+is benne van. Dupla kattintással megnyitható bármely böngészőben, internet nélkül is működik
+(ilyenkor a betűtípus helyett a gép saját betűtípusa jelenik meg).
+
+A szerkesztések után így készíthető el újra:
+
+```bash
+node build-single.js
+```
+
 ## Mit hol lehet szerkeszteni
 
 | Mit | Hol |
