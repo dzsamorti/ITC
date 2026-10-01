@@ -22,7 +22,7 @@ window.ITC_I18N = {
     'svc.export.card': 'Eligazodunk az exportellenőrzési szabályokban, és segítünk magabiztosan kezelni a kockázatokat globális működése során.',
     'svc.export.lead': 'Felmérjük, hogy termékei, technológiái és szoftverei engedélykötelesek-e, és kiépítjük azt a belső rendszert, amellyel az exportellenőrzési kötelezettségek biztonságosan teljesíthetők.',
     'svc.export.items': [
-      'Termékbesorolás a 2021/821/EU rendelet I. melléklete szerint (kettős felhasználású termékek)',
+      'Termékbesorolás az európai és amerikai szabályozás alapján (ECCN)',
       'Katonai termékek besorolása az EU közös katonai listája alapján',
       'Kiberfelügyeleti termékek és catch-all kockázatok vizsgálata',
       'Engedélykérelmek előkészítése, kapcsolattartás a hatósággal',
@@ -155,7 +155,7 @@ window.ITC_I18N = {
     'svc.export.card': 'Navigate export control regulations and manage risks across your global operations with confidence.',
     'svc.export.lead': 'We assess whether your products, technology and software require a licence, and build the internal system that lets you meet export control obligations reliably.',
     'svc.export.items': [
-      'Classification under Annex I of Regulation (EU) 2021/821 (dual-use items)',
+      'Product classification under EU and US regulations (ECCN)',
       'Classification of military items under the EU Common Military List',
       'Cyber-surveillance items and catch-all risk assessments',
       'Licence applications and liaison with the authorities',

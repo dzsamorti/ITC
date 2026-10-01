@@ -166,7 +166,7 @@ body.is-home .site-header { color: var(--ink); }
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-right: auto;
 }
 .brand__mark {
@@ -176,12 +176,17 @@ body.is-home .site-header { color: var(--ink); }
   stroke: var(--amber);
   stroke-width: 4.2;
 }
+/* Egyedi ITC szóvédjegy: geometrikus betűk, a T szára borostyán kiemeléssel */
 .brand__name {
-  font-weight: 700;
-  font-size: clamp(2rem, 5.2vh, 3.3rem);
-  letter-spacing: .01em;
-  line-height: 1;
+  display: block;
+  height: clamp(28px, 3.9vh, 40px);
+  width: auto;
+  aspect-ratio: 76 / 32;
+  overflow: visible;
 }
+.brand__ink { fill: currentColor; }
+.brand__accent { fill: var(--amber); }
+.brand__arc { fill: none; stroke: currentColor; stroke-width: 6; }
 
 .main-nav {
   display: flex;
@@ -192,7 +197,7 @@ body.is-home .site-header { color: var(--ink); }
   position: relative;
   white-space: nowrap;
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
   padding: 6px 0;
   transition: color .2s;
 }
@@ -974,7 +979,7 @@ body:not(.is-ready) .view { transition: none; }
   :root { --header-h: 64px; }
 
   .site-header { gap: 14px; }
-  .brand__name { font-size: 2rem; }
+  .brand__name { height: 26px; }
   .brand__mark { width: 32px; height: 32px; }
   .header-divider { display: none; }
   .lang__btn { font-size: 1rem; }
