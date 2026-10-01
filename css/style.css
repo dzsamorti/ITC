@@ -11,6 +11,7 @@
   --ink: #0f1e33;
   --amber: #f2a122;
   --amber-light: #f7b64a;
+  --amber-deep: #b45f00;
   --white: #ffffff;
   --text: rgba(255, 255, 255, .92);
   --muted: rgba(255, 255, 255, .74);
@@ -189,6 +190,7 @@ body.is-home .site-header { color: var(--ink); }
 }
 .main-nav a {
   position: relative;
+  white-space: nowrap;
   font-size: 1.1rem;
   font-weight: 500;
   padding: 6px 0;
@@ -209,6 +211,10 @@ body.is-home .site-header { color: var(--ink); }
 .main-nav a:hover::after,
 .main-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .main-nav a[aria-current="page"] { color: var(--amber-light); }
+@media (min-width: 821px) {
+  body.is-home .main-nav a[aria-current="page"] { color: var(--amber-deep); }
+  body.is-home .main-nav a[aria-current="page"]::after { background: var(--amber-deep); }
+}
 
 .header-divider {
   width: 1px;
@@ -942,6 +948,13 @@ body:not(.is-ready) .view { transition: none; }
   .contact-form { max-height: none; overflow: visible; }
   .news-card { max-height: none; }
   .inner--news { justify-content: flex-start; }
+}
+
+/* Keskenyebb asztali nézet: a menü egy sorban marad */
+@media (max-width: 1100px) and (min-width: 821px) {
+  .site-header { gap: 14px; }
+  .main-nav { gap: clamp(12px, 1.8vw, 22px); }
+  .main-nav a, .lang__btn { font-size: 1rem; }
 }
 
 /* Közepes szélesség */

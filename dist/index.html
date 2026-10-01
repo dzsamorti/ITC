@@ -24,6 +24,7 @@
   --ink: #0f1e33;
   --amber: #f2a122;
   --amber-light: #f7b64a;
+  --amber-deep: #b45f00;
   --white: #ffffff;
   --text: rgba(255, 255, 255, .92);
   --muted: rgba(255, 255, 255, .74);
@@ -202,6 +203,7 @@ body.is-home .site-header { color: var(--ink); }
 }
 .main-nav a {
   position: relative;
+  white-space: nowrap;
   font-size: 1.1rem;
   font-weight: 500;
   padding: 6px 0;
@@ -222,6 +224,10 @@ body.is-home .site-header { color: var(--ink); }
 .main-nav a:hover::after,
 .main-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .main-nav a[aria-current="page"] { color: var(--amber-light); }
+@media (min-width: 821px) {
+  body.is-home .main-nav a[aria-current="page"] { color: var(--amber-deep); }
+  body.is-home .main-nav a[aria-current="page"]::after { background: var(--amber-deep); }
+}
 
 .header-divider {
   width: 1px;
@@ -957,6 +963,13 @@ body:not(.is-ready) .view { transition: none; }
   .inner--news { justify-content: flex-start; }
 }
 
+/* Keskenyebb asztali nézet: a menü egy sorban marad */
+@media (max-width: 1100px) and (min-width: 821px) {
+  .site-header { gap: 14px; }
+  .main-nav { gap: clamp(12px, 1.8vw, 22px); }
+  .main-nav a, .lang__btn { font-size: 1rem; }
+}
+
 /* Közepes szélesség */
 @media (max-width: 1180px) and (min-width: 821px) {
   .strip { padding-left: 16px; padding-right: 16px; }
@@ -1128,12 +1141,13 @@ body:not(.is-ready) .view { transition: none; }
 
   <!-- Fejléc -->
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="ITC">
+    <a class="brand" href="#home" data-i18n-attr="aria-label:nav.brand">
       <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M12 4h24v24H12z"/><path d="M4 12v24h24"/></svg>
       <span class="brand__name">ITC</span>
     </a>
 
     <nav class="main-nav" id="main-nav" aria-label="Főmenü">
+      <a href="#home" data-nav="home" data-i18n="nav.home">Főoldal</a>
       <a href="#about" data-nav="about" data-i18n="nav.about">Az ITC-ről</a>
       <a href="#services" data-nav="services" data-i18n="nav.services">Szolgáltatások</a>
       <a href="#news" data-nav="news" data-i18n="nav.news">Hírek</a>
@@ -1441,6 +1455,8 @@ window.ITC_I18N = {
     'meta.title': 'ITC – Nemzetközi kereskedelmi compliance tanácsadás',
     'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, szabadkereskedelmi megállapodások és preferenciák.',
 
+    'nav.home': 'Főoldal',
+    'nav.brand': 'ITC – vissza a főoldalra',
     'nav.about': 'Az ITC-ről',
     'nav.services': 'Szolgáltatások',
     'nav.news': 'Hírek',
@@ -1572,6 +1588,8 @@ window.ITC_I18N = {
     'meta.title': 'ITC – International Trade Compliance Advisory',
     'meta.description': 'ITC is an international trade compliance advisory: export control, sanctions and trade restrictions, free trade agreements and preferences.',
 
+    'nav.home': 'Home',
+    'nav.brand': 'ITC – back to home',
     'nav.about': 'About ITC',
     'nav.services': 'Services',
     'nav.news': 'News',
@@ -1959,6 +1977,19 @@ window.ITC_I18N = {
   /* ================= Indítás ================= */
   applyLang(detectLang());
   window.addEventListener('hashchange', route);
+  /* Belső linkek (logó, menü, gombok): mindig a megfelelő nézetet nyitják meg,
+     akkor is, ha a böngésző vagy a beágyazó keret nem váltana magától */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var target = a.getAttribute('href');
+    e.preventDefault();
+    if (location.hash !== target) {
+      try { history.pushState(null, '', target); } catch (err) { location.hash = target; }
+    }
+    route();
+  });
+  window.addEventListener('popstate', route);
   route();
   requestAnimationFrame(function () { body.classList.add('is-ready'); });
 })();

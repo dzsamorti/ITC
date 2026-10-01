@@ -5,6 +5,8 @@ window.ITC_I18N = {
     'meta.title': 'ITC – Nemzetközi kereskedelmi compliance tanácsadás',
     'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, szabadkereskedelmi megállapodások és preferenciák.',
 
+    'nav.home': 'Főoldal',
+    'nav.brand': 'ITC – vissza a főoldalra',
     'nav.about': 'Az ITC-ről',
     'nav.services': 'Szolgáltatások',
     'nav.news': 'Hírek',
@@ -136,6 +138,8 @@ window.ITC_I18N = {
     'meta.title': 'ITC – International Trade Compliance Advisory',
     'meta.description': 'ITC is an international trade compliance advisory: export control, sanctions and trade restrictions, free trade agreements and preferences.',
 
+    'nav.home': 'Home',
+    'nav.brand': 'ITC – back to home',
     'nav.about': 'About ITC',
     'nav.services': 'Services',
     'nav.news': 'News',

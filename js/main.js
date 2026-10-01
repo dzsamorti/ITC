@@ -257,6 +257,19 @@
   /* ================= Indítás ================= */
   applyLang(detectLang());
   window.addEventListener('hashchange', route);
+  /* Belső linkek (logó, menü, gombok): mindig a megfelelő nézetet nyitják meg,
+     akkor is, ha a böngésző vagy a beágyazó keret nem váltana magától */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var target = a.getAttribute('href');
+    e.preventDefault();
+    if (location.hash !== target) {
+      try { history.pushState(null, '', target); } catch (err) { location.hash = target; }
+    }
+    route();
+  });
+  window.addEventListener('popstate', route);
   route();
   requestAnimationFrame(function () { body.classList.add('is-ready'); });
 })();
