@@ -82,8 +82,8 @@ svg use { pointer-events: none; }
 /* ================= Háttér ================= */
 .scene {
   /* a fotó bal széle a címsor vége után kezdődik; az égbolt-panel ehhez igazodik */
-  --pl: min(50vw, calc(max(0px, (100vw - var(--maxw) - 2 * var(--gutter)) / 2) + var(--gutter) + 8.4 * min(4.4vw, 6.4vh, 4.7rem)));
-  --ph: max(calc((100vw - var(--pl)) * .71), 74vh);
+  --pl: min(50vw, calc(max(0px, (100vw - var(--maxw) - 2 * var(--gutter)) / 2) + var(--gutter) + 8.4 * min(4.4vw, 6vh, 4.7rem)));
+  --ph: max(calc((100vw - var(--pl)) * .71), 88vh);
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -387,15 +387,15 @@ body:not(.is-ready) .view { transition: none; }
   flex-direction: column;
   justify-content: flex-start;
   gap: clamp(14px, 3.6vh, 40px);
-  padding-top: clamp(4px, 5.5vh, 64px);
+  padding-top: clamp(4px, 3vh, 40px);
   container-type: size;
 }
 .hero__title {
   font-family: var(--serif);
   font-weight: 500;
   color: var(--ink);
-  font-size: clamp(1.7rem, min(4.4vw, 6.4vh), 4.7rem);
-  font-size: clamp(1.7rem, min(4.4vw, 6.4vh, 19cqh), 4.7rem);
+  font-size: clamp(1.7rem, min(4.4vw, 6vh), 4.7rem);
+  font-size: clamp(1.7rem, min(4.4vw, 6vh, 19cqh), 4.7rem);
   line-height: 1.1;
   letter-spacing: -.012em;
   max-width: 13em;
