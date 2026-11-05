@@ -6,7 +6,7 @@
   <title>ITC – Nemzetközi kereskedelmi compliance tanácsadás</title>
   <meta name="description" content="Az ITC nemzetközi kereskedelmi compliance tanácsadó: export- és importellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.">
   <meta name="theme-color" content="#0f2440">
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjJhMTIyIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIwIDMuNWwxMy41IDQuNnYxMC4yYzAgOC44LTUuOCAxNC45LTEzLjUgMTguMkMxMi4zIDMzLjIgNi41IDI3LjEgNi41IDE4LjNWOC4xeiIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTkiIHI9IjguNCIvPjxlbGxpcHNlIGN4PSIyMCIgY3k9IjE5IiByeD0iMy42IiByeT0iOC40Ii8+PHBhdGggZD0iTTExLjYgMTloMTYuOCIvPjwvc3ZnPgo=" type="image/svg+xml">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjJhMTIyIiBzdHJva2Utd2lkdGg9IjIuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjAgM0wxNCAyMGw2IDE3eiIgZmlsbD0iI2YyYTEyMiIgc3Ryb2tlPSJub25lIi8+PHBhdGggZD0iTTIwIDNsNiAxNy02IDE3Ii8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTciIHN0cm9rZS13aWR0aD0iMi4yIi8+PC9zdmc+Cg==" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
@@ -188,11 +188,12 @@ body.is-home .site-header { color: var(--ink); }
   height: clamp(34px, 4.4vh, 46px);
   fill: none;
   stroke: var(--amber);
-  stroke-width: 2.6;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-/* Egyedi ITC szóvédjegy: geometrikus betűk, a T szára borostyán kiemeléssel */
+.brand__fill { fill: var(--amber); stroke: none; }
+/* Egyedi ITC szóvédjegy: geometrikus betűk */
 .brand__name {
   display: block;
   height: clamp(28px, 3.9vh, 40px);
@@ -1243,7 +1244,7 @@ body:not(.is-ready) .view { transition: none; }
   <!-- Fejléc -->
   <header class="site-header">
     <a class="brand" href="#home" data-i18n-attr="aria-label:nav.brand">
-      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3.5l13.5 4.6v10.2c0 8.8-5.8 14.9-13.5 18.2C12.3 33.2 6.5 27.1 6.5 18.3V8.1z"/><circle cx="20" cy="19" r="8.4"/><ellipse cx="20" cy="19" rx="3.6" ry="8.4"/><path d="M11.6 19h16.8"/></svg>
+      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><path class="brand__fill" d="M20 3L14 20l6 17z"/><path d="M20 3l6 17-6 17"/><circle cx="20" cy="20" r="17" stroke-width="1.4"/></svg>
       <svg class="brand__name" viewBox="0 0 76 32" aria-hidden="true">
         <rect class="brand__ink" x="0" y="0" width="6" height="32"/>
         <rect class="brand__accent" x="13.5" y="0" width="25" height="6"/>
