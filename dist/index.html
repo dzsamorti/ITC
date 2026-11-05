@@ -191,15 +191,17 @@ body.is-home .site-header { color: var(--ink); }
 /* Sötét fejlécen (belső oldalak) a tű déli, sötétkék fele világosabb, hogy kilátsszon */
 body:not(.is-home) .brand__s1 { fill: rgba(214, 228, 246, .7); }
 body:not(.is-home) .brand__s2 { fill: rgba(214, 228, 246, .4); }
-/* ITC szóvédjegy: vékony, geometrikus betűk (I, T és körív C) */
+/* Egyedi ITC szóvédjegy: geometrikus betűk */
 .brand__name {
   display: block;
-  height: clamp(28px, 3.9vh, 38px);
+  height: clamp(28px, 3.9vh, 40px);
   width: auto;
-  aspect-ratio: 207.6 / 100;
+  aspect-ratio: 76 / 32;
   overflow: visible;
 }
-.brand__line { fill: none; stroke: currentColor; stroke-width: 11; }
+.brand__ink { fill: currentColor; }
+.brand__accent { fill: currentColor; }
+.brand__arc { fill: none; stroke: currentColor; stroke-width: 6; }
 
 .main-nav {
   display: flex;
@@ -1241,7 +1243,12 @@ body:not(.is-ready) .view { transition: none; }
   <header class="site-header">
     <a class="brand" href="#home" data-i18n-attr="aria-label:nav.brand">
       <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="itc-gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe3a1"/><stop offset=".45" stop-color="#f7bc4d"/><stop offset="1" stop-color="#e09a23"/></linearGradient><linearGradient id="itc-gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d48a14"/><stop offset=".6" stop-color="#a8650c"/><stop offset="1" stop-color="#7d4a08"/></linearGradient><linearGradient id="itc-nl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a5f8f"/><stop offset="1" stop-color="#22426b"/></linearGradient><linearGradient id="itc-nd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a3558"/><stop offset="1" stop-color="#0f2240"/></linearGradient></defs><circle cx="50" cy="50" r="43" fill="none" stroke="#c4850f" stroke-width="2.8"/><path d="M50 12.6V8.4M87.4 50h4.2M50 87.4v4.2M12.6 50H8.4" stroke="#c4850f" stroke-width="2.6" stroke-linecap="round"/><g transform="rotate(45 50 50)"><path d="M50 16L40.6 50H50z" fill="url(#itc-gl)"/><path d="M50 16L59.4 50H50z" fill="url(#itc-gd)"/><path class="brand__s1" d="M50 84L59.4 50H50z" fill="url(#itc-nl)"/><path class="brand__s2" d="M50 84L40.6 50H50z" fill="url(#itc-nd)"/><path d="M50 84L40.6 50 50 16 59.4 50z" fill="none" stroke="#ffd68c" stroke-opacity=".45" stroke-width=".6"/></g><circle cx="50" cy="50" r="3.6" fill="url(#itc-gl)"/><circle cx="50" cy="50" r="1.5" fill="#0b1b30"/></svg>
-      <svg class="brand__name" viewBox="0 0 207.6 100" aria-hidden="true"><path class="brand__line" d="M5.5 0V100M29 5.5H101M65 0V100M202.07 20.22A44.5 44.5 0 1 0 202.07 79.78"/></svg>
+      <svg class="brand__name" viewBox="0 0 76 32" aria-hidden="true">
+        <rect class="brand__ink" x="0" y="0" width="6" height="32"/>
+        <rect class="brand__accent" x="13.5" y="0" width="25" height="6"/>
+        <rect class="brand__ink" x="23" y="6" width="6" height="26"/>
+        <path class="brand__arc" d="M71.46 7.64 A13 13 0 1 0 71.46 24.36"/>
+      </svg>
     </a>
 
     <nav class="main-nav" id="main-nav" aria-label="Főmenü">
