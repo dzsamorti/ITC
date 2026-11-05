@@ -3,7 +3,7 @@
 window.ITC_I18N = {
   hu: {
     'meta.title': 'ITC – Nemzetközi kereskedelmi compliance tanácsadás',
-    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, szabadkereskedelmi megállapodások és preferenciák.',
+    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
 
     'nav.home': 'Főoldal',
     'nav.brand': 'ITC – vissza a főoldalra',
@@ -42,7 +42,7 @@ window.ITC_I18N = {
       'Szankciós szabályzat, eszkalációs folyamat és képzés'
     ],
 
-    'svc.fta.title': 'Szabad&shy;kereskedelmi megállapodások &amp; preferenciák',
+    'svc.fta.title': 'Ellátási láncok és kockázatkezelés',
     'svc.fta.card': 'Vámmegtakarítás a szabadkereskedelmi megállapodások kihasználásával.',
     'svc.fta.lead': 'Feltárjuk, hol takarítható meg vám a szabadkereskedelmi megállapodások révén, és kialakítjuk a származás igazolásához szükséges, auditálható folyamatokat.',
     'svc.fta.items': [
@@ -60,7 +60,7 @@ window.ITC_I18N = {
     'strip.sanctions.title': 'Szankciók',
     'strip.sanctions.tags': ['EU', 'US', 'ENSZ', 'UK'],
     'strip.sanctions.short': 'EU · US · ENSZ · UK',
-    'strip.fta.title': 'Szabadkereskedelmi megállapodások',
+    'strip.fta.title': 'Ellátási láncok és kockázatkezelés',
     'strip.fta.tags': ['Preferenciák kihasználása', 'Vámcsökkentés'],
     'strip.fta.short': 'Preferenciák · Vámcsökkentés',
 
@@ -122,7 +122,7 @@ window.ITC_I18N = {
     'form.topic': 'Téma',
     'form.topic.export': 'Exportellenőrzés',
     'form.topic.sanctions': 'Szankciók és kereskedelmi korlátozások',
-    'form.topic.fta': 'Szabadkereskedelmi megállapodások és preferenciák',
+    'form.topic.fta': 'Ellátási láncok és kockázatkezelés',
     'form.topic.other': 'Egyéb',
     'form.message': 'Üzenet',
     'form.send': 'Küldés',
