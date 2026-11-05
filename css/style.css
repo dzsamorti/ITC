@@ -178,15 +178,15 @@ body.is-home .site-header { color: var(--ink); }
 /* Sötét fejlécen (belső oldalak) a tű déli, sötétkék fele világosabb, hogy kilátsszon */
 body:not(.is-home) .brand__s1 { fill: rgba(214, 228, 246, .7); }
 body:not(.is-home) .brand__s2 { fill: rgba(214, 228, 246, .4); }
-/* ITC szóvédjegy: hajszálvékony, geometrikus betűk (I, T és körív C), tág betűközzel */
+/* ITC szóvédjegy: vékony, geometrikus betűk (I, T és körív C), tág betűközzel */
 .brand__name {
   display: block;
   height: clamp(28px, 3.9vh, 38px);
   width: auto;
-  aspect-ratio: 234.8 / 100;
+  aspect-ratio: 234.2 / 100;
   overflow: visible;
 }
-.brand__line { fill: none; stroke: currentColor; stroke-width: 5; }
+.brand__line { fill: none; stroke: currentColor; stroke-width: 8; }
 
 .main-nav {
   display: flex;
