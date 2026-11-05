@@ -43,15 +43,15 @@ window.ITC_I18N = {
     ],
 
     'svc.fta.title': 'Ellátási láncok és kockázatkezelés',
-    'svc.fta.card': 'Vámmegtakarítás a szabadkereskedelmi megállapodások kihasználásával.',
-    'svc.fta.lead': 'Feltárjuk, hol takarítható meg vám a szabadkereskedelmi megállapodások révén, és kialakítjuk a származás igazolásához szükséges, auditálható folyamatokat.',
+    'svc.fta.card': 'Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.',
+    'svc.fta.lead': 'Feltérképezzük ellátási lánca szabályozási, beszállítói és működési kockázatait, és olyan kockázatkezelési rendszert építünk, amely segít megelőzni a fennakadásokat és a jogsértéseket.',
     'svc.fta.items': [
-      'Preferenciális származás megállapítása és származási számítások',
-      'Szállítói nyilatkozatok bekérése és kezelése',
-      'REX-regisztráció és származási nyilatkozatok',
-      'Kötelező érvényű származási felvilágosítás (BOI) kérelmek',
-      'Vámmegtakarítási lehetőségek elemzése',
-      'Származási audit és felkészülés hatósági ellenőrzésre'
+      'Az ellátási lánc feltérképezése és kockázati térkép készítése',
+      'Beszállítók átvilágítása és minősítése',
+      'Szankciós és exportellenőrzési kockázatok szűrése a beszállítói láncban',
+      'Felkészülés az ellátási lánc átvilágítási (ESG) követelményeire',
+      'Kockázatkezelési szabályzatok, folyamatok és szerződéses biztosítékok',
+      'Üzletmenet-folytonossági tervek, képzés és rendszeres felülvizsgálat'
     ],
 
     'strip.export.title': 'EU exportellenőrzés',
@@ -61,8 +61,8 @@ window.ITC_I18N = {
     'strip.sanctions.tags': ['EU', 'US', 'ENSZ', 'UK'],
     'strip.sanctions.short': 'EU · US · ENSZ · UK',
     'strip.fta.title': 'Ellátási láncok és kockázatkezelés',
-    'strip.fta.tags': ['Preferenciák kihasználása', 'Vámcsökkentés'],
-    'strip.fta.short': 'Preferenciák · Vámcsökkentés',
+    'strip.fta.tags': ['Beszállítói átvilágítás', 'Kockázatelemzés'],
+    'strip.fta.short': 'Beszállítók · Kockázatelemzés',
 
     'about.eyebrow': 'Az ITC-ről',
     'about.title': 'Üzletközpontú compliance, gyakorlati megoldásokkal.',
