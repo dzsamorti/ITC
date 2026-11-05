@@ -171,11 +171,13 @@ body.is-home .site-header { color: var(--ink); }
   margin-right: auto;
 }
 .brand__mark {
-  width: clamp(34px, 4.4vh, 46px);
-  height: clamp(34px, 4.4vh, 46px);
+  width: clamp(38px, 5vh, 52px);
+  height: clamp(38px, 5vh, 52px);
   flex: none;
-  filter: drop-shadow(0 2px 6px rgba(3, 12, 26, .28));
 }
+/* Sötét fejlécen (belső oldalak) a tű déli, sötétkék fele világosabb, hogy kilátsszon */
+body:not(.is-home) .brand__s1 { fill: rgba(214, 228, 246, .7); }
+body:not(.is-home) .brand__s2 { fill: rgba(214, 228, 246, .4); }
 /* Egyedi ITC szóvédjegy: geometrikus betűk */
 .brand__name {
   display: block;
