@@ -22,12 +22,8 @@
 
   /* ================= Nyelv ================= */
   function detectLang() {
-    try {
-      var saved = localStorage.getItem('itc-lang');
-      if (saved && DICT[saved]) return saved;
-    } catch (e) { /* nincs tárhely */ }
-    var nav = (navigator.language || 'hu').toLowerCase();
-    return nav.indexOf('hu') === 0 ? 'hu' : 'en';
+    /* Az oldal mindig magyarul nyílik; angolra a nyelvválasztóval vagy ?lang=en címmel lehet váltani */
+    return /[?&]lang=en\b/.test(location.search) ? 'en' : 'hu';
   }
 
   function applyLang(next) {
@@ -71,7 +67,6 @@
     $$('[data-lang]').forEach(function (b) {
       b.setAttribute('aria-current', b.dataset.lang === lang ? 'true' : 'false');
     });
-    try { localStorage.setItem('itc-lang', lang); } catch (e) { /* nincs tárhely */ }
   }
 
   /* Nyelvválasztó */
