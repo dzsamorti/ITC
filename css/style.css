@@ -180,6 +180,7 @@ body.is-home .site-header { color: var(--ink); }
   stroke-linejoin: round;
 }
 .brand__fill { fill: var(--amber); stroke: none; }
+.brand__disc { fill: var(--navy-900); stroke: rgba(255, 255, 255, .14); stroke-width: 1; }
 /* Egyedi ITC szóvédjegy: geometrikus betűk */
 .brand__name {
   display: block;
