@@ -267,6 +267,11 @@
     $$('.card', cardsBox).forEach(function (c) { h = Math.max(h, c.offsetHeight); });
     cardsBox.classList.remove('is-measuring');
     if (h) cardsBox.style.setProperty('--card-h', h + 'px');
+    cardsBox.classList.add('is-measuring-open');
+    var openH = 0;
+    $$('.card', cardsBox).forEach(function (c) { openH = Math.max(openH, c.offsetHeight); });
+    cardsBox.classList.remove('is-measuring-open');
+    if (openH) cardsBox.style.setProperty('--open-h', openH + 'px');
   }
 
   if (cardsBox) {

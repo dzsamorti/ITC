@@ -65,8 +65,8 @@ window.ITC_I18N = {
 
     'about.eyebrow': 'Az ITC-ről',
     'about.title': 'Üzletközpontú compliance, gyakorlati megoldásokkal.',
-    'about.lead': 'Az ITC nemzetközi kereskedelmi compliance tanácsadással foglalkozik. Abban segítünk, hogy ügyfeleink biztonságosan, a szabályoknak megfelelően és versenyképesen kereskedjenek a világ bármely pontjával.',
-    'about.text': 'Az exportellenőrzés, a szankciós szabályok és a preferenciális származás területén nem csupán értelmezzük a jogszabályokat: működő folyamatokat, belső szabályzatokat és döntéstámogató eszközöket építünk, amelyek illeszkednek a vállalat mindennapjaihoz.',
+    'about.lead': 'Az ITC nemzetközi kereskedelmi compliance tanácsadással foglalkozik. Abban segítünk, hogy ügyfeleink a szabályoknak megfelelően, mégis gördülékenyen és versenyképesen kereskedjenek a világ bármely pontjával.',
+    'about.text': 'Tanácsadásunk nem fékezi, hanem segíti az üzletmenetet. Az export- és importellenőrzés, a szankciós szabályok és az ellátási láncok kockázatai terén nem csupán értelmezzük a jogszabályokat: gyors, gyakorlatias válaszokat adunk, és olyan folyamatokat építünk, amelyekkel a megfelelés a mindennapi működés természetes része lesz.',
     'about.cta': 'Vegye fel velünk a kapcsolatot',
     'about.v1.title': 'Üzleti szemlélet',
     'about.v1.text': 'A megfelelést a kereskedelem lehetővé tételének eszközeként kezeljük, nem akadályként.',

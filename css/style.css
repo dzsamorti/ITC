@@ -487,11 +487,18 @@ body:not(.is-ready) .view { transition: none; }
   line-height: 1.72;
   color: var(--text);
 }
-/* Főoldali kártyák asztali nézetben: alapból csak a cím látszik, a leírás
-   egérrel ráállva, fókuszban vagy (érintőképernyőn) első koppintásra nyílik ki.
-   A kártya felfelé nő, így a többi elem nem mozdul el. */
+/* Főoldali kártyák asztali nézetben: alapból csak a cím látszik, a leírás egérrel ráállva
+   (vagy billentyűzettel fókuszálva) nyílik ki. A kártya felfelé nő, így a többi elem nem mozdul el.
+   Csukva a címek egyforma magasak (a sárga csík egy vonalban van), kinyitva a kártyák egyforma magasak,
+   és a leírás alatt mindig van hely a nyílnak. */
 @media (min-width: 821px) and (min-height: 601px) {
   .card-slot {
+    --arrow: clamp(38px, 5.2vh, 48px);
+    --arrow-bottom: clamp(12px, 2vh, 20px);
+    --card-pb: clamp(14px, 2.2vh, 22px);
+    --open-pb: calc(var(--arrow-bottom) + var(--arrow) + 12px - var(--card-pb));
+    --closed-pb: clamp(2px, .8vh, 8px);
+    --closed-pr: 0px;
     position: relative;
     height: var(--card-h, clamp(120px, 17vh, 170px));
   }
@@ -504,10 +511,12 @@ body:not(.is-ready) .view { transition: none; }
     min-height: var(--card-h, 0);
   }
   .card-slot .card__title { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
-  .card-slot .card:focus-visible .card__title { min-height: 0; }
   .card-slot .rule { transition: opacity .25s, height .4s var(--ease), margin-top .4s var(--ease); }
-  .card-slot .card:focus-visible .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
-  .cards.is-measuring .card-slot .card .card__title { min-height: 0; }
+  .card-slot .card__body {
+    padding-bottom: var(--closed-pb);
+    padding-right: var(--closed-pr);
+    transition: padding .4s var(--ease);
+  }
   .card-slot .card__text {
     max-height: 0;
     margin-top: calc(-1 * var(--body-gap));
@@ -515,66 +524,60 @@ body:not(.is-ready) .view { transition: none; }
     overflow: hidden;
     transition: max-height .4s var(--ease), margin-top .4s var(--ease), opacity .25s;
   }
-  .card-slot .card:focus-visible { z-index: 2; }
-  .card-slot .card:focus-visible .card__text {
-    max-height: 12em;
-    margin-top: 0;
-    opacity: 1;
-    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
-  }
-  .cards.is-measuring .card-slot .card .card__text { transition: none; max-height: 0; margin-top: calc(-1 * var(--body-gap)); }
-  .cards.is-measuring .card-slot .card { transition: none; transform: none; min-height: 0; }
-}
-@media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
-  .card-slot .card:hover { z-index: 2; }
-  .card-slot .card:hover .card__title { min-height: 0; }
-  .card-slot .card:hover .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
-  .card-slot .card:hover .card__text {
-    max-height: 12em;
-    margin-top: 0;
-    opacity: 1;
-    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
-  }
-}
-
-/* Keskenyebb asztali és tablet nézetben csukott állapotban a nyíl csak nyitáskor jelenik meg */
-@media (min-width: 821px) and (max-width: 1199px) and (min-height: 601px) {
-  .card-slot .card__body {
-    padding-bottom: clamp(2px, .8vh, 8px);
-    transition: padding .4s var(--ease);
-  }
   .card-slot .card .round-arrow {
     opacity: 0;
     transform: scale(.6);
     transition: opacity .25s, transform .3s var(--ease), background .25s, color .25s;
   }
-  .card-slot .card:focus-visible .card__body { padding-bottom: clamp(38px, 5.4vh, 50px); }
+
+  .card-slot .card:focus-visible { z-index: 2; min-height: var(--open-h, 0); }
+  .card-slot .card:focus-visible .card__title { min-height: 0; }
+  .card-slot .card:focus-visible .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .card-slot .card:focus-visible .card__text {
+    max-height: 12em; margin-top: 0; opacity: 1;
+    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
+  }
+  .card-slot .card:focus-visible .card__body { padding-bottom: var(--open-pb); padding-right: 0; }
   .card-slot .card:focus-visible .round-arrow { opacity: 1; transform: none; }
-  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: clamp(2px, .8vh, 8px); }
+  .cards.is-measuring-open .card-slot .card { z-index: 2; min-height: var(--open-h, 0); }
+  .cards.is-measuring-open .card-slot .card .card__title { min-height: 0; }
+  .cards.is-measuring-open .card-slot .card .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .cards.is-measuring-open .card-slot .card .card__text {
+    max-height: 12em; margin-top: 0; opacity: 1;
+    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
+  }
+  .cards.is-measuring-open .card-slot .card .card__body { padding-bottom: var(--open-pb); padding-right: 0; }
+  .cards.is-measuring-open .card-slot .card .round-arrow { opacity: 1; transform: none; }
+
+  /* Méréskor (JS) átmenetek nélkül, a valódi tartalommagassággal */
+  .cards.is-measuring .card-slot .card,
+  .cards.is-measuring-open .card-slot .card { transition: none; transform: none; min-height: 0; }
+  .cards.is-measuring .card-slot .card .card__title { min-height: 0; }
+  .cards.is-measuring .card-slot .card .rule { transition: none; opacity: 1; height: 2px; margin-top: 0; }
+  .cards.is-measuring .card-slot .card .card__text { transition: none; max-height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: var(--closed-pb); padding-right: var(--closed-pr); }
+  .cards.is-measuring-open .card-slot .card *,
+  .cards.is-measuring .card-slot .card * { transition: none; }
+  .cards.is-measuring-open .card-slot .card .card__text { transition: none; }
 }
-@media (min-width: 821px) and (max-width: 1199px) and (min-height: 601px) and (hover: hover) {
-  .card-slot .card:hover .card__body { padding-bottom: clamp(38px, 5.4vh, 50px); }
+@media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
+  .card-slot .card:hover { z-index: 2; min-height: var(--open-h, 0); }
+  .card-slot .card:hover .card__title { min-height: 0; }
+  .card-slot .card:hover .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .card-slot .card:hover .card__text {
+    max-height: 12em; margin-top: 0; opacity: 1;
+    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
+  }
+  .card-slot .card:hover .card__body { padding-bottom: var(--open-pb); padding-right: 0; }
   .card-slot .card:hover .round-arrow { opacity: 1; transform: none; }
 }
-
-/* Széles képernyőn csukott állapotban a nyíl a cím mellé kerül, így a kártya alacsonyabb */
+/* Széles képernyőn csukott állapotban a nyíl a cím mellett, a sárga csíkkal egy vonalban látszik */
 @media (min-width: 1200px) and (min-height: 601px) {
-  .card-slot .card__body {
-    padding-bottom: calc(clamp(12px, 2vh, 20px) + clamp(38px, 5.2vh, 48px) / 2 - clamp(14px, 2.2vh, 22px) - 1px);
-    padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px);
-    transition: padding .4s var(--ease);
+  .card-slot {
+    --closed-pb: calc(var(--arrow-bottom) + var(--arrow) / 2 - var(--card-pb) - 1px);
+    --closed-pr: calc(var(--arrow) + 10px);
   }
-  .card-slot .card:focus-visible .card__body {
-    padding-bottom: clamp(38px, 5.4vh, 50px);
-    padding-right: 0;
-  }
-  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: calc(clamp(12px, 2vh, 20px) + clamp(38px, 5.2vh, 48px) / 2 - clamp(14px, 2.2vh, 22px) - 1px); padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px); }
-}
-@media (min-width: 1200px) and (min-height: 601px) and (hover: hover) {
-  .card-slot .card:hover .card__body {
-    padding-bottom: clamp(38px, 5.4vh, 50px);
-    padding-right: 0;
-  }
+  .card-slot .card .round-arrow { opacity: 1; transform: none; }
 }
 
 .card .round-arrow {
