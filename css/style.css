@@ -175,7 +175,9 @@ body.is-home .site-header { color: var(--ink); }
   height: clamp(34px, 4.4vh, 46px);
   fill: none;
   stroke: var(--amber);
-  stroke-width: 4.2;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 /* Egyedi ITC szóvédjegy: geometrikus betűk, a T szára borostyán kiemeléssel */
 .brand__name {

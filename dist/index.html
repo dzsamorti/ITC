@@ -6,7 +6,7 @@
   <title>ITC – Nemzetközi kereskedelmi compliance tanácsadás</title>
   <meta name="description" content="Az ITC nemzetközi kereskedelmi compliance tanácsadó: export- és importellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.">
   <meta name="theme-color" content="#0f2440">
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjJhMTIyIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiPjxwYXRoIGQ9Ik0xMiA0aDI0djI0SDEyeiIvPjxwYXRoIGQ9Ik00IDEydjI0aDI0Ii8+PC9zdmc+Cg==" type="image/svg+xml">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjJhMTIyIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIwIDMuNWwxMy41IDQuNnYxMC4yYzAgOC44LTUuOCAxNC45LTEzLjUgMTguMkMxMi4zIDMzLjIgNi41IDI3LjEgNi41IDE4LjNWOC4xeiIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTkiIHI9IjguNCIvPjxlbGxpcHNlIGN4PSIyMCIgY3k9IjE5IiByeD0iMy42IiByeT0iOC40Ii8+PHBhdGggZD0iTTExLjYgMTloMTYuOCIvPjwvc3ZnPgo=" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
@@ -188,7 +188,9 @@ body.is-home .site-header { color: var(--ink); }
   height: clamp(34px, 4.4vh, 46px);
   fill: none;
   stroke: var(--amber);
-  stroke-width: 4.2;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 /* Egyedi ITC szóvédjegy: geometrikus betűk, a T szára borostyán kiemeléssel */
 .brand__name {
@@ -1241,7 +1243,7 @@ body:not(.is-ready) .view { transition: none; }
   <!-- Fejléc -->
   <header class="site-header">
     <a class="brand" href="#home" data-i18n-attr="aria-label:nav.brand">
-      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M12 4h24v24H12z"/><path d="M4 12v24h24"/></svg>
+      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3.5l13.5 4.6v10.2c0 8.8-5.8 14.9-13.5 18.2C12.3 33.2 6.5 27.1 6.5 18.3V8.1z"/><circle cx="20" cy="19" r="8.4"/><ellipse cx="20" cy="19" rx="3.6" ry="8.4"/><path d="M11.6 19h16.8"/></svg>
       <svg class="brand__name" viewBox="0 0 76 32" aria-hidden="true">
         <rect class="brand__ink" x="0" y="0" width="6" height="32"/>
         <rect class="brand__accent" x="13.5" y="0" width="25" height="6"/>
@@ -1495,20 +1497,6 @@ body:not(.is-ready) .view { transition: none; }
           <h2 class="inner__title" id="contact-title" tabindex="-1" data-i18n="contact.title"></h2>
           <p class="lead" data-i18n="contact.lead"></p>
 
-          <ul class="contact-list">
-            <li>
-              <span class="contact-list__icon"><svg aria-hidden="true"><use href="#i-mail"/></svg></span>
-              <div><small data-i18n="contact.email">E-mail</small><a data-contact="email" href="#"></a></div>
-            </li>
-            <li>
-              <span class="contact-list__icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></span>
-              <div><small data-i18n="contact.phone">Telefon</small><a data-contact="phone" href="#"></a></div>
-            </li>
-            <li>
-              <span class="contact-list__icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
-              <div><small data-i18n="contact.office">Iroda</small><span data-contact="address"></span></div>
-            </li>
-          </ul>
           <p class="legal">© <span data-year></span> ITC. <span data-i18n="footer.rights">Minden jog fenntartva.</span></p>
         </div>
 
@@ -1832,10 +1820,9 @@ window.ITC_I18N = {
   'use strict';
 
   /* ---- Elérhetőségek: ezeket írja át a valós adatokra ---- */
+  /* Ide érkeznek az űrlapon küldött üzenetek (az oldalon nem jelenik meg) */
   var CONTACT = {
-    email: 'info@example.com',
-    phone: '+36 1 000 0000',
-    address: 'Budapest, Magyarország'
+    email: 'info@example.com'
   };
 
   var VIEWS = ['home', 'about', 'services', 'news', 'contact'];
@@ -2024,13 +2011,6 @@ window.ITC_I18N = {
   modal.addEventListener('click', function (e) { if (e.target === modal) modal.close(); });
 
   /* ================= Kapcsolat ================= */
-  var mailLink = $('[data-contact="email"]');
-  mailLink.textContent = CONTACT.email;
-  mailLink.href = 'mailto:' + CONTACT.email;
-  var phoneLink = $('[data-contact="phone"]');
-  phoneLink.textContent = CONTACT.phone;
-  phoneLink.href = 'tel:' + CONTACT.phone.replace(/[^\d+]/g, '');
-  $('[data-contact="address"]').textContent = CONTACT.address;
   $$('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
   var form = $('.contact-form');

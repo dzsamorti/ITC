@@ -3,10 +3,9 @@
   'use strict';
 
   /* ---- Elérhetőségek: ezeket írja át a valós adatokra ---- */
+  /* Ide érkeznek az űrlapon küldött üzenetek (az oldalon nem jelenik meg) */
   var CONTACT = {
-    email: 'info@example.com',
-    phone: '+36 1 000 0000',
-    address: 'Budapest, Magyarország'
+    email: 'info@example.com'
   };
 
   var VIEWS = ['home', 'about', 'services', 'news', 'contact'];
@@ -195,13 +194,6 @@
   modal.addEventListener('click', function (e) { if (e.target === modal) modal.close(); });
 
   /* ================= Kapcsolat ================= */
-  var mailLink = $('[data-contact="email"]');
-  mailLink.textContent = CONTACT.email;
-  mailLink.href = 'mailto:' + CONTACT.email;
-  var phoneLink = $('[data-contact="phone"]');
-  phoneLink.textContent = CONTACT.phone;
-  phoneLink.href = 'tel:' + CONTACT.phone.replace(/[^\d+]/g, '');
-  $('[data-contact="address"]').textContent = CONTACT.address;
   $$('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
   var form = $('.contact-form');

@@ -32,13 +32,13 @@ node build-single.js
 | Mit | Hol |
 | --- | --- |
 | Szövegek (HU és EN) | `js/i18n.js` |
-| E-mail, telefonszám, cím | `js/main.js`, a fájl elején a `CONTACT` objektum |
+| Az űrlap címzett e-mail-címe | `js/main.js`, a fájl elején a `CONTACT` objektum |
 | Színek, betűtípusok, méretek | `css/style.css`, a `:root` változók |
 | Háttérkép | `assets/img/hero-port.jpg` |
 
 ## Fontos teendők élesítés előtt
 
-- **Elérhetőségek:** a `CONTACT` objektumban jelenleg helykitöltő adatok vannak.
+- **Űrlap címzettje:** a `CONTACT` objektumban jelenleg helykitöltő e-mail-cím van; ide érkeznek az üzenetek.
 - **Háttérkép:** a jelenlegi fotó a tervből van kivágva, ezért nagy kijelzőn kissé lágy.
   Érdemes azonos hangulatú, legalább 2400 px széles fotóra cserélni ugyanezen a néven.
 - **Hírek:** a három cikk mintatartalom, a saját híreikre cserélhetők a `js/i18n.js`-ben.
