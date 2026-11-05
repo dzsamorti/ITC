@@ -26,6 +26,7 @@
   --gutter: clamp(16px, 3.3vw, 48px);
   --maxw: 1400px;
   --radius: 6px;
+  --radius-tile: 18px;
   --ease: cubic-bezier(.22, .7, .2, 1);
 }
 
@@ -431,7 +432,7 @@ body:not(.is-ready) .view { transition: none; }
   padding: clamp(14px, 2.2vh, 22px) clamp(16px, 1.5vw, 22px) clamp(14px, 2.2vh, 22px) clamp(14px, 1.4vw, 20px);
   background: var(--glass);
   border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
+  border-radius: var(--radius-tile);
   backdrop-filter: blur(12px) saturate(1.1);
   -webkit-backdrop-filter: blur(12px) saturate(1.1);
   box-shadow: 0 24px 60px rgba(3, 12, 26, .3);
@@ -504,6 +505,8 @@ body:not(.is-ready) .view { transition: none; }
   }
   .card-slot .card__title { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
   .card-slot .card:focus-visible .card__title { min-height: 0; }
+  .card-slot .rule { transition: opacity .25s, height .4s var(--ease), margin-top .4s var(--ease); }
+  .card-slot .card:focus-visible .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .cards.is-measuring .card-slot .card .card__title { min-height: 0; }
   .card-slot .card__text {
     max-height: 0;
@@ -525,6 +528,7 @@ body:not(.is-ready) .view { transition: none; }
 @media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
   .card-slot .card:hover { z-index: 2; }
   .card-slot .card:hover .card__title { min-height: 0; }
+  .card-slot .card:hover .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .card-slot .card:hover .card__text {
     max-height: 12em;
     margin-top: 0;
@@ -587,7 +591,7 @@ body:not(.is-ready) .view { transition: none; }
   padding: clamp(12px, 2.4vh, 28px) clamp(16px, 3vw, 56px);
   background: linear-gradient(180deg, rgba(22, 46, 78, .55), rgba(12, 29, 53, .7));
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-tile);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }

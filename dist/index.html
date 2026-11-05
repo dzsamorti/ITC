@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>ITC – Nemzetközi kereskedelmi compliance tanácsadás</title>
-  <meta name="description" content="Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.">
+  <meta name="description" content="Az ITC nemzetközi kereskedelmi compliance tanácsadó: export- és importellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.">
   <meta name="theme-color" content="#0f2440">
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjJhMTIyIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiPjxwYXRoIGQ9Ik0xMiA0aDI0djI0SDEyeiIvPjxwYXRoIGQ9Ik00IDEydjI0aDI0Ii8+PC9zdmc+Cg==" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +39,7 @@
   --gutter: clamp(16px, 3.3vw, 48px);
   --maxw: 1400px;
   --radius: 6px;
+  --radius-tile: 18px;
   --ease: cubic-bezier(.22, .7, .2, 1);
 }
 
@@ -444,7 +445,7 @@ body:not(.is-ready) .view { transition: none; }
   padding: clamp(14px, 2.2vh, 22px) clamp(16px, 1.5vw, 22px) clamp(14px, 2.2vh, 22px) clamp(14px, 1.4vw, 20px);
   background: var(--glass);
   border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
+  border-radius: var(--radius-tile);
   backdrop-filter: blur(12px) saturate(1.1);
   -webkit-backdrop-filter: blur(12px) saturate(1.1);
   box-shadow: 0 24px 60px rgba(3, 12, 26, .3);
@@ -517,6 +518,8 @@ body:not(.is-ready) .view { transition: none; }
   }
   .card-slot .card__title { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
   .card-slot .card:focus-visible .card__title { min-height: 0; }
+  .card-slot .rule { transition: opacity .25s, height .4s var(--ease), margin-top .4s var(--ease); }
+  .card-slot .card:focus-visible .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .cards.is-measuring .card-slot .card .card__title { min-height: 0; }
   .card-slot .card__text {
     max-height: 0;
@@ -538,6 +541,7 @@ body:not(.is-ready) .view { transition: none; }
 @media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
   .card-slot .card:hover { z-index: 2; }
   .card-slot .card:hover .card__title { min-height: 0; }
+  .card-slot .card:hover .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .card-slot .card:hover .card__text {
     max-height: 12em;
     margin-top: 0;
@@ -600,7 +604,7 @@ body:not(.is-ready) .view { transition: none; }
   padding: clamp(12px, 2.4vh, 28px) clamp(16px, 3vw, 56px);
   background: linear-gradient(180deg, rgba(22, 46, 78, .55), rgba(12, 29, 53, .7));
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-tile);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -1291,7 +1295,7 @@ body:not(.is-ready) .view { transition: none; }
             <a class="card" href="#services/export">
               <span class="card__icon"><svg aria-hidden="true"><use href="#i-container"/></svg></span>
               <div class="card__body">
-                <h2 class="card__title" data-i18n-html="svc.export.title">Exportellenőrzés</h2>
+                <h2 class="card__title" data-i18n-html="svc.export.title">Export- és importellenőrzés</h2>
                 <span class="rule" aria-hidden="true"></span>
                 <p class="card__text" data-i18n="svc.export.card">Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.</p>
               </div>
@@ -1326,7 +1330,7 @@ body:not(.is-ready) .view { transition: none; }
           <div class="strip__item">
             <svg class="strip__icon" aria-hidden="true"><use href="#i-globe"/></svg>
             <div>
-              <p class="strip__title" data-i18n="strip.export.title">EU exportellenőrzés</p>
+              <p class="strip__title" data-i18n="strip.export.title">EU export- és importellenőrzés</p>
               <p class="strip__tags" data-i18n-tags="strip.export.tags"></p>
             </div>
           </div>
@@ -1558,7 +1562,7 @@ body:not(.is-ready) .view { transition: none; }
 window.ITC_I18N = {
   hu: {
     'meta.title': 'ITC – Nemzetközi kereskedelmi compliance tanácsadás',
-    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
+    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: export- és importellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
 
     'nav.home': 'Főoldal',
     'nav.brand': 'ITC – vissza a főoldalra',
@@ -1573,7 +1577,7 @@ window.ITC_I18N = {
     'home.title': 'Compliance, ami<br><em>lendületet ad</em> az üzletnek,<br>nem akadályozza.',
     'home.cta': 'Fedezze fel megoldásainkat',
 
-    'svc.export.title': 'Export&shy;ellenőrzés',
+    'svc.export.title': 'Export- és import&shy;ellenőrzés',
     'svc.export.card': 'Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.',
     'svc.export.lead': 'Felmérjük, hogy termékei, technológiái és szoftverei engedélykötelesek-e, és kiépítjük azt a belső rendszert, amellyel az exportellenőrzési kötelezettségek biztonságosan teljesíthetők.',
     'svc.export.items': [
@@ -1608,7 +1612,7 @@ window.ITC_I18N = {
       'Üzletmenet-folytonossági tervek és képzések a munkatársak számára'
     ],
 
-    'strip.export.title': 'EU exportellenőrzés',
+    'strip.export.title': 'EU export- és importellenőrzés',
     'strip.export.tags': ['Kettős felhasználás', 'Katonai', 'Kiber'],
     'strip.export.short': 'Kettős felhasználás · Katonai · Kiber',
     'strip.sanctions.title': 'Szankciók',
@@ -1674,7 +1678,7 @@ window.ITC_I18N = {
     'form.company': 'Cég',
     'form.email': 'E-mail',
     'form.topic': 'Téma',
-    'form.topic.export': 'Exportellenőrzés',
+    'form.topic.export': 'Export- és importellenőrzés',
     'form.topic.sanctions': 'Szankciók és kereskedelmi korlátozások',
     'form.topic.fta': 'Ellátási láncok és kockázatkezelés',
     'form.topic.other': 'Egyéb',

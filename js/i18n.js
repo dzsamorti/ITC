@@ -3,7 +3,7 @@
 window.ITC_I18N = {
   hu: {
     'meta.title': 'ITC – Nemzetközi kereskedelmi compliance tanácsadás',
-    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
+    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: export- és importellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
 
     'nav.home': 'Főoldal',
     'nav.brand': 'ITC – vissza a főoldalra',
@@ -18,7 +18,7 @@ window.ITC_I18N = {
     'home.title': 'Compliance, ami<br><em>lendületet ad</em> az üzletnek,<br>nem akadályozza.',
     'home.cta': 'Fedezze fel megoldásainkat',
 
-    'svc.export.title': 'Export&shy;ellenőrzés',
+    'svc.export.title': 'Export- és import&shy;ellenőrzés',
     'svc.export.card': 'Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.',
     'svc.export.lead': 'Felmérjük, hogy termékei, technológiái és szoftverei engedélykötelesek-e, és kiépítjük azt a belső rendszert, amellyel az exportellenőrzési kötelezettségek biztonságosan teljesíthetők.',
     'svc.export.items': [
@@ -53,7 +53,7 @@ window.ITC_I18N = {
       'Üzletmenet-folytonossági tervek és képzések a munkatársak számára'
     ],
 
-    'strip.export.title': 'EU exportellenőrzés',
+    'strip.export.title': 'EU export- és importellenőrzés',
     'strip.export.tags': ['Kettős felhasználás', 'Katonai', 'Kiber'],
     'strip.export.short': 'Kettős felhasználás · Katonai · Kiber',
     'strip.sanctions.title': 'Szankciók',
@@ -119,7 +119,7 @@ window.ITC_I18N = {
     'form.company': 'Cég',
     'form.email': 'E-mail',
     'form.topic': 'Téma',
-    'form.topic.export': 'Exportellenőrzés',
+    'form.topic.export': 'Export- és importellenőrzés',
     'form.topic.sanctions': 'Szankciók és kereskedelmi korlátozások',
     'form.topic.fta': 'Ellátási láncok és kockázatkezelés',
     'form.topic.other': 'Egyéb',
