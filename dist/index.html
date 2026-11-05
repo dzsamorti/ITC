@@ -1039,9 +1039,9 @@ body:not(.is-ready) .view { transition: none; }
 
 /* ================= Reszponzív ================= */
 
-/* Alacsony képernyők: a sáv elrejtése, hogy minden kiférjen */
+/* Alacsony képernyők: a sáv kompaktabb, hogy minden kiférjen */
 @media (max-height: 740px) and (min-width: 821px) {
-  .strip { display: none; }
+  .strip { padding-top: clamp(8px, 1.6vh, 14px); padding-bottom: clamp(8px, 1.6vh, 14px); }
 }
 @media (max-height: 600px) and (min-width: 821px) {
   .steps { display: none; }
