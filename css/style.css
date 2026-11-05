@@ -183,10 +183,10 @@ body:not(.is-home) .brand__s2 { fill: rgba(214, 228, 246, .4); }
   display: block;
   height: clamp(28px, 3.9vh, 38px);
   width: auto;
-  aspect-ratio: 234.2 / 100;
+  aspect-ratio: 235.6 / 100;
   overflow: visible;
 }
-.brand__line { fill: none; stroke: currentColor; stroke-width: 8; }
+.brand__line { fill: none; stroke: currentColor; stroke-width: 11; }
 
 .main-nav {
   display: flex;
