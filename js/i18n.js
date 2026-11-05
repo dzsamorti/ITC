@@ -19,7 +19,7 @@ window.ITC_I18N = {
     'home.cta': 'Fedezze fel megoldásainkat',
 
     'svc.export.title': 'Export&shy;ellenőrzés',
-    'svc.export.card': 'Eligazodunk az exportellenőrzési szabályokban, és segítünk magabiztosan kezelni a kockázatokat globális működése során.',
+    'svc.export.card': 'Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.',
     'svc.export.lead': 'Felmérjük, hogy termékei, technológiái és szoftverei engedélykötelesek-e, és kiépítjük azt a belső rendszert, amellyel az exportellenőrzési kötelezettségek biztonságosan teljesíthetők.',
     'svc.export.items': [
       'Termékbesorolás az európai és amerikai szabályozás alapján (ECCN)',
@@ -31,7 +31,7 @@ window.ITC_I18N = {
     ],
 
     'svc.sanctions.title': 'Szankciók &amp; kereskedelmi korlátozások',
-    'svc.sanctions.card': 'Feleljen meg a globális szankciós rendszereknek és korlátozó intézkedéseknek. Védje vállalkozását és hírnevét.',
+    'svc.sanctions.card': 'Szankciós megfelelés, amely védi vállalkozását és hírnevét.',
     'svc.sanctions.lead': 'Átvilágítjuk partnereit, ügyleteit és ellátási láncát, hogy vállalkozása se közvetlenül, se közvetve ne sértsen szankciós előírásokat.',
     'svc.sanctions.items': [
       'Szankciós listás szűrés (EU, US OFAC, ENSZ, UK OFSI)',
@@ -43,7 +43,7 @@ window.ITC_I18N = {
     ],
 
     'svc.fta.title': 'Szabad&shy;kereskedelmi megállapodások &amp; preferenciák',
-    'svc.fta.card': 'Használja ki a szabadkereskedelmi megállapodásokat és preferenciákat a költségek csökkentésére és versenyképessége erősítésére.',
+    'svc.fta.card': 'Vámmegtakarítás a szabadkereskedelmi megállapodások kihasználásával.',
     'svc.fta.lead': 'Feltárjuk, hol takarítható meg vám a szabadkereskedelmi megállapodások révén, és kialakítjuk a származás igazolásához szükséges, auditálható folyamatokat.',
     'svc.fta.items': [
       'Preferenciális származás megállapítása és származási számítások',
