@@ -531,6 +531,49 @@ body:not(.is-ready) .view { transition: none; }
   }
 }
 
+/* Keskenyebb asztali és tablet nézetben csukott állapotban a nyíl csak nyitáskor jelenik meg */
+@media (min-width: 821px) and (max-width: 1199px) and (min-height: 601px) {
+  .card-slot .card__body {
+    padding-bottom: clamp(2px, .8vh, 8px);
+    transition: padding .4s var(--ease);
+  }
+  .card-slot .card .round-arrow {
+    opacity: 0;
+    transform: scale(.6);
+    transition: opacity .25s, transform .3s var(--ease), background .25s, color .25s;
+  }
+  .card-slot .card.is-open .card__body,
+  .card-slot .card:focus-visible .card__body { padding-bottom: clamp(38px, 5.4vh, 50px); }
+  .card-slot .card.is-open .round-arrow,
+  .card-slot .card:focus-visible .round-arrow { opacity: 1; transform: none; }
+  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: clamp(2px, .8vh, 8px); }
+}
+@media (min-width: 821px) and (max-width: 1199px) and (min-height: 601px) and (hover: hover) {
+  .card-slot .card:hover .card__body { padding-bottom: clamp(38px, 5.4vh, 50px); }
+  .card-slot .card:hover .round-arrow { opacity: 1; transform: none; }
+}
+
+/* Széles képernyőn csukott állapotban a nyíl a cím mellé kerül, így a kártya alacsonyabb */
+@media (min-width: 1200px) and (min-height: 601px) {
+  .card-slot .card__body {
+    padding-bottom: clamp(2px, .8vh, 8px);
+    padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px);
+    transition: padding .4s var(--ease);
+  }
+  .card-slot .card.is-open .card__body,
+  .card-slot .card:focus-visible .card__body {
+    padding-bottom: clamp(38px, 5.4vh, 50px);
+    padding-right: 0;
+  }
+  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: clamp(2px, .8vh, 8px); padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px); }
+}
+@media (min-width: 1200px) and (min-height: 601px) and (hover: hover) {
+  .card-slot .card:hover .card__body {
+    padding-bottom: clamp(38px, 5.4vh, 50px);
+    padding-right: 0;
+  }
+}
+
 .card .round-arrow {
   position: absolute;
   right: clamp(14px, 1.4vw, 20px);
