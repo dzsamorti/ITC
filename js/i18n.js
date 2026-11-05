@@ -69,7 +69,7 @@ window.ITC_I18N = {
     'about.text': 'Tanácsadásunk nem fékezi, hanem segíti az üzletmenetet. Az export- és importellenőrzés, a szankciós szabályok és az ellátási láncok kockázatai terén nem csupán értelmezzük a jogszabályokat: gyors, gyakorlatias válaszokat adunk, és olyan folyamatokat építünk, amelyekkel a megfelelés a mindennapi működés természetes része lesz.',
     'about.cta': 'Vegye fel velünk a kapcsolatot',
     'about.v1.title': 'Üzleti szemlélet',
-    'about.v1.text': 'A megfelelést a kereskedelem lehetővé tételének eszközeként kezeljük, nem akadályként.',
+    'about.v1.text': 'Számunkra a megfelelés nem akadály, hanem a sikeres és biztonságos kereskedelem alapja.',
     'about.v2.title': 'Naprakész tudás',
     'about.v2.text': 'Folyamatosan követjük az EU, az USA, az ENSZ és az Egyesült Királyság szabályváltozásait.',
     'about.v3.title': 'Gyakorlati megvalósítás',
