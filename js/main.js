@@ -113,7 +113,6 @@
   }
 
   function route() {
-    closeCards();
     var r = parseHash();
     var changed = r.view !== current;
     var initial = current === null;
@@ -253,40 +252,24 @@
 
   /* ================= Indítás ================= */
   /* ================= Főoldali kártyák ================= */
-  /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; nyitáskor felfelé nőnek */
+  /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; egérrel ráállva felfelé nőnek.
+     A címek egyforma magasak, így a sárga csík minden kártyán egy vonalban van. */
   var cardsBox = $('.cards');
   var compactCards = window.matchMedia('(min-width: 821px) and (min-height: 601px)');
-  var noHover = window.matchMedia('(hover: none)');
-  var lastPointer = 'mouse';
 
   function measureCards() {
     if (!cardsBox || !compactCards.matches) return;
     cardsBox.classList.add('is-measuring');
+    var titleH = 0;
+    $$('.card__title', cardsBox).forEach(function (el) { titleH = Math.max(titleH, el.offsetHeight); });
+    if (titleH) cardsBox.style.setProperty('--title-h', titleH + 'px');
     var h = 0;
     $$('.card', cardsBox).forEach(function (c) { h = Math.max(h, c.offsetHeight); });
     cardsBox.classList.remove('is-measuring');
     if (h) cardsBox.style.setProperty('--card-h', h + 'px');
   }
-  function closeCards(except) {
-    $$('.card.is-open').forEach(function (c) { if (c !== except) c.classList.remove('is-open'); });
-  }
 
   if (cardsBox) {
-    /* Érintőképernyőn az első koppintás kinyitja a kártyát, a második megnyitja a szolgáltatást */
-    $$('.card', cardsBox).forEach(function (card) {
-      card.addEventListener('click', function (e) {
-        if (!compactCards.matches) return;
-        if ((noHover.matches || lastPointer === 'touch') && !card.classList.contains('is-open')) {
-          e.preventDefault();
-          closeCards(card);
-          card.classList.add('is-open');
-        }
-      });
-    });
-    document.addEventListener('pointerdown', function (e) {
-      lastPointer = e.pointerType || 'mouse';
-      if (!e.target.closest('.card')) closeCards();
-    });
     window.addEventListener('resize', measureCards);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureCards);
   }

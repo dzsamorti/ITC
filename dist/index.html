@@ -515,6 +515,9 @@ body:not(.is-ready) .view { transition: none; }
     z-index: 1;
     min-height: var(--card-h, 0);
   }
+  .card-slot .card__title { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
+  .card-slot .card:focus-visible .card__title { min-height: 0; }
+  .cards.is-measuring .card-slot .card .card__title { min-height: 0; }
   .card-slot .card__text {
     max-height: 0;
     margin-top: calc(-1 * var(--body-gap));
@@ -522,9 +525,7 @@ body:not(.is-ready) .view { transition: none; }
     overflow: hidden;
     transition: max-height .4s var(--ease), margin-top .4s var(--ease), opacity .25s;
   }
-  .card-slot .card.is-open,
   .card-slot .card:focus-visible { z-index: 2; }
-  .card-slot .card.is-open .card__text,
   .card-slot .card:focus-visible .card__text {
     max-height: 12em;
     margin-top: 0;
@@ -536,6 +537,7 @@ body:not(.is-ready) .view { transition: none; }
 }
 @media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
   .card-slot .card:hover { z-index: 2; }
+  .card-slot .card:hover .card__title { min-height: 0; }
   .card-slot .card:hover .card__text {
     max-height: 12em;
     margin-top: 0;
@@ -555,9 +557,7 @@ body:not(.is-ready) .view { transition: none; }
     transform: scale(.6);
     transition: opacity .25s, transform .3s var(--ease), background .25s, color .25s;
   }
-  .card-slot .card.is-open .card__body,
   .card-slot .card:focus-visible .card__body { padding-bottom: clamp(38px, 5.4vh, 50px); }
-  .card-slot .card.is-open .round-arrow,
   .card-slot .card:focus-visible .round-arrow { opacity: 1; transform: none; }
   .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: clamp(2px, .8vh, 8px); }
 }
@@ -569,16 +569,15 @@ body:not(.is-ready) .view { transition: none; }
 /* Széles képernyőn csukott állapotban a nyíl a cím mellé kerül, így a kártya alacsonyabb */
 @media (min-width: 1200px) and (min-height: 601px) {
   .card-slot .card__body {
-    padding-bottom: clamp(2px, .8vh, 8px);
+    padding-bottom: calc(clamp(12px, 2vh, 20px) + clamp(38px, 5.2vh, 48px) / 2 - clamp(14px, 2.2vh, 22px) - 1px);
     padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px);
     transition: padding .4s var(--ease);
   }
-  .card-slot .card.is-open .card__body,
   .card-slot .card:focus-visible .card__body {
     padding-bottom: clamp(38px, 5.4vh, 50px);
     padding-right: 0;
   }
-  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: clamp(2px, .8vh, 8px); padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px); }
+  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: calc(clamp(12px, 2vh, 20px) + clamp(38px, 5.2vh, 48px) / 2 - clamp(14px, 2.2vh, 22px) - 1px); padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px); }
 }
 @media (min-width: 1200px) and (min-height: 601px) and (hover: hover) {
   .card-slot .card:hover .card__body {
@@ -1938,7 +1937,6 @@ window.ITC_I18N = {
   }
 
   function route() {
-    closeCards();
     var r = parseHash();
     var changed = r.view !== current;
     var initial = current === null;
@@ -2078,40 +2076,24 @@ window.ITC_I18N = {
 
   /* ================= Indítás ================= */
   /* ================= Főoldali kártyák ================= */
-  /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; nyitáskor felfelé nőnek */
+  /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; egérrel ráállva felfelé nőnek.
+     A címek egyforma magasak, így a sárga csík minden kártyán egy vonalban van. */
   var cardsBox = $('.cards');
   var compactCards = window.matchMedia('(min-width: 821px) and (min-height: 601px)');
-  var noHover = window.matchMedia('(hover: none)');
-  var lastPointer = 'mouse';
 
   function measureCards() {
     if (!cardsBox || !compactCards.matches) return;
     cardsBox.classList.add('is-measuring');
+    var titleH = 0;
+    $$('.card__title', cardsBox).forEach(function (el) { titleH = Math.max(titleH, el.offsetHeight); });
+    if (titleH) cardsBox.style.setProperty('--title-h', titleH + 'px');
     var h = 0;
     $$('.card', cardsBox).forEach(function (c) { h = Math.max(h, c.offsetHeight); });
     cardsBox.classList.remove('is-measuring');
     if (h) cardsBox.style.setProperty('--card-h', h + 'px');
   }
-  function closeCards(except) {
-    $$('.card.is-open').forEach(function (c) { if (c !== except) c.classList.remove('is-open'); });
-  }
 
   if (cardsBox) {
-    /* Érintőképernyőn az első koppintás kinyitja a kártyát, a második megnyitja a szolgáltatást */
-    $$('.card', cardsBox).forEach(function (card) {
-      card.addEventListener('click', function (e) {
-        if (!compactCards.matches) return;
-        if ((noHover.matches || lastPointer === 'touch') && !card.classList.contains('is-open')) {
-          e.preventDefault();
-          closeCards(card);
-          card.classList.add('is-open');
-        }
-      });
-    });
-    document.addEventListener('pointerdown', function (e) {
-      lastPointer = e.pointerType || 'mouse';
-      if (!e.target.closest('.card')) closeCards();
-    });
     window.addEventListener('resize', measureCards);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureCards);
   }

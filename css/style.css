@@ -502,6 +502,9 @@ body:not(.is-ready) .view { transition: none; }
     z-index: 1;
     min-height: var(--card-h, 0);
   }
+  .card-slot .card__title { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
+  .card-slot .card:focus-visible .card__title { min-height: 0; }
+  .cards.is-measuring .card-slot .card .card__title { min-height: 0; }
   .card-slot .card__text {
     max-height: 0;
     margin-top: calc(-1 * var(--body-gap));
@@ -509,9 +512,7 @@ body:not(.is-ready) .view { transition: none; }
     overflow: hidden;
     transition: max-height .4s var(--ease), margin-top .4s var(--ease), opacity .25s;
   }
-  .card-slot .card.is-open,
   .card-slot .card:focus-visible { z-index: 2; }
-  .card-slot .card.is-open .card__text,
   .card-slot .card:focus-visible .card__text {
     max-height: 12em;
     margin-top: 0;
@@ -523,6 +524,7 @@ body:not(.is-ready) .view { transition: none; }
 }
 @media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
   .card-slot .card:hover { z-index: 2; }
+  .card-slot .card:hover .card__title { min-height: 0; }
   .card-slot .card:hover .card__text {
     max-height: 12em;
     margin-top: 0;
@@ -542,9 +544,7 @@ body:not(.is-ready) .view { transition: none; }
     transform: scale(.6);
     transition: opacity .25s, transform .3s var(--ease), background .25s, color .25s;
   }
-  .card-slot .card.is-open .card__body,
   .card-slot .card:focus-visible .card__body { padding-bottom: clamp(38px, 5.4vh, 50px); }
-  .card-slot .card.is-open .round-arrow,
   .card-slot .card:focus-visible .round-arrow { opacity: 1; transform: none; }
   .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: clamp(2px, .8vh, 8px); }
 }
@@ -556,16 +556,15 @@ body:not(.is-ready) .view { transition: none; }
 /* Széles képernyőn csukott állapotban a nyíl a cím mellé kerül, így a kártya alacsonyabb */
 @media (min-width: 1200px) and (min-height: 601px) {
   .card-slot .card__body {
-    padding-bottom: clamp(2px, .8vh, 8px);
+    padding-bottom: calc(clamp(12px, 2vh, 20px) + clamp(38px, 5.2vh, 48px) / 2 - clamp(14px, 2.2vh, 22px) - 1px);
     padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px);
     transition: padding .4s var(--ease);
   }
-  .card-slot .card.is-open .card__body,
   .card-slot .card:focus-visible .card__body {
     padding-bottom: clamp(38px, 5.4vh, 50px);
     padding-right: 0;
   }
-  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: clamp(2px, .8vh, 8px); padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px); }
+  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: calc(clamp(12px, 2vh, 20px) + clamp(38px, 5.2vh, 48px) / 2 - clamp(14px, 2.2vh, 22px) - 1px); padding-right: calc(clamp(38px, 5.2vh, 48px) + 10px); }
 }
 @media (min-width: 1200px) and (min-height: 601px) and (hover: hover) {
   .card-slot .card:hover .card__body {
