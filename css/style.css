@@ -463,9 +463,10 @@ body:not(.is-ready) .view { transition: none; }
   stroke-linejoin: round;
 }
 .card__body {
+  --body-gap: clamp(10px, 1.8vh, 18px);
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.8vh, 18px);
+  gap: var(--body-gap);
   padding-top: clamp(8px, 1.6vh, 18px);
   padding-bottom: clamp(38px, 5.4vh, 50px);
   min-width: 0;
@@ -485,6 +486,51 @@ body:not(.is-ready) .view { transition: none; }
   line-height: 1.72;
   color: var(--text);
 }
+/* Főoldali kártyák asztali nézetben: alapból csak a cím látszik, a leírás
+   egérrel ráállva, fókuszban vagy (érintőképernyőn) első koppintásra nyílik ki.
+   A kártya felfelé nő, így a többi elem nem mozdul el. */
+@media (min-width: 821px) and (min-height: 601px) {
+  .card-slot {
+    position: relative;
+    height: var(--card-h, clamp(120px, 17vh, 170px));
+  }
+  .card-slot .card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    min-height: var(--card-h, 0);
+  }
+  .card-slot .card__text {
+    max-height: 0;
+    margin-top: calc(-1 * var(--body-gap));
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height .4s var(--ease), margin-top .4s var(--ease), opacity .25s;
+  }
+  .card-slot .card.is-open,
+  .card-slot .card:focus-visible { z-index: 2; }
+  .card-slot .card.is-open .card__text,
+  .card-slot .card:focus-visible .card__text {
+    max-height: 12em;
+    margin-top: 0;
+    opacity: 1;
+    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
+  }
+  .cards.is-measuring .card-slot .card .card__text { transition: none; max-height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .cards.is-measuring .card-slot .card { transition: none; transform: none; min-height: 0; }
+}
+@media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
+  .card-slot .card:hover { z-index: 2; }
+  .card-slot .card:hover .card__text {
+    max-height: 12em;
+    margin-top: 0;
+    opacity: 1;
+    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
+  }
+}
+
 .card .round-arrow {
   position: absolute;
   right: clamp(14px, 1.4vw, 20px);
@@ -1060,6 +1106,7 @@ body:not(.is-ready) .view { transition: none; }
     scrollbar-width: none;
   }
   .cards::-webkit-scrollbar { display: none; }
+  .card-slot { display: contents; }
   .card { scroll-snap-align: start; }
   .card:hover { transform: none; }
 

@@ -476,9 +476,10 @@ body:not(.is-ready) .view { transition: none; }
   stroke-linejoin: round;
 }
 .card__body {
+  --body-gap: clamp(10px, 1.8vh, 18px);
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.8vh, 18px);
+  gap: var(--body-gap);
   padding-top: clamp(8px, 1.6vh, 18px);
   padding-bottom: clamp(38px, 5.4vh, 50px);
   min-width: 0;
@@ -498,6 +499,51 @@ body:not(.is-ready) .view { transition: none; }
   line-height: 1.72;
   color: var(--text);
 }
+/* Főoldali kártyák asztali nézetben: alapból csak a cím látszik, a leírás
+   egérrel ráállva, fókuszban vagy (érintőképernyőn) első koppintásra nyílik ki.
+   A kártya felfelé nő, így a többi elem nem mozdul el. */
+@media (min-width: 821px) and (min-height: 601px) {
+  .card-slot {
+    position: relative;
+    height: var(--card-h, clamp(120px, 17vh, 170px));
+  }
+  .card-slot .card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    min-height: var(--card-h, 0);
+  }
+  .card-slot .card__text {
+    max-height: 0;
+    margin-top: calc(-1 * var(--body-gap));
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height .4s var(--ease), margin-top .4s var(--ease), opacity .25s;
+  }
+  .card-slot .card.is-open,
+  .card-slot .card:focus-visible { z-index: 2; }
+  .card-slot .card.is-open .card__text,
+  .card-slot .card:focus-visible .card__text {
+    max-height: 12em;
+    margin-top: 0;
+    opacity: 1;
+    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
+  }
+  .cards.is-measuring .card-slot .card .card__text { transition: none; max-height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .cards.is-measuring .card-slot .card { transition: none; transform: none; min-height: 0; }
+}
+@media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
+  .card-slot .card:hover { z-index: 2; }
+  .card-slot .card:hover .card__text {
+    max-height: 12em;
+    margin-top: 0;
+    opacity: 1;
+    transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
+  }
+}
+
 .card .round-arrow {
   position: absolute;
   right: clamp(14px, 1.4vw, 20px);
@@ -1073,6 +1119,7 @@ body:not(.is-ready) .view { transition: none; }
     scrollbar-width: none;
   }
   .cards::-webkit-scrollbar { display: none; }
+  .card-slot { display: contents; }
   .card { scroll-snap-align: start; }
   .card:hover { transform: none; }
 
@@ -1198,33 +1245,39 @@ body:not(.is-ready) .view { transition: none; }
         </div>
 
         <div class="cards">
-          <a class="card" href="#services/export">
-            <span class="card__icon"><svg aria-hidden="true"><use href="#i-container"/></svg></span>
-            <div class="card__body">
-              <h2 class="card__title" data-i18n-html="svc.export.title">Exportellenőrzés</h2>
-              <span class="rule" aria-hidden="true"></span>
-              <p class="card__text" data-i18n="svc.export.card">Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.</p>
-            </div>
-            <span class="round-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
-          </a>
-          <a class="card" href="#services/sanctions">
-            <span class="card__icon"><svg aria-hidden="true"><use href="#i-shield-globe"/></svg></span>
-            <div class="card__body">
-              <h2 class="card__title" data-i18n-html="svc.sanctions.title">Szankciók &amp; kereskedelmi korlátozások</h2>
-              <span class="rule" aria-hidden="true"></span>
-              <p class="card__text" data-i18n="svc.sanctions.card">Szankciós megfelelés, amely védi vállalkozását és hírnevét.</p>
-            </div>
-            <span class="round-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
-          </a>
-          <a class="card" href="#services/fta">
-            <span class="card__icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
-            <div class="card__body">
-              <h2 class="card__title" data-i18n-html="svc.fta.title">Ellátási láncok és kockázatkezelés</h2>
-              <span class="rule" aria-hidden="true"></span>
-              <p class="card__text" data-i18n="svc.fta.card">Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.</p>
-            </div>
-            <span class="round-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
-          </a>
+          <div class="card-slot">
+            <a class="card" href="#services/export">
+              <span class="card__icon"><svg aria-hidden="true"><use href="#i-container"/></svg></span>
+              <div class="card__body">
+                <h2 class="card__title" data-i18n-html="svc.export.title">Exportellenőrzés</h2>
+                <span class="rule" aria-hidden="true"></span>
+                <p class="card__text" data-i18n="svc.export.card">Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.</p>
+              </div>
+              <span class="round-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+            </a>
+          </div>
+          <div class="card-slot">
+            <a class="card" href="#services/sanctions">
+              <span class="card__icon"><svg aria-hidden="true"><use href="#i-shield-globe"/></svg></span>
+              <div class="card__body">
+                <h2 class="card__title" data-i18n-html="svc.sanctions.title">Szankciók &amp; kereskedelmi korlátozások</h2>
+                <span class="rule" aria-hidden="true"></span>
+                <p class="card__text" data-i18n="svc.sanctions.card">Szankciós megfelelés, amely védi vállalkozását és hírnevét.</p>
+              </div>
+              <span class="round-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+            </a>
+          </div>
+          <div class="card-slot">
+            <a class="card" href="#services/fta">
+              <span class="card__icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
+              <div class="card__body">
+                <h2 class="card__title" data-i18n-html="svc.fta.title">Ellátási láncok és kockázatkezelés</h2>
+                <span class="rule" aria-hidden="true"></span>
+                <p class="card__text" data-i18n="svc.fta.card">Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.</p>
+              </div>
+              <span class="round-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+            </a>
+          </div>
         </div>
 
         <div class="strip">
@@ -1796,6 +1849,7 @@ window.ITC_I18N = {
     $$('[data-lang]').forEach(function (b) {
       b.setAttribute('aria-current', b.dataset.lang === lang ? 'true' : 'false');
     });
+    measureCards();
   }
 
   /* Nyelvválasztó */
@@ -1841,6 +1895,7 @@ window.ITC_I18N = {
   }
 
   function route() {
+    closeCards();
     var r = parseHash();
     var changed = r.view !== current;
     var initial = current === null;
@@ -1979,6 +2034,45 @@ window.ITC_I18N = {
   }, { passive: true });
 
   /* ================= Indítás ================= */
+  /* ================= Főoldali kártyák ================= */
+  /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; nyitáskor felfelé nőnek */
+  var cardsBox = $('.cards');
+  var compactCards = window.matchMedia('(min-width: 821px) and (min-height: 601px)');
+  var noHover = window.matchMedia('(hover: none)');
+  var lastPointer = 'mouse';
+
+  function measureCards() {
+    if (!cardsBox || !compactCards.matches) return;
+    cardsBox.classList.add('is-measuring');
+    var h = 0;
+    $$('.card', cardsBox).forEach(function (c) { h = Math.max(h, c.offsetHeight); });
+    cardsBox.classList.remove('is-measuring');
+    if (h) cardsBox.style.setProperty('--card-h', h + 'px');
+  }
+  function closeCards(except) {
+    $$('.card.is-open').forEach(function (c) { if (c !== except) c.classList.remove('is-open'); });
+  }
+
+  if (cardsBox) {
+    /* Érintőképernyőn az első koppintás kinyitja a kártyát, a második megnyitja a szolgáltatást */
+    $$('.card', cardsBox).forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (!compactCards.matches) return;
+        if ((noHover.matches || lastPointer === 'touch') && !card.classList.contains('is-open')) {
+          e.preventDefault();
+          closeCards(card);
+          card.classList.add('is-open');
+        }
+      });
+    });
+    document.addEventListener('pointerdown', function (e) {
+      lastPointer = e.pointerType || 'mouse';
+      if (!e.target.closest('.card')) closeCards();
+    });
+    window.addEventListener('resize', measureCards);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureCards);
+  }
+
   applyLang(detectLang());
   window.addEventListener('hashchange', route);
   /* Belső linkek (logó, menü, gombok): mindig a megfelelő nézetet nyitják meg,
