@@ -491,7 +491,7 @@ body:not(.is-ready) .view { transition: none; }
    (vagy billentyűzettel fókuszálva) nyílik ki. A kártya felfelé nő, így a többi elem nem mozdul el.
    Csukva a címek egyforma magasak (a sárga csík egy vonalban van), kinyitva a kártyák egyforma magasak,
    és a leírás alatt mindig van hely a nyílnak. */
-@media (min-width: 821px) and (min-height: 601px) {
+@media (min-width: 821px) {
   .card-slot {
     --arrow: clamp(38px, 5.2vh, 48px);
     --arrow-bottom: clamp(12px, 2vh, 20px);
@@ -560,7 +560,7 @@ body:not(.is-ready) .view { transition: none; }
   .cards.is-measuring .card-slot .card * { transition: none; }
   .cards.is-measuring-open .card-slot .card .card__text { transition: none; }
 }
-@media (min-width: 821px) and (min-height: 601px) and (hover: hover) {
+@media (min-width: 821px) and (hover: hover) {
   .card-slot .card:hover { z-index: 2; min-height: var(--open-h, 0); }
   .card-slot .card:hover .card__title { min-height: 0; }
   .card-slot .card:hover .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
@@ -572,7 +572,7 @@ body:not(.is-ready) .view { transition: none; }
   .card-slot .card:hover .round-arrow { opacity: 1; transform: none; }
 }
 /* Széles képernyőn csukott állapotban a nyíl a cím mellett, a sárga csíkkal egy vonalban látszik */
-@media (min-width: 1200px) and (min-height: 601px) {
+@media (min-width: 1200px) {
   .card-slot {
     --closed-pb: calc(var(--arrow-bottom) + var(--arrow) / 2 - var(--card-pb) - 1px);
     --closed-pr: calc(var(--arrow) + 10px);
@@ -1031,8 +1031,6 @@ body:not(.is-ready) .view { transition: none; }
   .strip { display: none; }
 }
 @media (max-height: 600px) and (min-width: 821px) {
-  .card__text { display: none; }
-  .card__body { padding-bottom: 8px; }
   .steps { display: none; }
   .inner--about { grid-template-rows: minmax(0, 1fr); }
 }

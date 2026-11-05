@@ -255,7 +255,7 @@
   /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; egérrel ráállva felfelé nőnek.
      A címek egyforma magasak, így a sárga csík minden kártyán egy vonalban van. */
   var cardsBox = $('.cards');
-  var compactCards = window.matchMedia('(min-width: 821px) and (min-height: 601px)');
+  var compactCards = window.matchMedia('(min-width: 821px)');
 
   function measureCards() {
     if (!cardsBox || !compactCards.matches) return;
