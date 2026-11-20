@@ -20,7 +20,7 @@ window.ITC_I18N = {
 
     'svc.export.title': 'Export- és import&shy;ellenőrzés',
     'svc.export.card': 'Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.',
-    'svc.export.lead': 'Felmérjük termékei, technológiái, szoftverei engedélykötelezettségét, erre építve kialakítjuk az exportellenőrzési kötelezettségek biztonságos teljesítéséhez szükséges belső rendszert.',
+    'svc.export.lead': 'Felmérjük termékei, technológiái, szoftverei engedélykötelezettségét, erre építve kialakítjuk az exportellenőrzési szabályok biztonságos betartásához szükséges belső rendszert.',
     'svc.export.items': [
       'Termékbesorolás az európai és amerikai szabályozás alapján (ECCN)',
       'Katonai termékek besorolása az EU közös katonai listája alapján',
