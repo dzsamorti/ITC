@@ -18,7 +18,7 @@ window.ITC_I18N = {
     'home.title': 'Üzletközpontú compliance,<br><em>gyakorlati megoldásokkal.</em>',
     'home.cta': 'Fedezze fel megoldásainkat',
 
-    'svc.export.title': 'Export- és import&shy;ellenőrzés',
+    'svc.export.title': 'Export- &amp; import&shy;ellenőrzés',
     'svc.export.card': 'Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.',
     'svc.export.lead': 'Felmérjük termékei, technológiái, szoftverei engedélykötelezettségét, erre építve kialakítjuk az exportellenőrzési szabályok biztonságos betartásához szükséges belső rendszert.',
     'svc.export.items': [
