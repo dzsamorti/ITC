@@ -417,7 +417,7 @@ body:not(.is-ready) .view { transition: none; }
 /* Asztali és tablet nézetben a kártyák feljebb ülnek (ahol korábban az alsó sáv fölötti sor volt),
    alattuk a kép sötét alja marad szabadon */
 @media (min-width: 821px) {
-  .home { padding-bottom: calc(clamp(14px, 4vh, 44px) + clamp(70px, 16vh, 160px)); }
+  .home { padding-bottom: calc(clamp(14px, 4vh, 44px) + max(0px, clamp(70px, 16vh, 160px) - 90px)); }
 }
 .hero {
   flex: 1 1 auto;
