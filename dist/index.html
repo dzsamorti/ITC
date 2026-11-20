@@ -406,6 +406,11 @@ body:not(.is-ready) .view { transition: none; }
   flex-direction: column;
   gap: clamp(12px, 3vh, 32px);
 }
+/* Asztali és tablet nézetben a kártyák feljebb ülnek (ahol korábban az alsó sáv fölötti sor volt),
+   alattuk a kép sötét alja marad szabadon */
+@media (min-width: 821px) {
+  .home { padding-bottom: calc(clamp(14px, 4vh, 44px) + clamp(70px, 16vh, 160px)); }
+}
 .hero {
   flex: 1 1 auto;
   min-height: 0;
