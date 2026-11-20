@@ -422,18 +422,17 @@ body:not(.is-ready) .view { transition: none; }
   container-type: size;
 }
 .hero__title {
-  /* ugyanaz a betűtípus és vastagság, mint a szolgáltatáscsempék címeinél; a méret változatlan */
-  font-family: var(--sans);
-  font-weight: 400;
+  font-family: var(--serif);
+  font-weight: 500;
   color: var(--ink);
   font-size: clamp(1.7rem, min(4.4vw, 6.4vh), 4.7rem);
   font-size: clamp(1.7rem, min(4.4vw, 6.4vh, 19cqh), 4.7rem);
   line-height: 1.1;
-  letter-spacing: .01em;
-  max-width: 17em;
+  letter-spacing: -.012em;
+  max-width: 13em;
 }
 .hero__title em {
-  font-style: normal;
+  font-style: italic;
   font-weight: 400;
   color: var(--amber);
 }
