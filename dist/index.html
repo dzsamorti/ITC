@@ -156,27 +156,6 @@ svg use { pointer-events: none; }
   opacity: 0;
   transition: opacity .8s var(--ease);
 }
-/* Asztali és tablet nézetben a kikötői kép a képernyő aljáig ér: a kártyák alatt is a kép
-   folytatódik (konténerek, víz, hajó), nem sötétkék háttér. A kép balra felül rögzített,
-   így a nagyítás jobbra kicsit kifut, a bal oldali folytatással együtt nő. */
-@media (min-width: 821px) {
-  .scene {
-    /* a kép kicsit balrább kezdődik, hogy nagyítva is látsszon a hajó; a daruk a gomb mögül kilógnak */
-    --pl: calc(.8 * min(50vw, calc(max(0px, (100vw - var(--maxw) - 2 * var(--gutter)) / 2) + var(--gutter) + 8.4 * min(4.4vw, 6.4vh, 4.7rem))));
-    /* a képernyő aljáig ér, de álló, magas kijelzőn legfeljebb ~1,5-szeresére nagyít */
-    --ph: max(calc((100vw - var(--pl)) * .71), min(100vh, calc((100vw - var(--pl)) * 1.1)));
-  }
-  .scene__sky,
-  .scene__photo::before {
-    -webkit-mask-image: linear-gradient(180deg, #000 90%, transparent 100%);
-            mask-image: linear-gradient(180deg, #000 90%, transparent 100%);
-  }
-  .scene__wash {
-    background:
-      linear-gradient(180deg, rgba(160, 196, 226, .25) 0%, rgba(160, 196, 226, 0) 20%),
-      linear-gradient(180deg, rgba(11, 27, 48, 0) 52%, rgba(11, 27, 48, .32) 78%, rgba(11, 27, 48, .55) 100%);
-  }
-}
 body:not(.is-home) .scene__photo { transform: scale(1.1); filter: blur(3px) saturate(.9); }
 body:not(.is-home) .scene__sky { filter: blur(3px) saturate(.9); }
 body:not(.is-home) .scene__wash { opacity: 0; }
