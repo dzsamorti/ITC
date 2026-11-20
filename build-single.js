@@ -9,7 +9,8 @@ const favicon = 'data:image/svg+xml;base64,' + fs.readFileSync(path.join(root, '
 
 const css = read('css/style.css')
   .replace('url("../assets/img/hero-port.jpg")', () => `url("${b64('assets/img/hero-port.jpg')}")`)
-  .replace('url("../assets/img/hero-left.jpg")', () => `url("${b64('assets/img/hero-left.jpg')}")`);
+  .replace('url("../assets/img/hero-left.jpg")', () => `url("${b64('assets/img/hero-left.jpg')}")`)
+  .replace('url("../assets/fonts/JuliusSansOne-Regular.ttf")', () => `url("data:font/ttf;base64,${fs.readFileSync(path.join(root, 'assets/fonts/JuliusSansOne-Regular.ttf')).toString('base64')}")`);
 if (css.includes('../assets/')) throw new Error('Maradt kép-hivatkozás a CSS-ben');
 const js = read('js/i18n.js') + '\n' + read('js/main.js');
 

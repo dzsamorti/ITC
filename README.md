@@ -35,6 +35,7 @@ node build-single.js
 | Az űrlap címzett e-mail-címe | `js/main.js`, a fájl elején a `CONTACT` objektum |
 | Színek, betűtípusok, méretek | `css/style.css`, a `:root` változók |
 | Háttérkép | `assets/img/hero-port.jpg` |
+| ITC felirat betűtípusa (Julius Sans One, OFL licenc) | `assets/fonts/` |
 
 ## Fontos teendők élesítés előtt
 
