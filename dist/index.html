@@ -665,6 +665,11 @@ body:not(.is-ready) .view { transition: none; }
   letter-spacing: -.01em;
   max-width: 22em;
 }
+.inner__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--amber);
+}
 
 /* --- Az ITC-ről --- */
 .inner--about {
@@ -1285,7 +1290,7 @@ body:not(.is-ready) .view { transition: none; }
     <section class="view view--home is-active" data-view="home" aria-labelledby="home-title">
       <div class="home">
         <div class="hero">
-          <h1 class="hero__title" id="home-title" tabindex="-1" data-i18n-html="home.title">Compliance, ami<br><em>lendületet ad</em> az üzletnek,<br>nem akadályozza.</h1>
+          <h1 class="hero__title" id="home-title" tabindex="-1" data-i18n-html="home.title">Üzletközpontú compliance,<br><em>gyakorlati megoldásokkal.</em></h1>
           <a class="btn btn--dark" href="#services">
             <span data-i18n="home.cta">Fedezze fel megoldásainkat</span>
             <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -1359,7 +1364,7 @@ body:not(.is-ready) .view { transition: none; }
       <div class="inner inner--about">
         <div class="about__intro">
           <p class="eyebrow" data-i18n="about.eyebrow">Az ITC-ről</p>
-          <h2 class="inner__title" id="about-title" tabindex="-1" data-i18n="about.title">Üzletközpontú compliance, gyakorlati megoldásokkal.</h2>
+          <h2 class="inner__title" id="about-title" tabindex="-1" data-i18n-html="about.title">Compliance, ami <em>lendületet ad</em> az üzletnek, nem akadályozza.</h2>
           <p class="lead" data-i18n="about.lead"></p>
           <p class="muted" data-i18n="about.text"></p>
           <a class="btn btn--amber" href="#contact">
@@ -1562,7 +1567,7 @@ window.ITC_I18N = {
     'nav.label': 'Főmenü',
     'lang.label': 'Nyelv kiválasztása',
 
-    'home.title': 'Compliance, ami<br><em>lendületet ad</em> az üzletnek,<br>nem akadályozza.',
+    'home.title': 'Üzletközpontú compliance,<br><em>gyakorlati megoldásokkal.</em>',
     'home.cta': 'Fedezze fel megoldásainkat',
 
     'svc.export.title': 'Export- és import&shy;ellenőrzés',
@@ -1611,7 +1616,7 @@ window.ITC_I18N = {
     'strip.fta.short': 'Beszállítók · Kockázatelemzés',
 
     'about.eyebrow': 'Az ITC-ről',
-    'about.title': 'Üzletközpontú compliance, gyakorlati megoldásokkal.',
+    'about.title': 'Compliance, ami <em>lendületet ad</em> az üzletnek, nem akadályozza.',
     'about.lead': 'Az ITC nemzetközi kereskedelmi compliance tanácsadással foglalkozik. Abban segítünk, hogy ügyfeleink a szabályoknak megfelelően, mégis gördülékenyen és versenyképesen kereskedjenek a világ bármely pontjával.',
     'about.text': 'Tanácsadásunk nem fékezi, hanem segíti az üzletmenetet. Az export- és importellenőrzés, a szankciós szabályok és az ellátási láncok kockázatai terén nem csupán értelmezzük a jogszabályokat: gyors, gyakorlatias válaszokat adunk, és olyan folyamatokat építünk, amelyekkel a megfelelés a mindennapi működés természetes része lesz.',
     'about.cta': 'Vegye fel velünk a kapcsolatot',

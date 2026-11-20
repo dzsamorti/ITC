@@ -15,7 +15,7 @@ window.ITC_I18N = {
     'nav.label': 'Főmenü',
     'lang.label': 'Nyelv kiválasztása',
 
-    'home.title': 'Compliance, ami<br><em>lendületet ad</em> az üzletnek,<br>nem akadályozza.',
+    'home.title': 'Üzletközpontú compliance,<br><em>gyakorlati megoldásokkal.</em>',
     'home.cta': 'Fedezze fel megoldásainkat',
 
     'svc.export.title': 'Export- és import&shy;ellenőrzés',
@@ -64,7 +64,7 @@ window.ITC_I18N = {
     'strip.fta.short': 'Beszállítók · Kockázatelemzés',
 
     'about.eyebrow': 'Az ITC-ről',
-    'about.title': 'Üzletközpontú compliance, gyakorlati megoldásokkal.',
+    'about.title': 'Compliance, ami <em>lendületet ad</em> az üzletnek, nem akadályozza.',
     'about.lead': 'Az ITC nemzetközi kereskedelmi compliance tanácsadással foglalkozik. Abban segítünk, hogy ügyfeleink a szabályoknak megfelelően, mégis gördülékenyen és versenyképesen kereskedjenek a világ bármely pontjával.',
     'about.text': 'Tanácsadásunk nem fékezi, hanem segíti az üzletmenetet. Az export- és importellenőrzés, a szankciós szabályok és az ellátási láncok kockázatai terén nem csupán értelmezzük a jogszabályokat: gyors, gyakorlatias válaszokat adunk, és olyan folyamatokat építünk, amelyekkel a megfelelés a mindennapi működés természetes része lesz.',
     'about.cta': 'Vegye fel velünk a kapcsolatot',
