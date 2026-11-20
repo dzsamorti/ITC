@@ -42,7 +42,7 @@ window.ITC_I18N = {
       'Szankciós szabályzat, eszkalációs folyamat és képzés'
     ],
 
-    'svc.fta.title': 'Ellátási láncok és kockázatkezelés',
+    'svc.fta.title': 'Ellátási láncok és kockázat&shy;kezelés',
     'svc.fta.card': 'Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.',
     'svc.fta.lead': 'Feltérképezzük ellátási lánca szabályozási, beszállítói és működési kockázatait, és olyan kockázatkezelési rendszert építünk, amely segít megelőzni a fennakadásokat és a jogsértéseket.',
     'svc.fta.items': [
@@ -53,13 +53,10 @@ window.ITC_I18N = {
       'Üzletmenet-folytonossági tervek és képzések a munkatársak számára'
     ],
 
-    'strip.export.title': 'Export- és importellenőrzés',
     'strip.export.tags': ['Kettős felhasználás', 'Katonai', 'Kiber'],
     'strip.export.short': 'Kettős felhasználás · Katonai · Kiber',
-    'strip.sanctions.title': 'Szankciók',
     'strip.sanctions.tags': ['EU', 'US', 'ENSZ', 'UK'],
     'strip.sanctions.short': 'EU · US · ENSZ · UK',
-    'strip.fta.title': 'Ellátási láncok és kockázatkezelés',
     'strip.fta.tags': ['Beszállítói átvilágítás', 'Kockázatelemzés'],
     'strip.fta.short': 'Beszállítók · Kockázatelemzés',
 
@@ -185,13 +182,10 @@ window.ITC_I18N = {
       'Business continuity plans and training for your staff'
     ],
 
-    'strip.export.title': 'Export & import control',
     'strip.export.tags': ['Dual-use', 'Military', 'Cyber'],
     'strip.export.short': 'Dual-use · Military · Cyber',
-    'strip.sanctions.title': 'Sanctions',
     'strip.sanctions.tags': ['EU', 'US', 'UN', 'UK'],
     'strip.sanctions.short': 'EU · US · UN · UK',
-    'strip.fta.title': 'Supply chain & risk management',
     'strip.fta.tags': ['Supplier due diligence', 'Risk analysis'],
     'strip.fta.short': 'Suppliers · Risk analysis',
 

@@ -433,6 +433,7 @@ body:not(.is-ready) .view { transition: none; }
 }
 
 .cards {
+  --card-pb: clamp(16px, 2.7vh, 28px);   /* a kártyák függőleges belső margója */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(12px, 1.3vw, 18px);
@@ -443,7 +444,7 @@ body:not(.is-ready) .view { transition: none; }
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: clamp(12px, 1.2vw, 18px);
-  padding: clamp(14px, 2.2vh, 22px) clamp(16px, 1.5vw, 22px) clamp(14px, 2.2vh, 22px) clamp(14px, 1.4vw, 20px);
+  padding: var(--card-pb) clamp(18px, 1.6vw, 26px) var(--card-pb) clamp(16px, 1.4vw, 22px);
   background: var(--glass);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-tile);
@@ -461,8 +462,8 @@ body:not(.is-ready) .view { transition: none; }
 .card__icon {
   display: grid;
   place-items: center;
-  width: clamp(54px, 8.2vh, 86px);
-  height: clamp(54px, 8.2vh, 86px);
+  width: clamp(56px, 8.8vh, 92px);
+  height: clamp(56px, 8.8vh, 92px);
   border-radius: 50%;
   border: 1px solid var(--line-strong);
   background: rgba(8, 21, 40, .55);
@@ -488,7 +489,7 @@ body:not(.is-ready) .view { transition: none; }
 }
 .card__title {
   font-weight: 400;
-  font-size: clamp(.98rem, min(1.45vw, 2.4vh), 1.4rem);
+  font-size: clamp(1rem, min(1.5vw, 2.55vh), 1.45rem);
   line-height: 1.25;
   text-transform: uppercase;
   letter-spacing: .01em;
@@ -499,14 +500,14 @@ body:not(.is-ready) .view { transition: none; }
 /* A kártyacím alatti címkék (ugyanazok, mint az alsó sávban) */
 .card__tags {
   margin-top: clamp(4px, .8vh, 8px);
-  font-size: clamp(.8rem, min(1.05vw, 1.65vh), .98rem);
+  font-size: clamp(.84rem, min(1.15vw, 1.85vh), 1.06rem);
   line-height: 1.4;
   color: var(--muted);
 }
 .card__tags .sep { margin: 0 .5em; color: rgba(242, 161, 34, .7); }
 .card__tags .tag { white-space: nowrap; }
 .card__text {
-  font-size: clamp(.84rem, min(1.15vw, 1.75vh), 1rem);
+  font-size: clamp(.88rem, min(1.25vw, 1.95vh), 1.08rem);
   line-height: 1.72;
   color: var(--text);
 }
@@ -518,7 +519,6 @@ body:not(.is-ready) .view { transition: none; }
   .card-slot {
     --arrow: clamp(38px, 5.2vh, 48px);
     --arrow-bottom: clamp(12px, 2vh, 20px);
-    --card-pb: clamp(14px, 2.2vh, 22px);
     --open-pb: calc(var(--arrow-bottom) + var(--arrow) + 12px - var(--card-pb));
     --closed-pb: clamp(2px, .8vh, 8px);
     --closed-pr: 0px;
@@ -609,50 +609,6 @@ body:not(.is-ready) .view { transition: none; }
   bottom: clamp(12px, 2vh, 20px);
 }
 
-.strip {
-  flex: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  padding: clamp(12px, 2.4vh, 28px) clamp(16px, 3vw, 56px);
-  background: linear-gradient(180deg, rgba(22, 46, 78, .55), rgba(12, 29, 53, .7));
-  border: 1px solid var(--line);
-  border-radius: var(--radius-tile);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.strip__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(12px, 1.5vw, 22px);
-  padding: 0 clamp(8px, 1.5vw, 24px);
-}
-.strip__item + .strip__item { border-left: 1px solid var(--line-strong); }
-.strip__icon {
-  width: clamp(40px, 6.6vh, 72px);
-  height: clamp(40px, 6.6vh, 72px);
-  flex: none;
-  fill: none;
-  stroke: var(--amber);
-  stroke-width: 1.15;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.strip__title {
-  font-size: clamp(.95rem, min(1.4vw, 2.2vh), 1.3rem);
-  text-transform: uppercase;
-  letter-spacing: .01em;
-  color: var(--white);
-  line-height: 1.3;
-}
-.strip__tags {
-  margin-top: 4px;
-  white-space: nowrap;
-  font-size: clamp(.85rem, min(1.2vw, 1.9vh), 1.08rem);
-  color: var(--text);
-}
-.strip__tags .sep { margin: 0 .55em; color: var(--muted); }
 
 /* ================= Belső nézetek ================= */
 .inner {
@@ -1054,10 +1010,6 @@ body:not(.is-ready) .view { transition: none; }
 
 /* ================= Reszponzív ================= */
 
-/* Alacsony képernyők: a sáv kompaktabb, hogy minden kiférjen */
-@media (max-height: 740px) and (min-width: 821px) {
-  .strip { padding-top: clamp(8px, 1.6vh, 14px); padding-bottom: clamp(8px, 1.6vh, 14px); }
-}
 @media (max-height: 600px) and (min-width: 821px) {
   .steps { display: none; }
   .inner--about { grid-template-rows: minmax(0, 1fr); }
@@ -1085,8 +1037,6 @@ body:not(.is-ready) .view { transition: none; }
 
 /* Közepes szélesség */
 @media (max-width: 1180px) and (min-width: 821px) {
-  .strip { padding-left: 16px; padding-right: 16px; }
-  .strip__item { flex-direction: column; text-align: center; gap: 8px; }
   .steps { flex-direction: column; align-items: flex-start; }
   .steps__list { width: 100%; }
   .services { grid-template-columns: minmax(200px, 250px) minmax(0, 1fr); }
@@ -1168,7 +1118,6 @@ body:not(.is-ready) .view { transition: none; }
   /* Főoldal: kártyák vízszintes, lapozható sávban */
   .hero { justify-content: flex-start; padding-top: 3vh; gap: 22px; }
   .hero__title { font-size: clamp(1.9rem, min(8.6vw, 5.4vh), 3.2rem); }
-  .strip { display: none; }
   .cards {
     grid-template-columns: none;
     grid-auto-flow: column;
@@ -1351,29 +1300,6 @@ body:not(.is-ready) .view { transition: none; }
           </div>
         </div>
 
-        <div class="strip">
-          <div class="strip__item">
-            <svg class="strip__icon" aria-hidden="true"><use href="#i-globe"/></svg>
-            <div>
-              <p class="strip__title" data-i18n="strip.export.title">Export- és importellenőrzés</p>
-              <p class="strip__tags" data-i18n-tags="strip.export.tags"></p>
-            </div>
-          </div>
-          <div class="strip__item">
-            <svg class="strip__icon" aria-hidden="true"><use href="#i-shield-check"/></svg>
-            <div>
-              <p class="strip__title" data-i18n="strip.sanctions.title">Szankciók</p>
-              <p class="strip__tags" data-i18n-tags="strip.sanctions.tags"></p>
-            </div>
-          </div>
-          <div class="strip__item">
-            <svg class="strip__icon" aria-hidden="true"><use href="#i-handshake"/></svg>
-            <div>
-              <p class="strip__title" data-i18n="strip.fta.title">Ellátási láncok és kockázatkezelés</p>
-              <p class="strip__tags" data-i18n-tags="strip.fta.tags"></p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1612,7 +1538,7 @@ window.ITC_I18N = {
       'Szankciós szabályzat, eszkalációs folyamat és képzés'
     ],
 
-    'svc.fta.title': 'Ellátási láncok és kockázatkezelés',
+    'svc.fta.title': 'Ellátási láncok és kockázat&shy;kezelés',
     'svc.fta.card': 'Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.',
     'svc.fta.lead': 'Feltérképezzük ellátási lánca szabályozási, beszállítói és működési kockázatait, és olyan kockázatkezelési rendszert építünk, amely segít megelőzni a fennakadásokat és a jogsértéseket.',
     'svc.fta.items': [
@@ -1623,13 +1549,10 @@ window.ITC_I18N = {
       'Üzletmenet-folytonossági tervek és képzések a munkatársak számára'
     ],
 
-    'strip.export.title': 'Export- és importellenőrzés',
     'strip.export.tags': ['Kettős felhasználás', 'Katonai', 'Kiber'],
     'strip.export.short': 'Kettős felhasználás · Katonai · Kiber',
-    'strip.sanctions.title': 'Szankciók',
     'strip.sanctions.tags': ['EU', 'US', 'ENSZ', 'UK'],
     'strip.sanctions.short': 'EU · US · ENSZ · UK',
-    'strip.fta.title': 'Ellátási láncok és kockázatkezelés',
     'strip.fta.tags': ['Beszállítói átvilágítás', 'Kockázatelemzés'],
     'strip.fta.short': 'Beszállítók · Kockázatelemzés',
 
@@ -1755,13 +1678,10 @@ window.ITC_I18N = {
       'Business continuity plans and training for your staff'
     ],
 
-    'strip.export.title': 'Export & import control',
     'strip.export.tags': ['Dual-use', 'Military', 'Cyber'],
     'strip.export.short': 'Dual-use · Military · Cyber',
-    'strip.sanctions.title': 'Sanctions',
     'strip.sanctions.tags': ['EU', 'US', 'UN', 'UK'],
     'strip.sanctions.short': 'EU · US · UN · UK',
-    'strip.fta.title': 'Supply chain & risk management',
     'strip.fta.tags': ['Supplier due diligence', 'Risk analysis'],
     'strip.fta.short': 'Suppliers · Risk analysis',
 
