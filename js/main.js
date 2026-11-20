@@ -50,8 +50,12 @@
           sep.setAttribute('aria-hidden', 'true');
           sep.textContent = '|';
           el.appendChild(sep);
+          el.appendChild(document.createTextNode('​'));   /* itt törhet a sor, ha nem fér ki */
         }
-        el.appendChild(document.createTextNode(tag));
+        var item = document.createElement('span');
+        item.className = 'tag';                 /* egy címke nem törik két sorba */
+        item.textContent = tag;
+        el.appendChild(item);
       });
     });
     $$('[data-i18n-attr]').forEach(function (el) {
@@ -245,7 +249,7 @@
   /* ================= Indítás ================= */
   /* ================= Főoldali kártyák ================= */
   /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; egérrel ráállva felfelé nőnek.
-     A címek egyforma magasak, így a sárga csík minden kártyán egy vonalban van. */
+     A cím és a címkék együtt egyforma magasak, így a sárga csík minden kártyán egy vonalban van. */
   var cardsBox = $('.cards');
   var compactCards = window.matchMedia('(min-width: 821px)');
 
@@ -253,7 +257,7 @@
     if (!cardsBox || !compactCards.matches) return;
     cardsBox.classList.add('is-measuring');
     var titleH = 0;
-    $$('.card__title', cardsBox).forEach(function (el) { titleH = Math.max(titleH, el.offsetHeight); });
+    $$('.card__head', cardsBox).forEach(function (el) { titleH = Math.max(titleH, el.offsetHeight); });
     if (titleH) cardsBox.style.setProperty('--title-h', titleH + 'px');
     var h = 0;
     $$('.card', cardsBox).forEach(function (c) { h = Math.max(h, c.offsetHeight); });

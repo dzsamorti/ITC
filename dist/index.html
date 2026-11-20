@@ -496,6 +496,15 @@ body:not(.is-ready) .view { transition: none; }
   overflow-wrap: break-word;
   hyphens: manual;
 }
+/* A kártyacím alatti címkék (ugyanazok, mint az alsó sávban) */
+.card__tags {
+  margin-top: clamp(4px, .8vh, 8px);
+  font-size: clamp(.8rem, min(1.05vw, 1.65vh), .98rem);
+  line-height: 1.4;
+  color: var(--muted);
+}
+.card__tags .sep { margin: 0 .5em; color: rgba(242, 161, 34, .7); }
+.card__tags .tag { white-space: nowrap; }
 .card__text {
   font-size: clamp(.84rem, min(1.15vw, 1.75vh), 1rem);
   line-height: 1.72;
@@ -524,7 +533,7 @@ body:not(.is-ready) .view { transition: none; }
     z-index: 1;
     min-height: var(--card-h, 0);
   }
-  .card-slot .card__title { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
+  .card-slot .card__head { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
   .card-slot .rule { transition: opacity .25s, height .4s var(--ease), margin-top .4s var(--ease); }
   .card-slot .card__body {
     padding-bottom: var(--closed-pb);
@@ -545,7 +554,7 @@ body:not(.is-ready) .view { transition: none; }
   }
 
   .card-slot .card:focus-visible { z-index: 2; min-height: var(--open-h, 0); }
-  .card-slot .card:focus-visible .card__title { min-height: 0; }
+  .card-slot .card:focus-visible .card__head { min-height: 0; }
   .card-slot .card:focus-visible .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .card-slot .card:focus-visible .card__text {
     max-height: 12em; margin-top: 0; opacity: 1;
@@ -554,7 +563,7 @@ body:not(.is-ready) .view { transition: none; }
   .card-slot .card:focus-visible .card__body { padding-bottom: var(--open-pb); padding-right: 0; }
   .card-slot .card:focus-visible .round-arrow { opacity: 1; transform: none; }
   .cards.is-measuring-open .card-slot .card { z-index: 2; min-height: var(--open-h, 0); }
-  .cards.is-measuring-open .card-slot .card .card__title { min-height: 0; }
+  .cards.is-measuring-open .card-slot .card .card__head { min-height: 0; }
   .cards.is-measuring-open .card-slot .card .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .cards.is-measuring-open .card-slot .card .card__text {
     max-height: 12em; margin-top: 0; opacity: 1;
@@ -566,7 +575,7 @@ body:not(.is-ready) .view { transition: none; }
   /* Méréskor (JS) átmenetek nélkül, a valódi tartalommagassággal */
   .cards.is-measuring .card-slot .card,
   .cards.is-measuring-open .card-slot .card { transition: none; transform: none; min-height: 0; }
-  .cards.is-measuring .card-slot .card .card__title { min-height: 0; }
+  .cards.is-measuring .card-slot .card .card__head { min-height: 0; }
   .cards.is-measuring .card-slot .card .rule { transition: none; opacity: 1; height: 2px; margin-top: 0; }
   .cards.is-measuring .card-slot .card .card__text { transition: none; max-height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: var(--closed-pb); padding-right: var(--closed-pr); }
@@ -576,7 +585,7 @@ body:not(.is-ready) .view { transition: none; }
 }
 @media (min-width: 821px) and (hover: hover) {
   .card-slot .card:hover { z-index: 2; min-height: var(--open-h, 0); }
-  .card-slot .card:hover .card__title { min-height: 0; }
+  .card-slot .card:hover .card__head { min-height: 0; }
   .card-slot .card:hover .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .card-slot .card:hover .card__text {
     max-height: 12em; margin-top: 0; opacity: 1;
@@ -1302,7 +1311,10 @@ body:not(.is-ready) .view { transition: none; }
             <a class="card" href="#services/export">
               <span class="card__icon"><svg aria-hidden="true"><use href="#i-container"/></svg></span>
               <div class="card__body">
-                <h2 class="card__title" data-i18n-html="svc.export.title">Export- &amp; importellenőrzés</h2>
+                <div class="card__head">
+                  <h2 class="card__title" data-i18n-html="svc.export.title">Export- &amp; importellenőrzés</h2>
+                  <p class="card__tags" data-i18n-tags="strip.export.tags"></p>
+                </div>
                 <span class="rule" aria-hidden="true"></span>
                 <p class="card__text" data-i18n="svc.export.card">Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.</p>
               </div>
@@ -1313,7 +1325,10 @@ body:not(.is-ready) .view { transition: none; }
             <a class="card" href="#services/sanctions">
               <span class="card__icon"><svg aria-hidden="true"><use href="#i-shield-globe"/></svg></span>
               <div class="card__body">
-                <h2 class="card__title" data-i18n-html="svc.sanctions.title">Szankciók &amp; kereskedelmi korlátozások</h2>
+                <div class="card__head">
+                  <h2 class="card__title" data-i18n-html="svc.sanctions.title">Szankciók &amp; kereskedelmi korlátozások</h2>
+                  <p class="card__tags" data-i18n-tags="strip.sanctions.tags"></p>
+                </div>
                 <span class="rule" aria-hidden="true"></span>
                 <p class="card__text" data-i18n="svc.sanctions.card">Szankciós megfelelés, amely védi vállalkozását és hírnevét.</p>
               </div>
@@ -1324,7 +1339,10 @@ body:not(.is-ready) .view { transition: none; }
             <a class="card" href="#services/fta">
               <span class="card__icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
               <div class="card__body">
-                <h2 class="card__title" data-i18n-html="svc.fta.title">Ellátási láncok és kockázatkezelés</h2>
+                <div class="card__head">
+                  <h2 class="card__title" data-i18n-html="svc.fta.title">Ellátási láncok és kockázatkezelés</h2>
+                  <p class="card__tags" data-i18n-tags="strip.fta.tags"></p>
+                </div>
                 <span class="rule" aria-hidden="true"></span>
                 <p class="card__text" data-i18n="svc.fta.card">Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.</p>
               </div>
@@ -1870,8 +1888,12 @@ window.ITC_I18N = {
           sep.setAttribute('aria-hidden', 'true');
           sep.textContent = '|';
           el.appendChild(sep);
+          el.appendChild(document.createTextNode('​'));   /* itt törhet a sor, ha nem fér ki */
         }
-        el.appendChild(document.createTextNode(tag));
+        var item = document.createElement('span');
+        item.className = 'tag';                 /* egy címke nem törik két sorba */
+        item.textContent = tag;
+        el.appendChild(item);
       });
     });
     $$('[data-i18n-attr]').forEach(function (el) {
@@ -2065,7 +2087,7 @@ window.ITC_I18N = {
   /* ================= Indítás ================= */
   /* ================= Főoldali kártyák ================= */
   /* A kártyák helye a csukott (csak címes) magasságukhoz igazodik; egérrel ráállva felfelé nőnek.
-     A címek egyforma magasak, így a sárga csík minden kártyán egy vonalban van. */
+     A cím és a címkék együtt egyforma magasak, így a sárga csík minden kártyán egy vonalban van. */
   var cardsBox = $('.cards');
   var compactCards = window.matchMedia('(min-width: 821px)');
 
@@ -2073,7 +2095,7 @@ window.ITC_I18N = {
     if (!cardsBox || !compactCards.matches) return;
     cardsBox.classList.add('is-measuring');
     var titleH = 0;
-    $$('.card__title', cardsBox).forEach(function (el) { titleH = Math.max(titleH, el.offsetHeight); });
+    $$('.card__head', cardsBox).forEach(function (el) { titleH = Math.max(titleH, el.offsetHeight); });
     if (titleH) cardsBox.style.setProperty('--title-h', titleH + 'px');
     var h = 0;
     $$('.card', cardsBox).forEach(function (c) { h = Math.max(h, c.offsetHeight); });
