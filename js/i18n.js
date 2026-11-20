@@ -53,7 +53,7 @@ window.ITC_I18N = {
       'Üzletmenet-folytonossági tervek és képzések a munkatársak számára'
     ],
 
-    'strip.export.title': 'EU export- és importellenőrzés',
+    'strip.export.title': 'Export- és importellenőrzés',
     'strip.export.tags': ['Kettős felhasználás', 'Katonai', 'Kiber'],
     'strip.export.short': 'Kettős felhasználás · Katonai · Kiber',
     'strip.sanctions.title': 'Szankciók',
