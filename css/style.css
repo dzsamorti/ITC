@@ -171,13 +171,13 @@ body.is-home .site-header { color: var(--ink); }
   margin-right: auto;
 }
 .brand__mark {
-  width: clamp(38px, 5vh, 52px);
-  height: clamp(38px, 5vh, 52px);
+  width: clamp(42px, 5.8vh, 58px);
+  height: clamp(42px, 5.8vh, 58px);
   flex: none;
 }
-/* Sötét fejlécen (belső oldalak) a tű déli, sötétkék fele világosabb, hogy kilátsszon */
-body:not(.is-home) .brand__s1 { fill: rgba(214, 228, 246, .7); }
-body:not(.is-home) .brand__s2 { fill: rgba(214, 228, 246, .4); }
+/* Sötét fejlécen (belső oldalak) a tű déli, sötétkék fele világosabb árnyalatú, hogy kilátsszon */
+body:not(.is-home) .brand__s1 { fill: url(#itc-nSrL); }
+body:not(.is-home) .brand__s2 { fill: url(#itc-nSlL); }
 /* Egyedi ITC szóvédjegy: geometrikus betűk */
 .brand__name {
   display: block;
@@ -1074,7 +1074,7 @@ body:not(.is-ready) .view { transition: none; }
 
   .site-header { gap: 14px; }
   .brand__name { height: 26px; }
-  .brand__mark { width: 32px; height: 32px; }
+  .brand__mark { width: 38px; height: 38px; }
   .header-divider { display: none; }
   .lang__btn { font-size: 1rem; }
 
