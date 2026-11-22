@@ -10,13 +10,17 @@ const favicon = 'data:image/svg+xml;base64,' + fs.readFileSync(path.join(root, '
 const css = read('css/style.css')
   .replace('url("../assets/img/hero-port.jpg")', () => `url("${b64('assets/img/hero-port.jpg')}")`)
   .replace('url("../assets/img/hero-left.jpg")', () => `url("${b64('assets/img/hero-left.jpg')}")`)
-  .replace('url("../assets/fonts/JuliusSansOne-Regular.ttf")', () => `url("data:font/ttf;base64,${fs.readFileSync(path.join(root, 'assets/fonts/JuliusSansOne-Regular.ttf')).toString('base64')}")`);
+  .replace(/url\("\.\.\/assets\/fonts\/([^"]+)"\)/g, (m, f) => {
+    const type = f.endsWith('.woff2') ? 'font/woff2' : 'font/ttf';
+    return `url("data:${type};base64,${fs.readFileSync(path.join(root, 'assets/fonts', f)).toString('base64')}")`;
+  });
 if (css.includes('../assets/')) throw new Error('Maradt kép-hivatkozás a CSS-ben');
 const js = read('js/i18n.js') + '\n' + read('js/main.js');
 
 let html = read('index.html')
   .replace('<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">', `<link rel="icon" href="${favicon}" type="image/svg+xml">`)
   .replace('<link rel="preload" href="assets/img/hero-port.jpg" as="image">\n', '')
+  .replace(/  <link rel="preload" href="assets\/fonts\/[^"]+" as="font"[^>]*>\n/g, '')
   .replace('<link rel="stylesheet" href="css/style.css">', () => `<style>\n${css}\n</style>`)
   .replace('<script src="js/i18n.js"></script>\n  <script src="js/main.js"></script>', () => `<script>\n${js.replace(/<\/script/gi, '<\\/script')}\n</script>`);
 

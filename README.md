@@ -19,7 +19,7 @@ Bármilyen statikus tárhelyre (GitHub Pages, Netlify, saját szerver) feltölth
 
 A `dist/index.html` az egész weboldal egyetlen fájlban: a stílus, a programkód és a háttérkép
 is benne van. Dupla kattintással megnyitható bármely böngészőben, internet nélkül is működik
-(ilyenkor a betűtípus helyett a gép saját betűtípusa jelenik meg).
+(a betűtípusok is benne vannak).
 
 A szerkesztések után így készíthető el újra:
 
@@ -37,7 +37,7 @@ node build-single.js
 | Adatkezelési tájékoztató szövege (HU és EN) | `js/i18n.js`, `legal.privacy.body` |
 | Színek, betűtípusok, méretek | `css/style.css`, a `:root` változók |
 | Háttérkép | `assets/img/hero-port.jpg` |
-| ITC felirat betűtípusa (Julius Sans One, OFL licenc) | `assets/fonts/` |
+| Betűtípusok (Figtree, Source Serif 4, Julius Sans One – OFL licenc, helyben tárolva) | `assets/fonts/` |
 
 ## Fontos teendők élesítés előtt
 
