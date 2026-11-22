@@ -494,7 +494,8 @@ body:not(.is-ready) .view { transition: none; }
 }
 .card__title {
   font-weight: 400;
-  font-size: clamp(1rem, min(1.5vw, 2.55vh), 1.45rem);
+  /* a JS úgy állítja be (--title-fs), hogy az első kártya címe egy sorba férjen; mindhárom kártyán azonos */
+  font-size: var(--title-fs, clamp(1rem, min(1.5vw, 2.55vh), 1.45rem));
   line-height: 1.25;
   text-transform: uppercase;
   letter-spacing: .01em;
@@ -542,7 +543,6 @@ body:not(.is-ready) .view { transition: none; }
   .card-slot .rule { transition: opacity .25s, height .4s var(--ease), margin-top .4s var(--ease); }
   .card-slot .card__body {
     padding-bottom: var(--closed-pb);
-    padding-right: var(--closed-pr);
     transition: padding .4s var(--ease);
   }
   .card-slot .card__text {
@@ -583,7 +583,7 @@ body:not(.is-ready) .view { transition: none; }
   .cards.is-measuring .card-slot .card .card__head { min-height: 0; }
   .cards.is-measuring .card-slot .card .rule { transition: none; opacity: 1; height: 2px; margin-top: 0; }
   .cards.is-measuring .card-slot .card .card__text { transition: none; max-height: 0; margin-top: calc(-1 * var(--body-gap)); }
-  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: var(--closed-pb); padding-right: var(--closed-pr); }
+  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: var(--closed-pb); }
   .cards.is-measuring-open .card-slot .card *,
   .cards.is-measuring .card-slot .card * { transition: none; }
   .cards.is-measuring-open .card-slot .card .card__text { transition: none; }
@@ -606,6 +606,19 @@ body:not(.is-ready) .view { transition: none; }
     --closed-pr: calc(var(--arrow) + 10px);
   }
   .card-slot .card .round-arrow { opacity: 1; transform: none; }
+  /* a nyíl a címkék sorával egy magasságban van: csak a címkék tartanak tőle távolságot */
+  .card-slot .card__tags { padding-right: var(--closed-pr); }
+}
+/* Keskenyebb kártyáknál (tablet, telefon) az ikon a cím fölé kerül, így a cím a kártya teljes
+   szélességét kapja, és egy sorban is jól olvasható méretű maradhat */
+@media (max-width: 1199px) {
+  .card { grid-template-columns: minmax(0, 1fr); }
+  .card__icon {
+    width: clamp(40px, 6.2vh, 52px);
+    height: clamp(40px, 6.2vh, 52px);
+    margin-bottom: clamp(8px, 1.4vh, 12px);
+  }
+  .card__body { padding-top: 0; }
 }
 
 .card .round-arrow {
