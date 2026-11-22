@@ -970,6 +970,43 @@ body:not(.is-ready) .view { transition: none; }
 .contact-list span { font-size: clamp(1rem, 2.1vh, 1.14rem); color: var(--white); }
 .contact-list a:hover { color: var(--amber-light); }
 .legal { margin-top: clamp(4px, 2vh, 20px); font-size: .82rem; color: rgba(255, 255, 255, .5); }
+.privacy-note { font-size: .88rem; line-height: 1.55; color: var(--muted); max-width: 34em; }
+.privacy-note a,
+.legal-links a { color: var(--amber-light); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.privacy-note a:hover,
+.legal-links a:hover { color: var(--amber); }
+.legal-links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: -6px; font-size: .86rem; }
+.legal-links .sep { color: var(--muted); }
+
+/* --- Impresszum és adatkezelés --- */
+.inner--legal .eyebrow a:hover { color: var(--amber-light); }
+.legal-docs .tab { flex: none; }
+.imprint {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: clamp(10px, 1.8vh, 16px) clamp(18px, 2.6vw, 40px);
+  margin: 0;
+  font-size: clamp(.95rem, 2vh, 1.08rem);
+}
+.imprint dt { color: var(--muted); font-size: .82em; letter-spacing: .12em; text-transform: uppercase; padding-top: .2em; }
+.imprint dd { margin: 0; color: var(--white); }
+.imprint dd.is-empty { color: rgba(255, 255, 255, .35); }
+.imprint a { color: var(--amber-light); }
+.legal-text { max-width: 62em; color: var(--text); font-size: clamp(.9rem, 1.85vh, 1rem); line-height: 1.7; }
+.legal-text h4 { margin: 1.6em 0 .5em; color: var(--white); font-size: 1.05em; font-weight: 600; }
+.legal-text h4:first-child { margin-top: 0; }
+.legal-text h5 { margin: 1.1em 0 .35em; color: var(--amber-light); font-size: .95em; font-weight: 600; }
+.legal-text p { margin: 0 0 .7em; }
+.legal-text ul { margin: 0 0 .8em; padding-left: 1.2em; list-style: disc; }
+.legal-text li { margin-bottom: .35em; }
+.legal-text li::marker { color: var(--amber); }
+.legal-text strong { color: var(--white); font-weight: 600; }
+.legal-text a { color: var(--amber-light); text-decoration: underline; text-underline-offset: 3px; }
+.legal-text .legal-date { margin-top: 1.4em; color: var(--muted); font-size: .9em; }
+@media (max-width: 820px) {
+  .imprint { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .imprint dd { margin-bottom: 12px; }
+}
 
 .contact-form {
   display: grid;
@@ -1162,6 +1199,9 @@ body:not(.is-ready) .view { transition: none; }
   }
   .inner--about,
   .inner--contact { display: flex; }
+  /* a görgethető belső nézetben egyik blokk se nyomódjon össze (különben egymásra csúsznak) */
+  .inner > * { flex-shrink: 0; }
+  .inner--news { justify-content: flex-start; }   /* különben a lista teteje felfelé kilóg és nem görgethető vissza */
   .about__values { grid-template-columns: 1fr; }
   .steps { flex-direction: column; align-items: flex-start; }
   .steps__list { grid-template-columns: 1fr 1fr; width: 100%; }
@@ -1457,8 +1497,14 @@ body:not(.is-ready) .view { transition: none; }
           <p class="eyebrow" data-i18n="contact.eyebrow">Kapcsolat</p>
           <h2 class="inner__title" id="contact-title" tabindex="-1" data-i18n="contact.title"></h2>
           <p class="lead" data-i18n="contact.lead"></p>
+          <p class="privacy-note" data-i18n-html="contact.privacyNote"></p>
 
-          <p class="legal">© <span data-year></span> ITC. <span data-i18n="footer.rights">Minden jog fenntartva.</span></p>
+          <p class="legal">© <span data-year></span> ITC Trade Kft. <span data-i18n="footer.rights">Minden jog fenntartva.</span></p>
+          <p class="legal-links">
+            <a href="#contact/impresszum" data-i18n="legal.imprint">Impresszum</a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a href="#contact/adatkezeles" data-i18n="legal.privacy">Adatkezelési tájékoztató</a>
+          </p>
         </div>
 
         <form class="contact-form glass" novalidate>
@@ -1492,6 +1538,43 @@ body:not(.is-ready) .view { transition: none; }
             <button class="btn btn--amber" type="submit"><span data-i18n="form.send">Küldés</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           </div>
         </form>
+      </div>
+    </section>
+
+    <!-- ============ IMPRESSZUM ÉS ADATKEZELÉS (a Kapcsolat része: #contact/impresszum, #contact/adatkezeles) ============ -->
+    <section class="view" data-view="legal" aria-labelledby="legal-title" inert>
+      <div class="inner inner--services inner--legal">
+        <div class="inner__head">
+          <p class="eyebrow"><a href="#contact" data-i18n="nav.contact">Kapcsolat</a></p>
+          <h2 class="inner__title" id="legal-title" tabindex="-1" data-i18n="legal.title"></h2>
+        </div>
+
+        <div class="services legal-docs">
+          <div class="services__tabs" role="tablist" aria-orientation="vertical" data-i18n-attr="aria-label:legal.title">
+            <button class="tab" role="tab" id="tab-impresszum" aria-controls="panel-impresszum" aria-selected="true" data-legal="impresszum">
+              <span class="tab__icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+              <span class="tab__text"><b data-i18n="legal.imprint"></b><small data-i18n="legal.imprint.short"></small></span>
+            </button>
+            <button class="tab" role="tab" id="tab-adatkezeles" aria-controls="panel-adatkezeles" aria-selected="false" tabindex="-1" data-legal="adatkezeles">
+              <span class="tab__icon"><svg aria-hidden="true"><use href="#i-lock"/></svg></span>
+              <span class="tab__text"><b data-i18n="legal.privacy"></b><small data-i18n="legal.privacy.short"></small></span>
+            </button>
+          </div>
+
+          <div class="services__panels">
+            <div class="panel glass is-active" role="tabpanel" id="panel-impresszum" aria-labelledby="tab-impresszum" data-legal-panel="impresszum">
+              <h3 class="panel__title" data-i18n="legal.imprint"></h3>
+              <span class="rule" aria-hidden="true"></span>
+              <p class="panel__lead" data-i18n="legal.imprint.lead"></p>
+              <dl class="imprint" id="imprint"></dl>
+            </div>
+            <div class="panel glass" role="tabpanel" id="panel-adatkezeles" aria-labelledby="tab-adatkezeles" data-legal-panel="adatkezeles" hidden>
+              <h3 class="panel__title" data-i18n="legal.privacy"></h3>
+              <span class="rule" aria-hidden="true"></span>
+              <div class="legal-text" data-i18n-html="legal.privacy.body"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -1636,6 +1719,23 @@ window.ITC_I18N = {
     'form.success': 'Köszönjük! Levelezőprogramjában megnyílt az üzenet, már csak el kell küldenie.',
     'form.subject': 'Érdeklődés',
 
+    'legal.title': 'Impresszum és adatkezelés',
+    'legal.imprint': 'Impresszum',
+    'legal.imprint.short': 'A honlap üzemeltetője',
+    'legal.privacy': 'Adatkezelési tájékoztató',
+    'legal.privacy.short': 'GDPR szerinti tájékoztatás',
+    'legal.imprint.lead': 'Az elektronikus kereskedelmi szolgáltatásokról szóló 2001. évi CVIII. törvény szerinti adatok.',
+    'legal.f.name': 'Cégnév',
+    'legal.f.seat': 'Székhely',
+    'legal.f.email': 'E-mail',
+    'legal.f.regno': 'Cégjegyzékszám',
+    'legal.f.court': 'Nyilvántartó bíróság',
+    'legal.f.tax': 'Adószám',
+    'legal.f.rep': 'Képviseletre jogosult',
+    'legal.f.host': 'Tárhelyszolgáltató',
+    'contact.privacyNote': 'Az űrlapon megadott adatokat az <a href="#contact/adatkezeles">Adatkezelési tájékoztatóban</a> leírtak szerint kezeljük.',
+    'legal.privacy.body': '<h4>1. Az adatkezelő</h4><p><strong>ITC Trade Kft.</strong> (székhely: 1137 Budapest, Radnóti Miklós utca 38.; a további cégadatokat és az elérhetőséget az <a href="#contact/impresszum">Impresszum</a> tartalmazza; a továbbiakban: Adatkezelő vagy „mi”).</p><p>Az Adatkezelő adatvédelmi tisztviselő kinevezésére nem köteles, ilyet nem nevezett ki. Adatvédelmi kérdésekben az Impresszumban megadott e-mail-címen vagy postai címünkön kereshet minket.</p><h4>2. A tájékoztató célja és jogszabályi háttere</h4><p>Ez a tájékoztató bemutatja, hogyan kezeljük a honlap (a továbbiakban: Honlap) látogatóinak, valamint a velünk kapcsolatba lépő és velünk szerződő személyeknek a személyes adatait. Az adatkezelés az (EU) 2016/679 rendelet (általános adatvédelmi rendelet, a továbbiakban: GDPR), valamint az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.) alapján történik.</p><h4>3. Milyen adatokat, milyen célból és jogalapon kezelünk?</h4><h5>a) Kapcsolatfelvétel és ajánlatkérés</h5><ul><li><strong>Kezelt adatok:</strong> név, cégnév (nem kötelező), e-mail-cím, a választott téma és az üzenet tartalma, valamint a további levelezés során megadott adatok.</li><li><strong>Cél:</strong> a megkeresés megválaszolása, ajánlatadás, kapcsolattartás.</li><li><strong>Jogalap:</strong> a szerződés megkötését megelőzően az Ön kérésére tett lépések (GDPR 6. cikk (1) bek. b) pont), illetve az Adatkezelő jogos érdeke a megkeresés megválaszolásához (GDPR 6. cikk (1) bek. f) pont).</li><li><strong>Időtartam:</strong> ha nem jön létre szerződés, a megkeresés lezárásától számított 1 évig, ezt követően az adatokat töröljük.</li></ul><p>Az űrlap elküldésekor a böngésző az Ön levelezőprogramját nyitja meg a kitöltött üzenettel; az üzenet e-mailben érkezik hozzánk.</p><h5>b) Megbízás és kapcsolattartás</h5><ul><li><strong>Kezelt adatok:</strong> az ügyfél, illetve képviselője és kapcsolattartója neve, beosztása, e-mail-címe, telefonszáma, valamint a megbízás teljesítéséhez szükséges adatok.</li><li><strong>Cél:</strong> a szerződés megkötése és teljesítése, kapcsolattartás, számlázás.</li><li><strong>Jogalap:</strong> szerződés teljesítése (GDPR 6. cikk (1) bek. b) pont); jogi személy ügyfél kapcsolattartója esetén az Adatkezelő és az ügyfél jogos érdeke (f) pont); a számviteli bizonylatok megőrzése jogi kötelezettség (c) pont, a számvitelről szóló 2000. évi C. törvény 169. §).</li><li><strong>Időtartam:</strong> a szerződés megszűnésétől számított 5 évig (általános elévülési idő, Ptk. 6:22. §); a számviteli bizonylatokat 8 évig őrizzük meg.</li></ul><h5>c) A Honlap működésével kapcsolatos technikai adatok</h5><ul><li>A Honlap megtekintésekor a tárhelyszolgáltató szervere automatikusan rögzíthet technikai adatokat (például IP-cím, a látogatás időpontja, a böngésző típusa) a biztonságos működés és a visszaélések megelőzése érdekében. Jogalap: jogos érdek (GDPR 6. cikk (1) bek. f) pont). Ezeket az adatokat a tárhelyszolgáltató a saját szabályzata szerint, rövid ideig őrzi.</li><li>A Honlap nem használ sütiket (cookie-kat), és nem alkalmaz látogatottságmérő vagy marketing célú eszközt.</li><li>A Honlap egyes betűtípusait a Google Fonts szolgáltatás (Google Ireland Limited) szervereiről tölti be; ennek során az Ön böngészője kapcsolatba lép a Google szervereivel, amihez technikailag szükséges az IP-cím továbbítása.</li></ul><h4>4. Kik ismerhetik meg az adatokat?</h4><p>Az adatokat kizárólag az Adatkezelő erre jogosult munkatársai ismerhetik meg. Az alábbi szolgáltatók adatfeldolgozóként, a mi utasításaink szerint járnak el:</p><ul><li>tárhelyszolgáltató: [neve és címe a szolgáltató kiválasztása után kerül ide];</li><li>e-mail-szolgáltató: [neve és címe később kerül ide];</li><li>könyvelő, a számviteli bizonylatok tekintetében: [neve és címe később kerül ide].</li></ul><p>Személyes adatot nem adunk el, és harmadik személynek csak jogszabályi kötelezettség alapján (például hatósági megkeresésre) továbbítunk. Ha valamely szolgáltató az Európai Gazdasági Térségen kívül kezel adatot, arra csak a GDPR V. fejezete szerinti garanciák (például az Európai Bizottság megfelelőségi határozata vagy általános szerződési feltételei) mellett kerülhet sor.</p><h4>5. Az adatok biztonsága</h4><p>Megfelelő technikai és szervezési intézkedésekkel (titkosított kapcsolat, hozzáférés-korlátozás, jelszóvédelem, rendszeres mentés) védjük az adatokat a jogosulatlan hozzáférés, módosítás, nyilvánosságra hozatal, törlés és megsemmisülés ellen.</p><h4>6. Az Ön jogai</h4><ul><li><strong>Hozzáférés</strong> (GDPR 15. cikk): tájékoztatást kérhet arról, hogy kezelünk-e Önről személyes adatot, és ha igen, melyeket és milyen célból; az adatokról másolatot is kérhet.</li><li><strong>Helyesbítés</strong> (16. cikk): kérheti a pontatlan adatok javítását, a hiányosak kiegészítését.</li><li><strong>Törlés</strong> (17. cikk): kérheti adatai törlését, ha azokra már nincs szükség, vagy kezelésük jogellenes.</li><li><strong>Az adatkezelés korlátozása</strong> (18. cikk): bizonyos esetekben kérheti, hogy az adatokat csak tároljuk, de ne használjuk fel.</li><li><strong>Adathordozhatóság</strong> (20. cikk): a szerződés alapján kezelt, Ön által megadott adatokat tagolt, géppel olvasható formában megkaphatja.</li><li><strong>Tiltakozás</strong> (21. cikk): a jogos érdeken alapuló adatkezelés ellen bármikor tiltakozhat.</li></ul><p>Kérelmét az Impresszumban megadott e-mail-címre vagy postai címünkre küldheti. Indokolatlan késedelem nélkül, legfeljebb egy hónapon belül válaszolunk; ez a határidő szükség esetén további két hónappal meghosszabbítható, amiről tájékoztatjuk. A tájékoztatás és az intézkedés díjmentes.</p><h4>7. Jogorvoslat</h4><p>Ha úgy érzi, hogy megsértettük az adatvédelemhez fűződő jogait, kérjük, először forduljon hozzánk, hogy a panaszt mielőbb orvosolhassuk. Panaszt tehet a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH; 1055 Budapest, Falk Miksa utca 9–11.; postacím: 1363 Budapest, Pf. 9.; telefon: +36 1 391 1400; e-mail: ugyfelszolgalat@naih.hu; www.naih.hu), és bírósághoz is fordulhat. A per – választása szerint – a lakóhelye vagy tartózkodási helye szerint illetékes törvényszék előtt is megindítható.</p><h4>8. A tájékoztató módosítása</h4><p>A tájékoztatót jogszabályváltozás vagy az adatkezelés változása esetén módosíthatjuk; a mindenkor hatályos változat a Honlapon érhető el.</p><p class="legal-date">Utolsó frissítés: 2026. november</p>',
+
     'footer.rights': 'Minden jog fenntartva.'
   },
 
@@ -1765,6 +1865,23 @@ window.ITC_I18N = {
     'form.success': 'Thank you! Your message is ready in your email client, just hit send.',
     'form.subject': 'Enquiry',
 
+    'legal.title': 'Legal notice and privacy',
+    'legal.imprint': 'Legal notice',
+    'legal.imprint.short': 'Website operator',
+    'legal.privacy': 'Privacy notice',
+    'legal.privacy.short': 'Information under the GDPR',
+    'legal.imprint.lead': 'Information required by the Hungarian Act CVIII of 2001 on electronic commerce services.',
+    'legal.f.name': 'Company name',
+    'legal.f.seat': 'Registered office',
+    'legal.f.email': 'Email',
+    'legal.f.regno': 'Company registration number',
+    'legal.f.court': 'Registry court',
+    'legal.f.tax': 'Tax number',
+    'legal.f.rep': 'Authorised representative',
+    'legal.f.host': 'Hosting provider',
+    'contact.privacyNote': 'We handle the data you enter in the form as described in our <a href="#contact/adatkezeles">Privacy notice</a>.',
+    'legal.privacy.body': '<h4>1. Controller</h4><p><strong>ITC Trade Kft.</strong> (registered office: Radnóti Miklós utca 38., 1137 Budapest, Hungary; further company details and contact information are given in the <a href="#contact/impresszum">Legal notice</a>; hereinafter: the Controller or “we”).</p><p>The Controller is not required to appoint a data protection officer and has not appointed one. For data protection questions, please contact us at the email or postal address given in the Legal notice.</p><h4>2. Purpose and legal background</h4><p>This notice explains how we process the personal data of visitors to this website (the Website) and of people who contact us or enter into a contract with us. Processing is carried out under Regulation (EU) 2016/679 (General Data Protection Regulation, GDPR) and Hungarian Act CXII of 2011 on informational self-determination and freedom of information.</p><h4>3. What data we process, why, and on what legal basis</h4><h5>a) Enquiries and requests for proposals</h5><ul><li><strong>Data:</strong> name, company name (optional), email address, the selected topic and the content of your message, and any data you provide in further correspondence.</li><li><strong>Purpose:</strong> answering your enquiry, preparing a proposal, staying in touch.</li><li><strong>Legal basis:</strong> steps taken at your request prior to entering into a contract (Article 6(1)(b) GDPR) and our legitimate interest in answering your enquiry (Article 6(1)(f) GDPR).</li><li><strong>Retention:</strong> if no contract is concluded, 1 year from closing the enquiry, after which the data is deleted.</li></ul><p>When you send the form, your browser opens your email client with the completed message; the message reaches us by email.</p><h5>b) Engagements and business contacts</h5><ul><li><strong>Data:</strong> name, position, email address and phone number of the client or its representative and contact persons, and data needed to perform the engagement.</li><li><strong>Purpose:</strong> concluding and performing the contract, communication, invoicing.</li><li><strong>Legal basis:</strong> performance of a contract (Article 6(1)(b) GDPR); for contact persons of corporate clients, the legitimate interests of the Controller and the client (point (f)); keeping accounting records is a legal obligation (point (c), Section 169 of Hungarian Act C of 2000 on Accounting).</li><li><strong>Retention:</strong> 5 years from the end of the contract (general limitation period under the Hungarian Civil Code, Section 6:22); accounting records are kept for 8 years.</li></ul><h5>c) Technical data related to the Website</h5><ul><li>When you visit the Website, the hosting provider’s server may automatically log technical data (such as IP address, time of visit, browser type) to keep the service secure and prevent misuse. Legal basis: legitimate interest (Article 6(1)(f) GDPR). The hosting provider keeps these logs for a short period under its own policy.</li><li>The Website does not use cookies and does not use analytics or marketing tools.</li><li>Some fonts on the Website are loaded from Google Fonts (Google Ireland Limited); in doing so your browser connects to Google’s servers, which technically requires transmitting your IP address.</li></ul><h4>4. Who can access the data?</h4><p>Only authorised staff of the Controller can access the data. The following providers act as processors on our instructions:</p><ul><li>hosting provider: [name and address to be added once selected];</li><li>email provider: [name and address to be added];</li><li>accountant, for accounting records: [name and address to be added].</li></ul><p>We do not sell personal data and only disclose it to third parties where required by law (for example at the request of an authority). Where a provider processes data outside the European Economic Area, this only happens with the safeguards set out in Chapter V GDPR (such as an adequacy decision or the European Commission’s standard contractual clauses).</p><h4>5. Data security</h4><p>We protect the data with appropriate technical and organisational measures (encrypted connections, access restrictions, password protection, regular backups) against unauthorised access, alteration, disclosure, deletion and destruction.</p><h4>6. Your rights</h4><ul><li><strong>Access</strong> (Article 15 GDPR): you may ask whether we process your personal data and, if so, which data and for what purpose, and request a copy.</li><li><strong>Rectification</strong> (Article 16): you may ask us to correct inaccurate data or complete incomplete data.</li><li><strong>Erasure</strong> (Article 17): you may ask us to delete your data when it is no longer needed or is processed unlawfully.</li><li><strong>Restriction</strong> (Article 18): in certain cases you may ask us to only store the data and not use it.</li><li><strong>Data portability</strong> (Article 20): you may receive the data you provided, processed on the basis of a contract, in a structured, machine-readable format.</li><li><strong>Objection</strong> (Article 21): you may object at any time to processing based on legitimate interest.</li></ul><p>You can send your request to the email or postal address given in the Legal notice. We respond without undue delay and within one month at the latest; where necessary this may be extended by two further months, and we will inform you of this. Information and action are free of charge.</p><h4>7. Remedies</h4><p>If you believe we have infringed your data protection rights, please contact us first so that we can resolve the issue quickly. You may lodge a complaint with the Hungarian National Authority for Data Protection and Freedom of Information (NAIH; Falk Miksa utca 9–11., 1055 Budapest; postal address: 1363 Budapest, Pf. 9.; phone: +36 1 391 1400; email: ugyfelszolgalat@naih.hu; www.naih.hu), or with the supervisory authority of your EU country of residence, and you may also go to court.</p><h4>8. Changes to this notice</h4><p>We may update this notice if the law or our processing changes; the version in force is always available on the Website.</p><p class="legal-date">Last updated: November 2026</p>',
+
     'footer.rights': 'All rights reserved.'
   }
 };
@@ -1779,7 +1896,20 @@ window.ITC_I18N = {
     email: 'info@example.com'
   };
 
-  var VIEWS = ['home', 'about', 'services', 'news', 'contact'];
+  /* Impresszum adatai (Kapcsolat → Impresszum). Az üresen hagyott mezők helyén „—” jelenik meg. */
+  var COMPANY = {
+    name: 'ITC Trade Kft.',
+    seat: '1137 Budapest, Radnóti Miklós utca 38.',
+    email: '',
+    regno: '',
+    court: 'Fővárosi Törvényszék Cégbírósága',
+    tax: '',
+    rep: '',
+    host: ''
+  };
+
+  var VIEWS = ['home', 'about', 'services', 'news', 'contact', 'legal'];
+  var LEGAL = ['impresszum', 'adatkezeles'];
   var SERVICES = ['export', 'sanctions', 'fta'];
   var DICT = window.ITC_I18N;
   var body = document.body;
@@ -1842,6 +1972,7 @@ window.ITC_I18N = {
       b.setAttribute('aria-current', b.dataset.lang === lang ? 'true' : 'false');
     });
     measureCards();
+    if (typeof renderImprint === 'function') renderImprint();
   }
 
   /* Nyelvválasztó */
@@ -1882,7 +2013,9 @@ window.ITC_I18N = {
   /* ================= Nézetváltás (hash-alapú) ================= */
   function parseHash() {
     var parts = location.hash.replace(/^#\/?/, '').split('/');
-    var view = VIEWS.indexOf(parts[0]) > -1 ? parts[0] : 'home';
+    /* az Impresszum és az Adatkezelési tájékoztató a Kapcsolat aloldalai */
+    if (parts[0] === 'contact' && LEGAL.indexOf(parts[1]) > -1) return { view: 'legal', sub: parts[1] };
+    var view = VIEWS.indexOf(parts[0]) > -1 && parts[0] !== 'legal' ? parts[0] : 'home';
     return { view: view, sub: parts[1] || '' };
   }
 
@@ -1898,7 +2031,7 @@ window.ITC_I18N = {
         if (on) v.removeAttribute('inert'); else v.setAttribute('inert', '');
       });
       $$('[data-nav]').forEach(function (a) {
-        if (a.dataset.nav === r.view) a.setAttribute('aria-current', 'page');
+        if (a.dataset.nav === (r.view === 'legal' ? 'contact' : r.view)) a.setAttribute('aria-current', 'page');
         else a.removeAttribute('aria-current');
       });
       body.classList.toggle('is-home', r.view === 'home');
@@ -1908,6 +2041,7 @@ window.ITC_I18N = {
 
     if (r.view === 'services') selectService(SERVICES.indexOf(r.sub) > -1 ? r.sub : (changed ? 'export' : null));
     if (r.view === 'contact' && SERVICES.indexOf(r.sub) > -1) $('#f-topic').value = r.sub;
+    if (r.view === 'legal') selectLegal(r.sub || 'impresszum');
 
     setMenu(false);
     toggleLangMenu(false);
@@ -1922,7 +2056,7 @@ window.ITC_I18N = {
   }
 
   /* ================= Szolgáltatás-fülek ================= */
-  var tabs = $$('.tab');
+  var tabs = $$('[data-service]');
   function selectService(id, focus) {
     if (!id) return;
     tabs.forEach(function (tab) {
@@ -1931,7 +2065,7 @@ window.ITC_I18N = {
       tab.tabIndex = on ? 0 : -1;
       if (on && focus) tab.focus();
     });
-    $$('.panel').forEach(function (p) {
+    $$('[data-panel]').forEach(function (p) {
       var on = p.dataset.panel === id;
       p.hidden = !on;
       p.classList.toggle('is-active', on);
@@ -1952,6 +2086,63 @@ window.ITC_I18N = {
       history.replaceState(null, '', '#services/' + tabs[idx].dataset.service);
     });
   });
+
+  /* ================= Impresszum és adatkezelés ================= */
+  var legalTabs = $$('[data-legal]');
+  function selectLegal(id, focus) {
+    legalTabs.forEach(function (tab) {
+      var on = tab.dataset.legal === id;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focus) tab.focus();
+    });
+    $$('[data-legal-panel]').forEach(function (p) {
+      var on = p.dataset.legalPanel === id;
+      p.hidden = !on;
+      p.classList.toggle('is-active', on);
+      if (on) p.scrollTop = 0;
+    });
+  }
+  legalTabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () {
+      selectLegal(tab.dataset.legal);
+      history.replaceState(null, '', '#contact/' + tab.dataset.legal);
+    });
+    tab.addEventListener('keydown', function (e) {
+      var dir = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!dir) return;
+      e.preventDefault();
+      var next = legalTabs[(i + dir + legalTabs.length) % legalTabs.length];
+      selectLegal(next.dataset.legal, true);
+      history.replaceState(null, '', '#contact/' + next.dataset.legal);
+    });
+  });
+
+  function renderImprint() {
+    var list = $('#imprint');
+    if (!list) return;
+    list.innerHTML = '';
+    [['name', 'legal.f.name'], ['seat', 'legal.f.seat'], ['email', 'legal.f.email'], ['regno', 'legal.f.regno'],
+     ['court', 'legal.f.court'], ['tax', 'legal.f.tax'], ['rep', 'legal.f.rep'], ['host', 'legal.f.host']].forEach(function (f) {
+      var dt = document.createElement('dt');
+      dt.textContent = t(f[1]);
+      var dd = document.createElement('dd');
+      var v = COMPANY[f[0]];
+      if (v && f[0] === 'email') {
+        var a = document.createElement('a');
+        a.href = 'mailto:' + v;
+        a.textContent = v;
+        dd.appendChild(a);
+      } else if (v) {
+        dd.textContent = v;
+      } else {
+        dd.textContent = '—';
+        dd.className = 'is-empty';
+      }
+      list.appendChild(dt);
+      list.appendChild(dd);
+    });
+  }
 
   /* ================= Cikk-olvasó ================= */
   var modal = $('#article-modal');

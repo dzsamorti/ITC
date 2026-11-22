@@ -283,8 +283,14 @@
           <p class="eyebrow" data-i18n="contact.eyebrow">Kapcsolat</p>
           <h2 class="inner__title" id="contact-title" tabindex="-1" data-i18n="contact.title"></h2>
           <p class="lead" data-i18n="contact.lead"></p>
+          <p class="privacy-note" data-i18n-html="contact.privacyNote"></p>
 
-          <p class="legal">© <span data-year></span> ITC. <span data-i18n="footer.rights">Minden jog fenntartva.</span></p>
+          <p class="legal">© <span data-year></span> ITC Trade Kft. <span data-i18n="footer.rights">Minden jog fenntartva.</span></p>
+          <p class="legal-links">
+            <a href="#contact/impresszum" data-i18n="legal.imprint">Impresszum</a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a href="#contact/adatkezeles" data-i18n="legal.privacy">Adatkezelési tájékoztató</a>
+          </p>
         </div>
 
         <form class="contact-form glass" novalidate>
@@ -318,6 +324,43 @@
             <button class="btn btn--amber" type="submit"><span data-i18n="form.send">Küldés</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           </div>
         </form>
+      </div>
+    </section>
+
+    <!-- ============ IMPRESSZUM ÉS ADATKEZELÉS (a Kapcsolat része: #contact/impresszum, #contact/adatkezeles) ============ -->
+    <section class="view" data-view="legal" aria-labelledby="legal-title" inert>
+      <div class="inner inner--services inner--legal">
+        <div class="inner__head">
+          <p class="eyebrow"><a href="#contact" data-i18n="nav.contact">Kapcsolat</a></p>
+          <h2 class="inner__title" id="legal-title" tabindex="-1" data-i18n="legal.title"></h2>
+        </div>
+
+        <div class="services legal-docs">
+          <div class="services__tabs" role="tablist" aria-orientation="vertical" data-i18n-attr="aria-label:legal.title">
+            <button class="tab" role="tab" id="tab-impresszum" aria-controls="panel-impresszum" aria-selected="true" data-legal="impresszum">
+              <span class="tab__icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+              <span class="tab__text"><b data-i18n="legal.imprint"></b><small data-i18n="legal.imprint.short"></small></span>
+            </button>
+            <button class="tab" role="tab" id="tab-adatkezeles" aria-controls="panel-adatkezeles" aria-selected="false" tabindex="-1" data-legal="adatkezeles">
+              <span class="tab__icon"><svg aria-hidden="true"><use href="#i-lock"/></svg></span>
+              <span class="tab__text"><b data-i18n="legal.privacy"></b><small data-i18n="legal.privacy.short"></small></span>
+            </button>
+          </div>
+
+          <div class="services__panels">
+            <div class="panel glass is-active" role="tabpanel" id="panel-impresszum" aria-labelledby="tab-impresszum" data-legal-panel="impresszum">
+              <h3 class="panel__title" data-i18n="legal.imprint"></h3>
+              <span class="rule" aria-hidden="true"></span>
+              <p class="panel__lead" data-i18n="legal.imprint.lead"></p>
+              <dl class="imprint" id="imprint"></dl>
+            </div>
+            <div class="panel glass" role="tabpanel" id="panel-adatkezeles" aria-labelledby="tab-adatkezeles" data-legal-panel="adatkezeles" hidden>
+              <h3 class="panel__title" data-i18n="legal.privacy"></h3>
+              <span class="rule" aria-hidden="true"></span>
+              <div class="legal-text" data-i18n-html="legal.privacy.body"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

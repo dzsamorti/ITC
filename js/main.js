@@ -8,7 +8,20 @@
     email: 'info@example.com'
   };
 
-  var VIEWS = ['home', 'about', 'services', 'news', 'contact'];
+  /* Impresszum adatai (Kapcsolat → Impresszum). Az üresen hagyott mezők helyén „—” jelenik meg. */
+  var COMPANY = {
+    name: 'ITC Trade Kft.',
+    seat: '1137 Budapest, Radnóti Miklós utca 38.',
+    email: '',
+    regno: '',
+    court: 'Fővárosi Törvényszék Cégbírósága',
+    tax: '',
+    rep: '',
+    host: ''
+  };
+
+  var VIEWS = ['home', 'about', 'services', 'news', 'contact', 'legal'];
+  var LEGAL = ['impresszum', 'adatkezeles'];
   var SERVICES = ['export', 'sanctions', 'fta'];
   var DICT = window.ITC_I18N;
   var body = document.body;
@@ -71,6 +84,7 @@
       b.setAttribute('aria-current', b.dataset.lang === lang ? 'true' : 'false');
     });
     measureCards();
+    if (typeof renderImprint === 'function') renderImprint();
   }
 
   /* Nyelvválasztó */
@@ -111,7 +125,9 @@
   /* ================= Nézetváltás (hash-alapú) ================= */
   function parseHash() {
     var parts = location.hash.replace(/^#\/?/, '').split('/');
-    var view = VIEWS.indexOf(parts[0]) > -1 ? parts[0] : 'home';
+    /* az Impresszum és az Adatkezelési tájékoztató a Kapcsolat aloldalai */
+    if (parts[0] === 'contact' && LEGAL.indexOf(parts[1]) > -1) return { view: 'legal', sub: parts[1] };
+    var view = VIEWS.indexOf(parts[0]) > -1 && parts[0] !== 'legal' ? parts[0] : 'home';
     return { view: view, sub: parts[1] || '' };
   }
 
@@ -127,7 +143,7 @@
         if (on) v.removeAttribute('inert'); else v.setAttribute('inert', '');
       });
       $$('[data-nav]').forEach(function (a) {
-        if (a.dataset.nav === r.view) a.setAttribute('aria-current', 'page');
+        if (a.dataset.nav === (r.view === 'legal' ? 'contact' : r.view)) a.setAttribute('aria-current', 'page');
         else a.removeAttribute('aria-current');
       });
       body.classList.toggle('is-home', r.view === 'home');
@@ -137,6 +153,7 @@
 
     if (r.view === 'services') selectService(SERVICES.indexOf(r.sub) > -1 ? r.sub : (changed ? 'export' : null));
     if (r.view === 'contact' && SERVICES.indexOf(r.sub) > -1) $('#f-topic').value = r.sub;
+    if (r.view === 'legal') selectLegal(r.sub || 'impresszum');
 
     setMenu(false);
     toggleLangMenu(false);
@@ -151,7 +168,7 @@
   }
 
   /* ================= Szolgáltatás-fülek ================= */
-  var tabs = $$('.tab');
+  var tabs = $$('[data-service]');
   function selectService(id, focus) {
     if (!id) return;
     tabs.forEach(function (tab) {
@@ -160,7 +177,7 @@
       tab.tabIndex = on ? 0 : -1;
       if (on && focus) tab.focus();
     });
-    $$('.panel').forEach(function (p) {
+    $$('[data-panel]').forEach(function (p) {
       var on = p.dataset.panel === id;
       p.hidden = !on;
       p.classList.toggle('is-active', on);
@@ -181,6 +198,63 @@
       history.replaceState(null, '', '#services/' + tabs[idx].dataset.service);
     });
   });
+
+  /* ================= Impresszum és adatkezelés ================= */
+  var legalTabs = $$('[data-legal]');
+  function selectLegal(id, focus) {
+    legalTabs.forEach(function (tab) {
+      var on = tab.dataset.legal === id;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focus) tab.focus();
+    });
+    $$('[data-legal-panel]').forEach(function (p) {
+      var on = p.dataset.legalPanel === id;
+      p.hidden = !on;
+      p.classList.toggle('is-active', on);
+      if (on) p.scrollTop = 0;
+    });
+  }
+  legalTabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () {
+      selectLegal(tab.dataset.legal);
+      history.replaceState(null, '', '#contact/' + tab.dataset.legal);
+    });
+    tab.addEventListener('keydown', function (e) {
+      var dir = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!dir) return;
+      e.preventDefault();
+      var next = legalTabs[(i + dir + legalTabs.length) % legalTabs.length];
+      selectLegal(next.dataset.legal, true);
+      history.replaceState(null, '', '#contact/' + next.dataset.legal);
+    });
+  });
+
+  function renderImprint() {
+    var list = $('#imprint');
+    if (!list) return;
+    list.innerHTML = '';
+    [['name', 'legal.f.name'], ['seat', 'legal.f.seat'], ['email', 'legal.f.email'], ['regno', 'legal.f.regno'],
+     ['court', 'legal.f.court'], ['tax', 'legal.f.tax'], ['rep', 'legal.f.rep'], ['host', 'legal.f.host']].forEach(function (f) {
+      var dt = document.createElement('dt');
+      dt.textContent = t(f[1]);
+      var dd = document.createElement('dd');
+      var v = COMPANY[f[0]];
+      if (v && f[0] === 'email') {
+        var a = document.createElement('a');
+        a.href = 'mailto:' + v;
+        a.textContent = v;
+        dd.appendChild(a);
+      } else if (v) {
+        dd.textContent = v;
+      } else {
+        dd.textContent = '—';
+        dd.className = 'is-empty';
+      }
+      list.appendChild(dt);
+      list.appendChild(dd);
+    });
+  }
 
   /* ================= Cikk-olvasó ================= */
   var modal = $('#article-modal');

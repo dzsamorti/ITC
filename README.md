@@ -33,6 +33,8 @@ node build-single.js
 | --- | --- |
 | Szövegek (HU és EN) | `js/i18n.js` |
 | Az űrlap címzett e-mail-címe | `js/main.js`, a fájl elején a `CONTACT` objektum |
+| Impresszum adatai (cégnév, székhely, adószám stb.) | `js/main.js`, a fájl elején a `COMPANY` objektum |
+| Adatkezelési tájékoztató szövege (HU és EN) | `js/i18n.js`, `legal.privacy.body` |
 | Színek, betűtípusok, méretek | `css/style.css`, a `:root` változók |
 | Háttérkép | `assets/img/hero-port.jpg` |
 | ITC felirat betűtípusa (Julius Sans One, OFL licenc) | `assets/fonts/` |
@@ -49,4 +51,4 @@ node build-single.js
 ## Közvetlen hivatkozások
 
 Minden nézetnek saját címe van, így linkelhető és a böngésző „vissza” gombja is működik:
-`#about`, `#services`, `#services/export`, `#services/sanctions`, `#services/fta`, `#news`, `#contact`.
+`#about`, `#services`, `#services/export`, `#services/sanctions`, `#services/fta`, `#news`, `#contact`, `#contact/impresszum`, `#contact/adatkezeles`.
