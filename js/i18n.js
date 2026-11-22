@@ -3,7 +3,7 @@
 window.ITC_I18N = {
   hu: {
     'meta.title': 'ITC – Nemzetközi kereskedelmi compliance tanácsadás',
-    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: export- és importellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
+    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
 
     'nav.home': 'Főoldal',
     'nav.brand': 'ITC – vissza a főoldalra',
@@ -63,7 +63,7 @@ window.ITC_I18N = {
     'about.eyebrow': 'Az ITC-ről',
     'about.title': 'Compliance, ami <em>lendületet ad</em> az üzletnek, nem akadályozza.',
     'about.lead': 'Az ITC nemzetközi kereskedelmi compliance tanácsadással foglalkozik. Abban segítünk, hogy ügyfeleink a szabályoknak megfelelően, mégis gördülékenyen és versenyképesen kereskedjenek a világ bármely pontjával.',
-    'about.text': 'Tanácsadásunk nem fékezi, hanem segíti az üzletmenetet. Az export- és importellenőrzés, a szankciós szabályok és az ellátási láncok kockázatai terén nem csupán értelmezzük a jogszabályokat: gyors, gyakorlatias válaszokat adunk, és olyan folyamatokat építünk, amelyekkel a megfelelés a mindennapi működés természetes része lesz.',
+    'about.text': 'Tanácsadásunk nem fékezi, hanem segíti az üzletmenetet. Az exportellenőrzés, a szankciós szabályok és az ellátási láncok kockázatai terén nem csupán értelmezzük a jogszabályokat: gyors, gyakorlatias válaszokat adunk, és olyan folyamatokat építünk, amelyekkel a megfelelés a mindennapi működés természetes része lesz.',
     'about.cta': 'Vegye fel velünk a kapcsolatot',
     'about.v1.title': 'Üzleti szemlélet',
     'about.v1.text': 'Olyan megoldásokat kínálunk, amelyek segítik az üzleti működést, nem akadályozzák azt.',
@@ -116,7 +116,7 @@ window.ITC_I18N = {
     'form.company': 'Cég',
     'form.email': 'E-mail',
     'form.topic': 'Téma',
-    'form.topic.export': 'Export- és importellenőrzés',
+    'form.topic.export': 'Exportellenőrzés',
     'form.topic.sanctions': 'Szankciók és kereskedelmi korlátozások',
     'form.topic.fta': 'Ellátási láncok és kockázatkezelés',
     'form.topic.other': 'Egyéb',
@@ -132,7 +132,7 @@ window.ITC_I18N = {
 
   en: {
     'meta.title': 'ITC – International Trade Compliance Advisory',
-    'meta.description': 'ITC is an international trade compliance advisory: export and import control, sanctions and trade restrictions, supply chain and risk management.',
+    'meta.description': 'ITC is an international trade compliance advisory: export control, sanctions and trade restrictions, supply chain and risk management.',
 
     'nav.home': 'Home',
     'nav.brand': 'ITC – back to home',
@@ -147,7 +147,7 @@ window.ITC_I18N = {
     'home.title': 'Business-minded compliance,<br><em>with practical solutions.</em>',
     'home.cta': 'Explore our solutions',
 
-    'svc.export.title': 'Export &amp; import control',
+    'svc.export.title': 'Export control',
     'svc.export.card': 'Safe exports: we know the rules, so you can trade with confidence.',
     'svc.export.lead': 'We assess whether your products, technology and software require a licence and, building on that, set up the internal system you need to comply with export control rules reliably.',
     'svc.export.items': [
@@ -192,7 +192,7 @@ window.ITC_I18N = {
     'about.eyebrow': 'About ITC',
     'about.title': 'Compliance that <em>drives business forward</em> instead of holding it back.',
     'about.lead': 'ITC is an international trade compliance advisory. We help our clients trade with any part of the world in line with the rules, yet smoothly and competitively.',
-    'about.text': 'Our advice supports your business rather than slowing it down. In export and import control, sanctions and supply chain risk, we do more than interpret the law: we give fast, practical answers and build processes that make compliance a natural part of everyday operations.',
+    'about.text': 'Our advice supports your business rather than slowing it down. In export control, sanctions and supply chain risk, we do more than interpret the law: we give fast, practical answers and build processes that make compliance a natural part of everyday operations.',
     'about.cta': 'Get in touch',
     'about.v1.title': 'Business mindset',
     'about.v1.text': 'We offer solutions that support your business operations rather than hold them back.',
@@ -245,7 +245,7 @@ window.ITC_I18N = {
     'form.company': 'Company',
     'form.email': 'Email',
     'form.topic': 'Topic',
-    'form.topic.export': 'Export & import control',
+    'form.topic.export': 'Export control',
     'form.topic.sanctions': 'Sanctions & trade restrictions',
     'form.topic.fta': 'Supply chain & risk management',
     'form.topic.other': 'Other',
