@@ -149,7 +149,7 @@ window.ITC_I18N = {
 
     'svc.export.title': 'Export control',
     'svc.export.card': 'Safe exports: we know the rules, so you can trade with confidence.',
-    'svc.export.lead': 'We assess whether your products, technology and software require a licence and, building on that, set up the internal system you need to comply with export control rules reliably.',
+    'svc.export.lead': 'We assess the licensing requirements for your products, technology and software. Building on that, we set up the internal system you need to comply with export control rules reliably.',
     'svc.export.items': [
       'Product classification under EU and US regulations (ECCN)',
       'Classification of military items under the EU Common Military List',
@@ -159,7 +159,7 @@ window.ITC_I18N = {
       'Training, internal audits and end-user checks'
     ],
 
-    'svc.sanctions.title': 'Sanctions &amp; trade restrictions',
+    'svc.sanctions.title': 'Sanctions and trade restrictions',
     'svc.sanctions.card': 'Sanctions compliance that protects your business and reputation.',
     'svc.sanctions.lead': 'We screen your partners, transactions and supply chain so that your business does not breach sanctions, directly or indirectly.',
     'svc.sanctions.items': [
@@ -171,7 +171,7 @@ window.ITC_I18N = {
       'Sanctions policy, escalation process and training'
     ],
 
-    'svc.fta.title': 'Supply chain &amp; risk management',
+    'svc.fta.title': 'Supply chain and risk management',
     'svc.fta.card': 'A transparent supply chain, reliable suppliers, managed risks.',
     'svc.fta.lead': 'We map the regulatory, supplier and operational risks in your supply chain and build a risk management system that helps prevent disruptions and compliance breaches.',
     'svc.fta.items': [
@@ -246,8 +246,8 @@ window.ITC_I18N = {
     'form.email': 'Email',
     'form.topic': 'Topic',
     'form.topic.export': 'Export control',
-    'form.topic.sanctions': 'Sanctions & trade restrictions',
-    'form.topic.fta': 'Supply chain & risk management',
+    'form.topic.sanctions': 'Sanctions and trade restrictions',
+    'form.topic.fta': 'Supply chain and risk management',
     'form.topic.other': 'Other',
     'form.message': 'Message',
     'form.send': 'Send',
