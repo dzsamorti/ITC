@@ -253,32 +253,7 @@
   var cardsBox = $('.cards');
   var compactCards = window.matchMedia('(min-width: 821px)');
 
-  /* A kártyacímek betűmérete: akkora, hogy az első kártya címe (pl. „Export- és importellenőrzés”)
-     egy sorba férjen; mindhárom kártya ugyanezt a méretet kapja. Felső korlát a CSS-ben megadott méret. */
-  function fitTitles() {
-    if (!cardsBox) return;
-    var title = $('.card__title', cardsBox);
-    if (!title) return;
-    cardsBox.style.removeProperty('--title-fs');
-    var cs = getComputedStyle(title);
-    var max = parseFloat(cs.fontSize);
-    var probe = document.createElement('span');
-    probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;';
-    probe.style.font = cs.font;
-    probe.style.letterSpacing = cs.letterSpacing;
-    probe.style.textTransform = cs.textTransform;
-    probe.textContent = title.textContent.replace(/­/g, '');
-    document.body.appendChild(probe);
-    var textW = probe.getBoundingClientRect().width;
-    document.body.removeChild(probe);
-    var avail = title.clientWidth;
-    if (!textW || !avail) return;
-    var size = Math.min(max, Math.floor(max * (avail - 2) / textW * 10) / 10);
-    cardsBox.style.setProperty('--title-fs', size + 'px');
-  }
-
   function measureCards() {
-    fitTitles();
     if (!cardsBox || !compactCards.matches) return;
     cardsBox.classList.add('is-measuring');
     var titleH = 0;

@@ -18,7 +18,7 @@ window.ITC_I18N = {
     'home.title': 'Üzletközpontú compliance,<br><em>gyakorlati megoldásokkal.</em>',
     'home.cta': 'Fedezze fel megoldásainkat',
 
-    'svc.export.title': 'Export- és import&shy;ellenőrzés',
+    'svc.export.title': 'Export&shy;ellenőrzés',
     'svc.export.card': 'Biztonságos export: eligazodunk a szabályokban, Ön magabiztosan kereskedhet.',
     'svc.export.lead': 'Felmérjük termékei, technológiái, szoftverei engedélykötelezettségét, erre építve kialakítjuk az exportellenőrzési szabályok biztonságos betartásához szükséges belső rendszert.',
     'svc.export.items': [
@@ -42,7 +42,7 @@ window.ITC_I18N = {
       'Szankciós szabályzat, eszkalációs folyamat és képzés'
     ],
 
-    'svc.fta.title': 'Ellátási láncok és kockázatkezelés',
+    'svc.fta.title': 'Ellátási láncok és kockázat&shy;kezelés',
     'svc.fta.card': 'Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.',
     'svc.fta.lead': 'Feltérképezzük ellátási lánca szabályozási, beszállítói és működési kockázatait, és olyan kockázatkezelési rendszert építünk, amely segít megelőzni a fennakadásokat és a jogsértéseket.',
     'svc.fta.items': [
