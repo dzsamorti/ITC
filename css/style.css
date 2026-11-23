@@ -589,7 +589,7 @@ body:not(.is-ready) .view { transition: none; }
     max-height: 12em; margin-top: 0; opacity: 1;
     transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
   }
-  .card-slot .card:focus-visible .card__body { padding-bottom: var(--open-pb); padding-right: 0; }
+  .card-slot .card:focus-visible .card__body { padding-bottom: var(--open-pb); }
   .card-slot .card:focus-visible .round-arrow { opacity: 1; transform: none; }
   .cards.is-measuring-open .card-slot .card { z-index: 2; min-height: var(--open-h, 0); }
   .cards.is-measuring-open .card-slot .card .card__head { min-height: 0; }
@@ -597,7 +597,7 @@ body:not(.is-ready) .view { transition: none; }
     max-height: 12em; margin-top: 0; opacity: 1;
     transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
   }
-  .cards.is-measuring-open .card-slot .card .card__body { padding-bottom: var(--open-pb); padding-right: 0; }
+  .cards.is-measuring-open .card-slot .card .card__body { padding-bottom: var(--open-pb); }
   .cards.is-measuring-open .card-slot .card .round-arrow { opacity: 1; transform: none; }
 
   /* Méréskor (JS) átmenetek nélkül, a valódi tartalommagassággal */
@@ -619,7 +619,7 @@ body:not(.is-ready) .view { transition: none; }
     max-height: 12em; margin-top: 0; opacity: 1;
     transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
   }
-  .card-slot .card:hover .card__body { padding-bottom: var(--open-pb); padding-right: 0; }
+  .card-slot .card:hover .card__body { padding-bottom: var(--open-pb); }  /* a jobb oldali hely megmarad: a cím és a címkék tördelése nem változik */
   .card-slot .card:hover .round-arrow { opacity: 1; transform: none; }
 }
 /* Széles képernyőn csukott állapotban a nyíl a cím mellett, a sárga csíkkal egy vonalban látszik */
