@@ -85,6 +85,7 @@
     });
     measureCards();
     if (typeof renderImprint === 'function') renderImprint();
+    if (typeof fitPanels === 'function' && current === 'services') fitPanels();
   }
 
   /* Nyelvválasztó */
@@ -155,6 +156,7 @@
     }
 
     if (r.view === 'services') selectService(SERVICES.indexOf(r.sub) > -1 ? r.sub : (changed ? 'export' : null));
+    if (r.view === 'services' && changed) { fitPanels(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPanels); }
     if (r.view === 'contact' && SERVICES.indexOf(r.sub) > -1) $('#f-topic').value = r.sub;
     if (r.view === 'legal') selectLegal(r.sub || 'impresszum');
 
@@ -187,6 +189,26 @@
       if (on) p.scrollTop = 0;
     });
   }
+  /* A szolgáltatás-panelek tartalma görgetés nélkül férjen el: ha nem fér ki, a betűméretet
+     (--ps) lépésenként kicsinyítjük, legfeljebb 72%-ig. Mindhárom panelre közös érték. */
+  function fitPanels() {
+    var panels = $$('[data-panel]');
+    if (!panels.length) return;
+    var box = panels[0].parentElement;
+    box.style.setProperty('--ps', '1');
+    if (window.innerWidth <= 820 || window.innerHeight <= 520 || current !== 'services') return;
+    var saved = panels.map(function (p) { return p.hidden; });
+    panels.forEach(function (p) { p.hidden = false; p.style.position = 'absolute'; p.style.inset = '0'; p.style.visibility = 'hidden'; });
+    var fits = function () { return panels.every(function (p) { return p.scrollHeight <= p.clientHeight + 1; }); };
+    var ps = 1;
+    while (!fits() && ps > 0.72) {
+      ps = Math.round((ps - 0.02) * 100) / 100;
+      box.style.setProperty('--ps', String(ps));
+    }
+    panels.forEach(function (p, i) { p.hidden = saved[i]; p.style.position = ''; p.style.inset = ''; p.style.visibility = ''; });
+  }
+  window.addEventListener('resize', function () { if (current === 'services') fitPanels(); });
+
   tabs.forEach(function (tab, i) {
     tab.addEventListener('click', function () {
       selectService(tab.dataset.service);

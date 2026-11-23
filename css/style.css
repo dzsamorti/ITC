@@ -815,14 +815,14 @@ body:not(.is-ready) .view { transition: none; }
 .panel__title {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(1.4rem, 3.4vh, 2rem);
+  font-size: calc(clamp(1.4rem, 3.4vh, 2rem) * var(--ps, 1));
   color: var(--white);
   line-height: 1.2;
 }
-.panel__lead { font-size: clamp(.95rem, 2vh, 1.1rem); line-height: 1.65; color: var(--text); max-width: 60em; }
+.panel__lead { font-size: calc(clamp(.95rem, 2vh, 1.1rem) * var(--ps, 1)); line-height: 1.6; color: var(--text); max-width: 60em; }
 .panel__label {
-  margin-top: clamp(2px, 1vh, 10px);
-  font-size: .8rem;
+  margin-top: calc(clamp(2px, 1vh, 10px) * var(--ps, 1));
+  font-size: calc(.8rem * max(var(--ps, 1), .9));
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -831,13 +831,13 @@ body:not(.is-ready) .view { transition: none; }
 .checklist {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(8px, 1.6vh, 14px) clamp(16px, 2.4vw, 36px);
+  gap: calc(clamp(8px, 1.6vh, 14px) * var(--ps, 1)) clamp(16px, 2.4vw, 36px);
 }
 .checklist li {
   position: relative;
   padding-left: 30px;
-  font-size: clamp(.88rem, 1.85vh, 1rem);
-  line-height: 1.5;
+  font-size: calc(clamp(.88rem, 1.85vh, 1rem) * var(--ps, 1));
+  line-height: 1.45;
   color: var(--text);
 }
 .checklist li::before {
@@ -852,6 +852,18 @@ body:not(.is-ready) .view { transition: none; }
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2a122' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4L18 8'/%3E%3C/svg%3E") center / 12px no-repeat;
 }
 .panel .btn { margin-top: auto; }
+/* A szolgáltatás-panelek betűméretét a JS (--ps) úgy kicsinyíti, hogy a teljes tartalom
+   görgetés nélkül elférjen; mindhárom szolgáltatás ugyanazt a méretet kapja */
+[data-panel] {
+  padding-top: calc(clamp(18px, 3.4vh, 38px) * var(--ps, 1));
+  padding-bottom: calc(clamp(18px, 3.4vh, 38px) * var(--ps, 1));
+  gap: calc(clamp(10px, 2vh, 18px) * var(--ps, 1));
+}
+[data-panel] .btn {
+  font-size: calc(1.08rem * max(var(--ps, 1), .85));
+  padding-top: calc(clamp(11px, 1.8vh, 15px) * var(--ps, 1));
+  padding-bottom: calc(clamp(11px, 1.8vh, 15px) * var(--ps, 1));
+}
 
 /* --- Hírek --- */
 .inner--news { justify-content: center; }
