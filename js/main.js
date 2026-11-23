@@ -352,8 +352,35 @@
   var cardsBox = $('.cards');
   var compactCards = window.matchMedia('(min-width: 821px)');
 
+  /* A kártyacímek betűmérete: ha egy cím az utolsó szava nélkül nem fér el egy sorban (pl.
+     „Szankciók és kereskedelmi”), mindhárom címet annyival kisebbre vesszük, amennyivel kell, de
+     legfeljebb 84%-ig; ha ennél többre lenne szükség, marad az eredeti méret. */
+  function fitCardTitles() {
+    cardsBox.style.setProperty('--tfs', '1');
+    var titles = $$('.card__title', cardsBox);
+    if (!titles.length) return;
+    var cs = getComputedStyle(titles[0]);
+    var probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;';
+    probe.style.font = cs.font;
+    probe.style.letterSpacing = cs.letterSpacing;
+    probe.style.textTransform = cs.textTransform;
+    document.body.appendChild(probe);
+    var scale = 1;
+    titles.forEach(function (t) {
+      var words = t.textContent.replace(/\u00AD/g, '').trim().split(/\s+/);
+      probe.textContent = words.length > 1 ? words.slice(0, -1).join(' ') : words[0];
+      var need = probe.getBoundingClientRect().width;
+      if (need > 0 && t.clientWidth > 0) scale = Math.min(scale, (t.clientWidth - 2) / need);
+    });
+    document.body.removeChild(probe);
+    if (scale < 0.84) scale = 1;
+    cardsBox.style.setProperty('--tfs', String(Math.floor(scale * 1000) / 1000));
+  }
+
   function measureCards() {
     if (!cardsBox) return;
+    fitCardTitles();
     if (!compactCards.matches) {
       /* telefonon az első kártya magassága alapján kerül úgy a kártyasor, hogy a következő kilátsszon */
       var first = $('.card', cardsBox);

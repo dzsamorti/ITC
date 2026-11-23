@@ -527,7 +527,9 @@ body:not(.is-ready) .view { transition: none; }
 }
 .card__title {
   font-weight: 400;
-  font-size: clamp(1rem, min(1.5vw, 2.55vh), 1.45rem);
+  /* --tfs: a JS kicsit kisebbre veheti (legfeljebb 84%-ig), hogy a címek a szóhatárokon, kettőnél
+     több sor nélkül törjenek, pl. „Szankciók és kereskedelmi / korlátozások” */
+  font-size: calc(clamp(1rem, min(1.5vw, 2.55vh), 1.45rem) * var(--tfs, 1));
   line-height: 1.25;
   text-transform: uppercase;
   letter-spacing: .01em;
@@ -576,9 +578,12 @@ body:not(.is-ready) .view { transition: none; }
   .card-slot .rule { transition: width .5s var(--ease); }
   .card-slot .card__body {
     padding-bottom: var(--closed-pb);
-    padding-right: var(--closed-pr);
     transition: padding .4s var(--ease);
   }
+  /* A cím a teljes szélességet kapja (a nyíl alatta, a csík magasságában ül), így pl.
+     „Szankciók és kereskedelmi / korlátozások” két sorban fér el; a nyíl miatt csak a címkék
+     sora tart jobbra távolságot. A tördelés kinyitáskor sem változik. */
+  .card-slot .card__tags { padding-right: var(--closed-pr); }
   .card-slot .card__text {
     max-height: 0;
     margin-top: calc(-1 * var(--body-gap));
@@ -616,7 +621,7 @@ body:not(.is-ready) .view { transition: none; }
   .cards.is-measuring .card-slot .card .card__head { min-height: 0; }
   .cards.is-measuring .card-slot .card .rule { transition: none; opacity: 1; height: 2px; margin-top: 0; }
   .cards.is-measuring .card-slot .card .card__text { transition: none; max-height: 0; margin-top: calc(-1 * var(--body-gap)); }
-  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: var(--closed-pb); padding-right: var(--closed-pr); }
+  .cards.is-measuring .card-slot .card .card__body { transition: none; padding-bottom: var(--closed-pb); }
   .cards.is-measuring-open .card-slot .card *,
   .cards.is-measuring .card-slot .card * { transition: none; }
   .cards.is-measuring-open .card-slot .card .card__text { transition: none; }
@@ -629,7 +634,7 @@ body:not(.is-ready) .view { transition: none; }
     max-height: 12em; margin-top: 0; opacity: 1;
     transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
   }
-  .card-slot .card:hover .card__body { padding-bottom: var(--open-pb); }  /* a jobb oldali hely megmarad: a cím és a címkék tördelése nem változik */
+  .card-slot .card:hover .card__body { padding-bottom: var(--open-pb); }
   .card-slot .card:hover .round-arrow { opacity: 1; transform: none; }
 }
 /* Széles képernyőn csukott állapotban a nyíl a cím mellett, a sárga csíkkal egy vonalban látszik */
@@ -2280,8 +2285,35 @@ window.ITC_I18N = {
   var cardsBox = $('.cards');
   var compactCards = window.matchMedia('(min-width: 821px)');
 
+  /* A kártyacímek betűmérete: ha egy cím az utolsó szava nélkül nem fér el egy sorban (pl.
+     „Szankciók és kereskedelmi”), mindhárom címet annyival kisebbre vesszük, amennyivel kell, de
+     legfeljebb 84%-ig; ha ennél többre lenne szükség, marad az eredeti méret. */
+  function fitCardTitles() {
+    cardsBox.style.setProperty('--tfs', '1');
+    var titles = $$('.card__title', cardsBox);
+    if (!titles.length) return;
+    var cs = getComputedStyle(titles[0]);
+    var probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;';
+    probe.style.font = cs.font;
+    probe.style.letterSpacing = cs.letterSpacing;
+    probe.style.textTransform = cs.textTransform;
+    document.body.appendChild(probe);
+    var scale = 1;
+    titles.forEach(function (t) {
+      var words = t.textContent.replace(/\u00AD/g, '').trim().split(/\s+/);
+      probe.textContent = words.length > 1 ? words.slice(0, -1).join(' ') : words[0];
+      var need = probe.getBoundingClientRect().width;
+      if (need > 0 && t.clientWidth > 0) scale = Math.min(scale, (t.clientWidth - 2) / need);
+    });
+    document.body.removeChild(probe);
+    if (scale < 0.84) scale = 1;
+    cardsBox.style.setProperty('--tfs', String(Math.floor(scale * 1000) / 1000));
+  }
+
   function measureCards() {
     if (!cardsBox) return;
+    fitCardTitles();
     if (!compactCards.matches) {
       /* telefonon az első kártya magassága alapján kerül úgy a kártyasor, hogy a következő kilátsszon */
       var first = $('.card', cardsBox);
