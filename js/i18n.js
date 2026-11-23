@@ -42,7 +42,7 @@ window.ITC_I18N = {
       'Szankciós szabályzat, eszkalációs folyamat és képzés'
     ],
 
-    'svc.fta.title': 'Ellátási láncok és kockázat&shy;kezelés',
+    'svc.fta.title': 'Ellátási láncok és kockázatkezelés',
     'svc.fta.card': 'Átlátható ellátási lánc, megbízható beszállítók, kezelt kockázatok.',
     'svc.fta.lead': 'Feltérképezzük ellátási lánca szabályozási, beszállítói és működési kockázatait, és olyan kockázatkezelési rendszert építünk, amely segít megelőzni a fennakadásokat és a jogsértéseket.',
     'svc.fta.items': [

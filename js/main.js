@@ -369,9 +369,13 @@
     var scale = 1;
     titles.forEach(function (t) {
       var words = t.textContent.replace(/\u00AD/g, '').trim().split(/\s+/);
-      probe.textContent = words.length > 1 ? words.slice(0, -1).join(' ') : words[0];
-      var need = probe.getBoundingClientRect().width;
-      if (need > 0 && t.clientWidth > 0) scale = Math.min(scale, (t.clientWidth - 2) / need);
+      /* az utolsó szó nélküli rész egy sorba férjen, és egyetlen szó se törjön ketté */
+      var parts = [words.length > 1 ? words.slice(0, -1).join(' ') : words[0]].concat(words);
+      parts.forEach(function (part) {
+        probe.textContent = part;
+        var need = probe.getBoundingClientRect().width;
+        if (need > 0 && t.clientWidth > 0) scale = Math.min(scale, (t.clientWidth - 2) / need);
+      });
     });
     document.body.removeChild(probe);
     if (scale < 0.84) scale = 1;
