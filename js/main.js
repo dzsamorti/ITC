@@ -12,7 +12,7 @@
   var COMPANY = {
     name: 'ITC Trade Kft.',
     seat: '1137 Budapest, Radnóti Miklós utca 38.',
-    email: '',
+    email: 'info@itctrade.eu',
     regno: '',
     court: 'Fővárosi Törvényszék Cégbírósága',
     tax: '',
