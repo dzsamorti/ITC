@@ -147,6 +147,9 @@
         else a.removeAttribute('aria-current');
       });
       body.classList.toggle('is-home', r.view === 'home');
+      /* telefonon görgethető főoldal: visszatéréskor mindig a tetején kezdődjön */
+      var homeView = $('.view--home');
+      if (homeView && r.view === 'home') homeView.scrollTop = 0;
       body.dataset.view = r.view;
       current = r.view;
     }
@@ -328,7 +331,13 @@
   var compactCards = window.matchMedia('(min-width: 821px)');
 
   function measureCards() {
-    if (!cardsBox || !compactCards.matches) return;
+    if (!cardsBox) return;
+    if (!compactCards.matches) {
+      /* telefonon az első kártya magassága alapján kerül úgy a kártyasor, hogy a következő kilátsszon */
+      var first = $('.card', cardsBox);
+      if (first) document.documentElement.style.setProperty('--peek-card', first.offsetHeight + 'px');
+      return;
+    }
     cardsBox.classList.add('is-measuring');
     var titleH = 0;
     $$('.card__head', cardsBox).forEach(function (el) { titleH = Math.max(titleH, el.offsetHeight); });

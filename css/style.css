@@ -1180,24 +1180,32 @@ body:not(.is-ready) .view { transition: none; }
       linear-gradient(180deg, rgba(11, 27, 48, 0) 46%, rgba(11, 27, 48, .6) 62%, rgba(11, 27, 48, .95) 80%);
   }
 
-  /* Főoldal: kártyák vízszintes, lapozható sávban */
-  .hero { justify-content: flex-start; padding-top: 3vh; gap: 22px; }
-  .hero__title { font-size: clamp(1.9rem, min(8.6vw, 5.4vh), 3.2rem); }
-  .cards {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: min(84%, 360px);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    margin: 0 calc(-1 * var(--gutter));
-    padding: 6px var(--gutter) 10px;
-    scroll-padding: 0 var(--gutter);
-    scrollbar-width: none;
+  /* Főoldal telefonon: a kártyák egymás alatt, lefelé görgethetők. Az első képernyőn az első kártya
+     teljesen látszik, a következő kártya teteje (ikonnal, címmel) pedig kilátszik alul,
+     így egyértelmű, hogy lejjebb még folytatódik. */
+  .view--home { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .home { height: auto; min-height: 100%; gap: 16px; padding-bottom: 28px; }
+  .hero {
+    flex: none;
+    container-type: normal;
+    justify-content: flex-start;
+    padding-top: 3vh;
+    gap: 22px;
+    /* a hős-rész alja (vagyis az első kártya teteje) úgy kerül, hogy a 2. kártyából kb. 90 px látsszon */
+    min-height: calc(100vh - var(--header-h) - var(--peek-card, 300px) - 16px - 90px);
+    min-height: calc(100svh - var(--header-h) - var(--peek-card, 300px) - 16px - 90px);
   }
-  .cards::-webkit-scrollbar { display: none; }
+  .hero__title { font-size: clamp(1.9rem, min(8.6vw, 5.4vh), 3.2rem); }
+  .cards { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .card-slot { display: contents; }
-  .card { scroll-snap-align: start; }
   .card:hover { transform: none; }
+}
+/* Alacsony telefonképernyőn (pl. iPhone SE) a kártyák leírás nélkül, tömörebben jelennek meg,
+   hogy az első kártya alatt a következő is kilátsszon; a koppintás a szolgáltatás oldalára visz */
+@media (max-width: 820px) and (max-height: 620px) {
+  .home .card__text { display: none; }
+  .home .card__body { gap: 10px; padding-bottom: 46px; }
+  .home .hero { gap: 16px; padding-top: 2vh; }
 
   /* Belső nézetek: egy oszlop, a tartalom saját keretén belül görgethető */
   .inner {
