@@ -41,7 +41,7 @@ node build-single.js
 
 ## Fontos teendők élesítés előtt
 
-- **Űrlap címzettje:** a `CONTACT` objektumban jelenleg helykitöltő e-mail-cím van; ide érkeznek az üzenetek.
+- **Űrlap címzettje:** `info@itctrade.eu` (a `CONTACT` objektumban); ide érkeznek az üzenetek.
 - **Háttérkép:** a jelenlegi fotó a tervből van kivágva, ezért nagy kijelzőn kissé lágy.
   Érdemes azonos hangulatú, legalább 2400 px széles fotóra cserélni ugyanezen a néven.
 - **Hírek:** a három cikk mintatartalom, a saját híreikre cserélhetők a `js/i18n.js`-ben.

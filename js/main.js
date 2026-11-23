@@ -5,7 +5,7 @@
   /* ---- Elérhetőségek: ezeket írja át a valós adatokra ---- */
   /* Ide érkeznek az űrlapon küldött üzenetek (az oldalon nem jelenik meg) */
   var CONTACT = {
-    email: 'info@example.com'
+    email: 'info@itctrade.eu'
   };
 
   /* Impresszum adatai (Kapcsolat → Impresszum). Az üresen hagyott mezők helyén „—” jelenik meg. */
