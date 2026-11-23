@@ -572,7 +572,8 @@ body:not(.is-ready) .view { transition: none; }
     min-height: var(--card-h, 0);
   }
   .card-slot .card__head { min-height: var(--title-h, 0); transition: min-height .4s var(--ease); }
-  .card-slot .rule { transition: opacity .25s, height .4s var(--ease), margin-top .4s var(--ease); }
+  /* a sárga csík kinyitáskor sem tűnik el: finoman megnyúlik, és elválasztja a címet a leírástól */
+  .card-slot .rule { transition: width .5s var(--ease); }
   .card-slot .card__body {
     padding-bottom: var(--closed-pb);
     padding-right: var(--closed-pr);
@@ -593,7 +594,7 @@ body:not(.is-ready) .view { transition: none; }
 
   .card-slot .card:focus-visible { z-index: 2; min-height: var(--open-h, 0); }
   .card-slot .card:focus-visible .card__head { min-height: 0; }
-  .card-slot .card:focus-visible .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .card-slot .card:focus-visible .rule { width: 96px; }
   .card-slot .card:focus-visible .card__text {
     max-height: 12em; margin-top: 0; opacity: 1;
     transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
@@ -602,7 +603,6 @@ body:not(.is-ready) .view { transition: none; }
   .card-slot .card:focus-visible .round-arrow { opacity: 1; transform: none; }
   .cards.is-measuring-open .card-slot .card { z-index: 2; min-height: var(--open-h, 0); }
   .cards.is-measuring-open .card-slot .card .card__head { min-height: 0; }
-  .cards.is-measuring-open .card-slot .card .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
   .cards.is-measuring-open .card-slot .card .card__text {
     max-height: 12em; margin-top: 0; opacity: 1;
     transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
@@ -624,7 +624,7 @@ body:not(.is-ready) .view { transition: none; }
 @media (min-width: 821px) and (hover: hover) {
   .card-slot .card:hover { z-index: 2; min-height: var(--open-h, 0); }
   .card-slot .card:hover .card__head { min-height: 0; }
-  .card-slot .card:hover .rule { opacity: 0; height: 0; margin-top: calc(-1 * var(--body-gap)); }
+  .card-slot .card:hover .rule { width: 96px; }
   .card-slot .card:hover .card__text {
     max-height: 12em; margin-top: 0; opacity: 1;
     transition: max-height .45s var(--ease), margin-top .45s var(--ease), opacity .35s .1s;
