@@ -36,7 +36,7 @@ node build-single.js
 | Impresszum adatai (cégnév, székhely, adószám stb.) | `js/main.js`, a fájl elején a `COMPANY` objektum |
 | Adatkezelési tájékoztató szövege (HU és EN) | `js/i18n.js`, `legal.privacy.body` |
 | Színek, betűtípusok, méretek | `css/style.css`, a `:root` változók |
-| Háttérkép | `assets/img/hero-port.jpg` |
+| Háttérkép | `assets/img/hero-port.webp` (és `hero-left.webp`) |
 | Betűtípusok (Figtree, Source Serif 4, Julius Sans One – OFL licenc, helyben tárolva) | `assets/fonts/` |
 
 ## Fontos teendők élesítés előtt
