@@ -2,8 +2,8 @@
    A tartalom itt szerkeszthető; a *.html kulcsok HTML-t is tartalmazhatnak. */
 window.ITC_I18N = {
   hu: {
-    'meta.title': 'ITC – Nemzetközi kereskedelmi compliance tanácsadás',
-    'meta.description': 'Az ITC nemzetközi kereskedelmi compliance tanácsadó: exportellenőrzés, szankciók és kereskedelmi korlátozások, ellátási láncok és kockázatkezelés.',
+    'meta.title': 'itctrade – Exportellenőrzés és szankciós tanácsadás',
+    'meta.description': 'Exportellenőrzés, dual-use termékbesorolás, kiviteli engedélyek és szankciós tanácsadás magyar cégeknek. Az itctrade gyakorlati compliance megoldásokat ad.',
 
     'nav.home': 'Főoldal',
     'nav.brand': 'ITC – vissza a főoldalra',
@@ -148,8 +148,8 @@ window.ITC_I18N = {
   },
 
   en: {
-    'meta.title': 'ITC – International Trade Compliance Advisory',
-    'meta.description': 'ITC is an international trade compliance advisory: export control, sanctions and trade restrictions, supply chain and risk management.',
+    'meta.title': 'itctrade – Export Control and Sanctions Advisory',
+    'meta.description': 'Export control, dual-use classification, export licensing and sanctions advisory for companies in Hungary and the EU. itctrade delivers practical trade compliance.',
 
     'nav.home': 'Home',
     'nav.brand': 'ITC – back to home',

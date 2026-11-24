@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://itctrade.eu/sitemap.xml

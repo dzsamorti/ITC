@@ -31,13 +31,19 @@ node build-single.js
 
 | Mit | Hol |
 | --- | --- |
-| Szövegek (HU és EN) | `js/i18n.js` |
+| Szövegek (HU és EN) | `js/i18n.js`, utána `node prerender.js` (beírja a magyar szöveget az `index.html`-be a Google számára) |
 | Az űrlap címzett e-mail-címe | `js/main.js`, a fájl elején a `CONTACT` objektum |
 | Impresszum adatai (cégnév, székhely, adószám stb.) | `js/main.js`, a fájl elején a `COMPANY` objektum |
 | Adatkezelési tájékoztató szövege (HU és EN) | `js/i18n.js`, `legal.privacy.body` |
 | Színek, betűtípusok, méretek | `css/style.css`, a `:root` változók |
 | Háttérkép | `assets/img/hero-port.webp` (és `hero-left.webp`) |
 | Betűtípusok (Figtree, Source Serif 4, Julius Sans One – OFL licenc, helyben tárolva) | `assets/fonts/` |
+
+## Keresőoptimalizálás
+
+- Az oldal címe és leírása a `js/i18n.js` `meta.title` / `meta.description` kulcsaiban van.
+- Az `index.html` fejlécében strukturált adat (schema.org ProfessionalService) és Open Graph címkék vannak.
+- A `robots.txt` és a `sitemap.xml` a gyökérben van; a sitemapet a Google Search Console-ban kell beküldeni.
 
 ## Fontos teendők élesítés előtt
 
