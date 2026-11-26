@@ -428,4 +428,38 @@
   window.addEventListener('popstate', route);
   route();
   requestAnimationFrame(function () { body.classList.add('is-ready'); });
+
+  /* ================= Első megjelenés =================
+     Megvárjuk a két háttérképet és a látható betűtípusokat, kimérjük a kártyákat (és a
+     szolgáltatás-paneleket), és csak ezután vesszük le a takarást: az oldal egyszerre jelenik meg. */
+  function whenImage(el, pseudo) {
+    return new Promise(function (resolve) {
+      if (!el) return resolve();
+      var m = /url\(["']?(.*?)["']?\)/.exec(getComputedStyle(el, pseudo || null).backgroundImage || '');
+      if (!m) return resolve();
+      var img = new Image();
+      img.onload = img.onerror = function () { resolve(); };
+      img.src = m[1];
+      if (img.decode) img.decode().then(resolve, resolve);
+    });
+  }
+  function whenFonts() {
+    if (!document.fonts || !document.fonts.load) return Promise.resolve();
+    return Promise.all(['400 1em Figtree', '400 1em "Source Serif 4"', 'italic 400 1em "Source Serif 4"', '400 1em "Julius Sans One"']
+      .map(function (f) { return document.fonts.load(f).catch(function () {}); }));
+  }
+  var revealed = false;
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    measureCards();
+    if (current === 'services') fitPanels();
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { document.documentElement.classList.remove('is-loading'); });
+    });
+  }
+  if (document.documentElement.classList.contains('is-loading')) {
+    Promise.all([whenFonts(), whenImage($('.scene__photo'), '::before'), whenImage($('.scene__sky'))]).then(reveal, reveal);
+    setTimeout(reveal, 3000);
+  }
 })();

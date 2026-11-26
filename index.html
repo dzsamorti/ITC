@@ -40,8 +40,13 @@
   <meta name="theme-color" content="#0f2440">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/img/hero-port.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/img/hero-left.webp" as="image" type="image/webp">
   <link rel="preload" href="assets/fonts/Figtree.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/SourceSerif4-Roman.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/SourceSerif4-Italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/JuliusSansOne.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Betöltés: az oldal csak akkor jelenik meg, amikor a képek és a betűk is megvannak (biztosíték: 4 mp) -->
+  <script>document.documentElement.classList.add('is-loading');setTimeout(function(){document.documentElement.classList.remove('is-loading')},4000);</script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="is-home">

@@ -171,6 +171,27 @@ body:not(.is-home) .scene__sky { filter: blur(3px) saturate(.9); }
 body:not(.is-home) .scene__wash { opacity: 0; }
 body:not(.is-home) .scene__dim { opacity: 1; }
 
+/* Betöltés: amíg a háttérképek és a betűtípusok be nem töltődnek, és a kártyák méretét ki nem
+   számoltuk, a háttérrel egyező színátmenet takarja az oldalt; utána minden egyszerre, egy rövid
+   áttűnéssel jelenik meg. Közben semmi sem animálódik, így semmi sem csúszik vagy ugrik. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, #a6c4df 0%, #c3d5e4 18%, #e2e1da 36%, #b9bfc4 44%, #5f7791 56%, #1c3758 72%, var(--navy-900) 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility 0s linear .5s;
+}
+body:not(.is-home)::after { background: var(--navy-900); }
+html.is-loading body::after { opacity: 1; visibility: visible; }
+html.is-loading *,
+html.is-loading *::before,
+html.is-loading *::after { transition: none !important; animation: none !important; }
+
 /* ================= Fejléc ================= */
 .site-header {
   position: relative;

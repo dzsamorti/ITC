@@ -39,6 +39,8 @@
   </script>
   <meta name="theme-color" content="#0f2440">
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNjNDg1MGYiPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQzIiBzdHJva2Utd2lkdGg9IjYiLz48ZWxsaXBzZSBjeD0iNTAiIGN5PSI1MCIgcng9IjIwIiByeT0iNDMiIHN0cm9rZS13aWR0aD0iNCIvPjxlbGxpcHNlIGN4PSI1MCIgY3k9IjUwIiByeD0iNDMiIHJ5PSIxNy41IiBzdHJva2Utd2lkdGg9IjQiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1LjY2IC01LjY2KSByb3RhdGUoNDUgNTAgNTApIiBzdHJva2U9Im5vbmUiPjxwYXRoIGQ9Ik01MCAxOEw0Mi41IDUwSDUweiIgZmlsbD0iI2Y3YmM0ZCIvPjxwYXRoIGQ9Ik01MCAxOEw1Ny41IDUwSDUweiIgZmlsbD0iI2I4NzMwYyIvPjxwYXRoIGQ9Ik01MCA4Mkw1Ny41IDUwSDUweiIgZmlsbD0iIzBmMjI0MCIvPjxwYXRoIGQ9Ik01MCA4Mkw0Mi41IDUwSDUweiIgZmlsbD0iIzJjNTI4MyIvPjwvZz48L3N2Zz4K" type="image/svg+xml">
+  <!-- Betöltés: az oldal csak akkor jelenik meg, amikor a képek és a betűk is megvannak (biztosíték: 4 mp) -->
+  <script>document.documentElement.classList.add('is-loading');setTimeout(function(){document.documentElement.classList.remove('is-loading')},4000);</script>
   <style>
 /* =========================================================
    ITC – International Trade Compliance
@@ -212,6 +214,27 @@ body:not(.is-home) .scene__photo { transform: scale(1.1); filter: blur(3px) satu
 body:not(.is-home) .scene__sky { filter: blur(3px) saturate(.9); }
 body:not(.is-home) .scene__wash { opacity: 0; }
 body:not(.is-home) .scene__dim { opacity: 1; }
+
+/* Betöltés: amíg a háttérképek és a betűtípusok be nem töltődnek, és a kártyák méretét ki nem
+   számoltuk, a háttérrel egyező színátmenet takarja az oldalt; utána minden egyszerre, egy rövid
+   áttűnéssel jelenik meg. Közben semmi sem animálódik, így semmi sem csúszik vagy ugrik. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, #a6c4df 0%, #c3d5e4 18%, #e2e1da 36%, #b9bfc4 44%, #5f7791 56%, #1c3758 72%, var(--navy-900) 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility 0s linear .5s;
+}
+body:not(.is-home)::after { background: var(--navy-900); }
+html.is-loading body::after { opacity: 1; visibility: visible; }
+html.is-loading *,
+html.is-loading *::before,
+html.is-loading *::after { transition: none !important; animation: none !important; }
 
 /* ================= Fejléc ================= */
 .site-header {
@@ -2393,6 +2416,40 @@ window.ITC_I18N = {
   window.addEventListener('popstate', route);
   route();
   requestAnimationFrame(function () { body.classList.add('is-ready'); });
+
+  /* ================= Első megjelenés =================
+     Megvárjuk a két háttérképet és a látható betűtípusokat, kimérjük a kártyákat (és a
+     szolgáltatás-paneleket), és csak ezután vesszük le a takarást: az oldal egyszerre jelenik meg. */
+  function whenImage(el, pseudo) {
+    return new Promise(function (resolve) {
+      if (!el) return resolve();
+      var m = /url\(["']?(.*?)["']?\)/.exec(getComputedStyle(el, pseudo || null).backgroundImage || '');
+      if (!m) return resolve();
+      var img = new Image();
+      img.onload = img.onerror = function () { resolve(); };
+      img.src = m[1];
+      if (img.decode) img.decode().then(resolve, resolve);
+    });
+  }
+  function whenFonts() {
+    if (!document.fonts || !document.fonts.load) return Promise.resolve();
+    return Promise.all(['400 1em Figtree', '400 1em "Source Serif 4"', 'italic 400 1em "Source Serif 4"', '400 1em "Julius Sans One"']
+      .map(function (f) { return document.fonts.load(f).catch(function () {}); }));
+  }
+  var revealed = false;
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    measureCards();
+    if (current === 'services') fitPanels();
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { document.documentElement.classList.remove('is-loading'); });
+    });
+  }
+  if (document.documentElement.classList.contains('is-loading')) {
+    Promise.all([whenFonts(), whenImage($('.scene__photo'), '::before'), whenImage($('.scene__sky'))]).then(reveal, reveal);
+    setTimeout(reveal, 3000);
+  }
 })();
 
 </script>
